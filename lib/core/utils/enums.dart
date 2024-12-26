@@ -1,0 +1,1 @@
+enum AuthRequestStateEnum { success, failed }
