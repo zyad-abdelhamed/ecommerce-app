@@ -1,4 +1,6 @@
 
+import 'package:dio/dio.dart';
+import 'package:ecommerce_application/core/services/api_service.dart';
 import 'package:ecommerce_application/features/auth/data/datasources/auth_remte_data_source.dart';
 import 'package:ecommerce_application/features/auth/data/repositories/auth_repository.dart';
 import 'package:ecommerce_application/features/auth/domain/repositories/auth.dart';
@@ -24,8 +26,10 @@ class AuthDependencyInjection {
       () => AuthRepository(sl()),
     );
     //data source
+    sl.registerLazySingleton(() => Dio(),);
+    sl.registerLazySingleton(() => ApiService(sl()),);
     sl.registerLazySingleton<BaseAuthRemteDataSource>(
-      () => AuthRemteDataSource(),
+      () => AuthRemteDataSource(sl()),
     );
   }
 }

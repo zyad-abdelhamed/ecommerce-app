@@ -22,7 +22,8 @@ class SignUpFormComponent extends StatelessWidget {
         getLoadingWidget;
         appSneakBar(context: context, message: state.message);
       }
-    }, builder: (context, state) {
+    },buildWhen: (previous, current) =>  previous.signUpState != current.signUpState,
+     builder: (context, state) {
       final controller = context.read<AuthCubit>();
       print('///////////////////////////////////');
       print(state);
