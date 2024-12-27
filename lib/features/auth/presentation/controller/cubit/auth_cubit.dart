@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:ecommerce_app/core/utils/enums.dart';
-import 'package:ecommerce_app/features/auth/domain/use_cases/sign_up.dart';
+import 'package:ecommerce_application/core/utils/enums.dart';
+import 'package:ecommerce_application/features/auth/domain/use_cases/sign_up.dart';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 

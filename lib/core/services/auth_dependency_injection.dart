@@ -1,8 +1,9 @@
-import 'package:ecommerce_app/features/auth/data/datasources/auth_remte_data_source.dart';
-import 'package:ecommerce_app/features/auth/data/repositories/auth_repository.dart';
-import 'package:ecommerce_app/features/auth/domain/repositories/auth.dart';
-import 'package:ecommerce_app/features/auth/domain/use_cases/sign_up.dart';
-import 'package:ecommerce_app/features/auth/presentation/controller/cubit/auth_cubit.dart';
+
+import 'package:ecommerce_application/features/auth/data/datasources/auth_remte_data_source.dart';
+import 'package:ecommerce_application/features/auth/data/repositories/auth_repository.dart';
+import 'package:ecommerce_application/features/auth/domain/repositories/auth.dart';
+import 'package:ecommerce_application/features/auth/domain/use_cases/sign_up.dart';
+import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt sl = GetIt.instance;

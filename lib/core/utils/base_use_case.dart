@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_app/core/errors/failures.dart';
+import 'package:ecommerce_application/core/errors/failures.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class BaseUseCase<t, parameters> {

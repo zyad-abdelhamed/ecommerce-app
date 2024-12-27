@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_app/core/errors/exceptions.dart';
-import 'package:ecommerce_app/features/auth/domain/use_cases/sign_up.dart';
+import 'package:ecommerce_application/core/errors/exceptions.dart';
+import 'package:ecommerce_application/features/auth/domain/use_cases/sign_up.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
