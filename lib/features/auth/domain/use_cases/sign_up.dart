@@ -2,9 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:ecommerce_app/core/errors/failures.dart';
 import 'package:ecommerce_app/core/utils/base_use_case.dart';
 import 'package:ecommerce_app/features/auth/domain/repositories/auth.dart';
+import 'package:ecommerce_application/core/utils/base_use_case.dart';
 import 'package:equatable/equatable.dart';
 
-class SignUpUseCase extends BaseUseCase<Unit, SignUpParameters> {
+class SignUpUseCase extends BaseUseCaseWithParameters<Unit, SignUpParameters> {
   final BaseAuthRepository baseAuthRepository;
 
   SignUpUseCase(this.baseAuthRepository);

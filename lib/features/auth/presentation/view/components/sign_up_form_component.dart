@@ -61,7 +61,7 @@ class SignUpFormComponent extends StatelessWidget {
               SizedBoxs.sizedBoxH30,
               appMaterialButton(
                   buttonFunction: () {
-                    controller.sginUp();
+                    controller.signUp();
                   },
                   buttonName: 'sign up')
             ],
