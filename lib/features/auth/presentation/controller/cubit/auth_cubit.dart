@@ -10,6 +10,20 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final SignUpUseCase signUpUseCase;
   AuthCubit(this.signUpUseCase) : super(const AuthState());
+  double scale = 1.0;
+  Color c =  Colors.grey;
+  d(){
+    scale = 1.5;
+    c=Colors.red;
+    emit(AuthState());
+    
+  }
+
+  f(){
+    scale=1.0;
+   c =  Colors.grey;
+     emit(s());
+  }
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneNumerController = TextEditingController();

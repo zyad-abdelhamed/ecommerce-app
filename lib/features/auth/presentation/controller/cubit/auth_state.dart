@@ -9,3 +9,4 @@ final String message;
   List<Object?> get props => [signUpState,message];
 }
 
+class s extends AuthState{}
