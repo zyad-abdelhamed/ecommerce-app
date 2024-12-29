@@ -6,6 +6,4 @@ ThemeData appTheme = ThemeData(
     appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent.withOpacity(0.0),
         centerTitle: true),
-    iconTheme: const IconThemeData(
-      color: Color.fromARGB(255, 222, 73, 43),
-    ));
+   );

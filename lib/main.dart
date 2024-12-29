@@ -17,6 +17,7 @@ import 'package:ecommerce_application/core/services/auth_dependency_injection.da
 import 'package:ecommerce_application/core/theme/app_theme.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
 import 'package:ecommerce_application/features/auth/presentation/view/pages/sign_up_page.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/view/components/product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: appTheme,
-        home: SignUpPage()
+        home: ProductWidget()
       ),
     );
   }
