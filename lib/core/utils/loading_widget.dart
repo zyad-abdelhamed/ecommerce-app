@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 Widget get getLoadingWidget => const Center(
-  child: CircularProgressIndicator(
-    color: Colors.greenAccent,
+  child: CircleAvatar(
+    backgroundColor: Colors.white,
+    child: CircularProgressIndicator(
+      color: Colors.greenAccent,
+    ),
   ),
 );

@@ -29,7 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
   final TextEditingController phoneNumerController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  Future<void> sginUp() async {
+  Future<void> signUp() async {
    if(formkey.currentState!.validate()){
      final result = await signUpUseCase(SignUpParameters(
         email: emailController.text,
