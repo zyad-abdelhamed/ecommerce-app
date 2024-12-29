@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_app/core/errors/exceptions.dart';
-import 'package:ecommerce_app/core/errors/failures.dart';
-import 'package:ecommerce_app/features/auth/data/datasources/auth_remte_data_source.dart';
-import 'package:ecommerce_app/features/auth/domain/repositories/auth.dart';
-import 'package:ecommerce_app/features/auth/domain/use_cases/sign_up.dart';
+import 'package:ecommerce_application/core/errors/exceptions.dart';
+import 'package:ecommerce_application/core/errors/failures.dart';
+import 'package:ecommerce_application/features/auth/data/datasources/auth_remte_data_source.dart';
+import 'package:ecommerce_application/features/auth/domain/repositories/auth.dart';
+import 'package:ecommerce_application/features/auth/domain/use_cases/sign_up.dart';
 
 class AuthRepository extends BaseAuthRepository {
   final BaseAuthRemteDataSource baseAuthRemteDataSource;
