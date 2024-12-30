@@ -1,7 +1,7 @@
 // void main() async{
 // //   WidgetsFlutterBinding.ensureInitialized();
 // //   await cache.cacheintialization();
- 
+
 // //  token =  cache.getcache(key: 'token');
 // //  language= cache.getcache(key: 'lang');
 //   // MaterialApp MyApp = MaterialApp(
@@ -13,17 +13,23 @@
 //   // );
 //   // runApp(MyApp);
 // }
+import 'package:ecommerce_application/core/constants/variable_constant.dart';
 import 'package:ecommerce_application/core/services/auth_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/app_theme.dart';
+import 'package:ecommerce_application/core/utils/shared.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
+import 'package:ecommerce_application/features/auth/presentation/view/pages/log_in_page.dart';
 import 'package:ecommerce_application/features/auth/presentation/view/pages/sign_up_page.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AuthDependencyInjection.init();
+  await Cache.cacheintialization();
+  VariableConstant.token =  Cache.getcache(key: 'token');
+
   runApp(const MyApp());
 }
 
@@ -33,15 +39,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => AuthCubit(sl())
-        ),
+        BlocProvider(create: (context) => AuthCubit(sl(), sl())),
       ],
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: appTheme,
-        home: ProductWidget()
-      ),
+          debugShowCheckedModeBanner: false,
+          theme: appTheme,
+          home: LogInPage()),
     );
   }
 }
