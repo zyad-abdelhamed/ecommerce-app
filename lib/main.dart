@@ -13,7 +13,6 @@
 //   // );
 //   // runApp(MyApp);
 // }
-import 'package:ecommerce_application/core/constants/variable_constant.dart';
 import 'package:ecommerce_application/core/services/auth_dependency_injection.dart';
 import 'package:ecommerce_application/core/services/navigation.dart';
 import 'package:ecommerce_application/core/theme/app_theme.dart';
@@ -26,7 +25,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AuthDependencyInjection.init();
   await Cache.cacheintialization();
-  VariableConstant.token = Cache.getcache(key: 'token');
+ AuthCubit.getTokenFromCache;
 
   runApp(const MyApp());
 }

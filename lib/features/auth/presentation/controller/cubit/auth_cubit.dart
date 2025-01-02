@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
+import 'package:ecommerce_application/core/services/shared.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/features/auth/domain/use_cases/log_in.dart';
 import 'package:ecommerce_application/features/auth/domain/use_cases/sign_up.dart';
@@ -17,7 +18,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   final SignUpUseCase signUpUseCase;
   final LogInUseCase logInUseCase;
-  AuthCubit(this.signUpUseCase, this.logInUseCase) : super(const AuthState());
+  AuthCubit(
+    this.signUpUseCase,
+    this.logInUseCase,
+  ) : super(const AuthState());
   double scale = 1.0;
   Color c = Colors.grey;
   d() {
@@ -72,11 +76,22 @@ class AuthCubit extends Cubit<AuthState> {
                 AuthState(
                     logInmessage: l.message,
                     logInState: AuthRequestStateEnum.failed),
-              ),
-          (r) => emit(const AuthState(
-              logInState: AuthRequestStateEnum.success,
-              logInmessage: ViewConstants.logInSuccessfully)));
+              ), (r) {
+        insertTokenToCache(token: r.token);
+        getTokenFromCache(token: r.token);
+        emit(const AuthState(
+            logInState: AuthRequestStateEnum.success,
+            logInmessage: ViewConstants.logInSuccessfully));
+      });
     }
+  }
+//insert and get token  
+  Future<void> insertTokenToCache({required String token}) async {
+    await Cache.insertcache(key: 'token', value: token);
+  }
+
+  static void getTokenFromCache({required String token}) {
+    token = Cache.getcache(key: 'token');
   }
 
 //navigation

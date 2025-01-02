@@ -1,4 +1,3 @@
-import 'package:ecommerce_application/core/constants/variable_constant.dart';
 import 'package:ecommerce_application/core/utils/app_material_button.dart';
 import 'package:ecommerce_application/core/utils/app_sneak_bar.dart';
 import 'package:ecommerce_application/core/utils/app_textfield.dart';
@@ -21,7 +20,6 @@ class LogInFormComponent extends StatelessWidget {
           if (state.logInState == AuthRequestStateEnum.success) {
             appSneakBar(context: context, message: state.logInmessage);
 
-            print(VariableConstant.token);
           } else if (state.logInState == AuthRequestStateEnum.failed) {
             appSneakBar(context: context, message: state.logInmessage);
           }
@@ -29,7 +27,6 @@ class LogInFormComponent extends StatelessWidget {
         buildWhen: (previous, current) =>
             previous.logInState != current.logInState,
         builder: (context, state) {
-          print(VariableConstant.token);
 
           return state.logInState == AuthRequestStateEnum.loading
               ? getLoadingWidget()

@@ -1,15 +1,17 @@
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_application/core/errors/failures.dart';
 import 'package:ecommerce_application/core/utils/base_use_case.dart';
+import 'package:ecommerce_application/features/auth/data/models/auth_model.dart';
 import 'package:equatable/equatable.dart';
 
 import '../repositories/auth.dart';
 
-class LogInUseCase extends BaseUseCaseWithParameters<Unit, LogInParameters> {
+class LogInUseCase
+    extends BaseUseCaseWithParameters<AuthModel, LogInParameters> {
   final BaseAuthRepository baseAuthRepository;
   LogInUseCase(this.baseAuthRepository);
   @override
-  Future<Either<Failure, Unit>> call(LogInParameters parameters) async {
+  Future<Either<Failure, AuthModel>> call(LogInParameters parameters) async {
     return await baseAuthRepository.login(parameters);
   }
 }

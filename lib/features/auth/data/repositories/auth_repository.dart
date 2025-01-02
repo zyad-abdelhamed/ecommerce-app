@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:ecommerce_application/core/errors/exceptions.dart';
 import 'package:ecommerce_application/core/errors/failures.dart';
 import 'package:ecommerce_application/features/auth/data/datasources/auth_remote_data_source.dart';
+import 'package:ecommerce_application/features/auth/data/models/auth_model.dart';
 import 'package:ecommerce_application/features/auth/domain/repositories/auth.dart';
 import 'package:ecommerce_application/features/auth/domain/use_cases/log_in.dart';
 import 'package:ecommerce_application/features/auth/domain/use_cases/sign_up.dart';
@@ -23,10 +24,10 @@ class AuthRepository extends BaseAuthRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> login(LogInParameters logInParameters) async {
+  Future<Either<Failure, AuthModel>> login(LogInParameters logInParameters) async {
     try {
-      await baseAuthRemteDataSource.login(logInParameters);
-      return right(unit);
+    final AuthModel result = await baseAuthRemteDataSource.login(logInParameters);
+      return right(result);
     } on ServerException catch (failure) {
       return left(ServerFailure(message: failure.message));
     }
