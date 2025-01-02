@@ -14,6 +14,7 @@
 //   // runApp(MyApp);
 // }
 import 'package:ecommerce_application/core/services/auth_dependency_injection.dart';
+import 'package:ecommerce_application/core/services/navigation.dart';
 import 'package:ecommerce_application/core/theme/app_theme.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
 import 'package:ecommerce_application/features/auth/presentation/view/pages/sign_up_page.dart';
@@ -37,10 +38,10 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthCubit(sl())
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
+        routerConfig: router,
         theme: appTheme,
-        home: ProductWidget()
       ),
     );
   }
