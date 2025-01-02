@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 Widget getAppTextfield(
         {required String textFieldName,
         required BuildContext context,
-        required TextEditingController controller}) =>
+        required TextEditingController controller,bool obscure = false }) =>
     DecoratedBox(
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
@@ -13,6 +13,7 @@ Widget getAppTextfield(
             color: Colors.grey.withOpacity(0.2))
       ]),
       child: TextFormField(
+        obscureText: obscure,
         controller: controller,
         validator: (value) {
           if (controller.text.isEmpty) {
@@ -30,6 +31,8 @@ Widget getAppTextfield(
           labelStyle:
               const TextStyle(color: Color.fromARGB(255, 209, 207, 207)),
           border: InputBorder.none,
+        
         ),
+        
       ),
     );
