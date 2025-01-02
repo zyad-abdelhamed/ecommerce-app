@@ -13,25 +13,21 @@ class LogInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        leading:
-            IconButton(onPressed: () {}, icon: const Icon(CupertinoIcons.back)),
-      ),
-      bottomNavigationBar: appBottomNavigationBar,
-      body:  const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                ViewConstants.login,
-                style: TextStyles.textStyle34,
-              ),
-              LogInFormComponent()
-            ],
-          ),
+      bottomNavigationBar: appBottomNavigationBar(context),
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              ViewConstants.login,
+              style: TextStyles.textStyle34,
+            ),
+            LogInFormComponent()
+          ],
         ),
+      ),
     );
   }
 }

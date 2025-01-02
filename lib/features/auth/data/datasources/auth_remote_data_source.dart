@@ -5,7 +5,7 @@ import 'package:ecommerce_application/core/services/api_service.dart';
 import 'package:ecommerce_application/features/auth/domain/use_cases/log_in.dart';
 import 'package:ecommerce_application/features/auth/domain/use_cases/sign_up.dart';
 
-import '../../../../core/utils/shared.dart';
+import '../../../../core/services/shared.dart';
 //import 'package:http/http.dart' as http;
 //import 'package:http/http.dart';
 

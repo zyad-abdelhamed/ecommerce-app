@@ -2,31 +2,15 @@ part of 'auth_cubit.dart';
 
 class AuthState extends Equatable {
   final AuthRequestStateEnum? signUpState;
-  final String message;
+  final String signUpmessage;
   final AuthRequestStateEnum? logInState;
   final String logInmessage;
   const AuthState(
-      {this.logInState ,
+      {this.logInState,
       this.logInmessage = '',
       this.signUpState,
-      this.message = ''});
-  AuthState copyWith({
-    AuthRequestStateEnum? signUpState,
-    String? message,
-    AuthRequestStateEnum? logInState,
-    String? logInmessage,
-  }) {
-    return AuthState(
-        logInState: logInState ?? this.logInState,
-        logInmessage: logInmessage ?? this.logInmessage,
-        message: message ?? this.message,
-        signUpState: signUpState ?? this.signUpState);
-  }
+      this.signUpmessage = ''});
 
   @override
-  List<Object?> get props => [signUpState, message, logInmessage, logInState];
+  List<Object?> get props => [signUpState, signUpmessage, logInmessage, logInState];
 }
-
-class s extends AuthState {}
-
-class Loading extends AuthState {}

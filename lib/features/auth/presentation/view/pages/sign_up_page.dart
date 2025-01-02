@@ -1,7 +1,8 @@
-
 import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/app_bottom_navigation_bar.dart';
+import 'package:ecommerce_application/core/utils/controllers_extention.dart';
+import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
 import 'package:ecommerce_application/features/auth/presentation/view/components/sign_up_form_component.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +13,15 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           leading: IconButton(
-              onPressed: () {}, icon: const Icon(CupertinoIcons.back)),
+              onPressed: () {
+                AuthCubit.goToLogInPage(context);
+              },
+              icon: const Icon(CupertinoIcons.back)),
         ),
-        bottomNavigationBar: appBottomNavigationBar,
+        bottomNavigationBar: appBottomNavigationBar(context),
         body: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 15),
           child: Column(

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-ScaffoldFeatureController<MaterialBanner, MaterialBannerClosedReason> appSneakBar(
+ appSneakBar(
         {required BuildContext context, required String message}) =>
-    ScaffoldMessenger.of(context).showMaterialBanner(MaterialBanner(
-     actions:const [],
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
      content: Text(message),
     ));
