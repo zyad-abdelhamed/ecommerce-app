@@ -1,13 +1,12 @@
-import 'package:equatable/equatable.dart';
+import 'package:ecommerce_application/features/auth/domain/entities/auth.dart';
 
-class AuthModel extends Equatable {
-  late final String token;
+class AuthModel extends Auth {
+  const AuthModel({required super.token});
+   
 
-  AuthModel({required this.token});
-  AuthModel.fromjson({required Map<String, dynamic> jsondata}) {
-    token = jsondata['data']['token'];
+ factory AuthModel.fromjson({required Map<String, dynamic> jsondata}) {
+    return AuthModel(token:jsondata['data']['token'] );
   }
 
-  @override
-  List<Object?> get props => [token];
+ 
 }
