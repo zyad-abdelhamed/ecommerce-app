@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/utils/loading_widget.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/bloc/dashboard_bloc.dart';
@@ -18,18 +19,26 @@ class BannerWidgt extends StatelessWidget {
         switch (state.requestStateEnum) {
           case AuthRequestStateEnum.success:
             return FadeIn(
-                
                 child: CarouselSlider(
                     items: state.banners.reversed.map((item) {
-                      return  SizedBox(
+                      return SizedBox(
                         width: double.infinity,
-                        
                         child: CachedNetworkImage(
                             fit: BoxFit.fill, imageUrl: item.image),
                       );
                     }).toList(),
-                    options:
-                        CarouselOptions(height: 300, viewportFraction: 1.0)));
+                    options: CarouselOptions(
+                      height: 300,
+                      viewportFraction: 1.0,
+                      autoPlay: true,
+                      autoPlayInterval: ViewConstants.itervalDuration,
+                      autoPlayAnimationDuration: ViewConstants.animationDuration,
+                      autoPlayCurve: Curves.easeInOut,
+                      enableInfiniteScroll: true,
+
+                      pauseAutoPlayOnTouch: true,
+                      // pauseAutoPlayInFiniteScroll: true
+                    )));
           case AuthRequestStateEnum.failed:
             return Center(
               child: Text(state.errorMessage),
