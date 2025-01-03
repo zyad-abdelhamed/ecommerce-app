@@ -18,19 +18,17 @@ class LogInFormComponent extends StatelessWidget {
         listener: (context, state) async {
           print(state);
           if (state.logInState == AuthRequestStateEnum.success) {
-            appSneakBar(context: context, message: state.logInmessage);
+            appSneakBar(context: context, message: state.logInmessage, isError: false);
 
           } else if (state.logInState == AuthRequestStateEnum.failed) {
-            appSneakBar(context: context, message: state.logInmessage);
+            appSneakBar(context: context, message: state.logInmessage, isError: true);
           }
         },
         buildWhen: (previous, current) =>
             previous.logInState != current.logInState,
         builder: (context, state) {
 
-          return state.logInState == AuthRequestStateEnum.loading
-              ? getLoadingWidget()
-              : Form(
+          return Form(
                   key: context.authController.logInFormkey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -64,7 +62,7 @@ class LogInFormComponent extends StatelessWidget {
                           buttonFunction: () {
                             context.authController.login();
                           },
-                          buttonName: 'login')
+                          buttonName:state.logInState == AuthRequestStateEnum.loading? 'loading...' : 'login')
                     ],
                   ));
         });
