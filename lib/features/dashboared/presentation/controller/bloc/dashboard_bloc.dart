@@ -22,9 +22,9 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     result.fold(
       (l) => emit(DashboardState(
           errorMessage: l.message,
-          requestStateEnum: AuthRequestStateEnum.failed)),
+          requestStateEnum: RequestStateEnum.failed)),
       (r) => emit(DashboardState(
-          banners: r, requestStateEnum: AuthRequestStateEnum.success)),
+          banners: r, requestStateEnum: RequestStateEnum.success)),
     );
   }
 }

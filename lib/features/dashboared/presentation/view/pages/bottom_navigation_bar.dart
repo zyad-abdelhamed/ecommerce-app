@@ -1,6 +1,6 @@
 import 'package:ecommerce_application/core/utils/app_bottom_navigation_bar.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/bottom_navigation_bar_cubit.dart';
-import 'package:ecommerce_application/features/dashboared/presentation/view/pages/dummy_page.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/view/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,21 +9,23 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BottomNavigationBarCubit, BottomNavigationBarState>(
+    return  BlocProvider(create: (context) => BottomNavigationBarCubit(),
+      child: 
+    BlocBuilder<BottomNavigationBarCubit, BottomNavigationBarState>(
       builder: (context, state) {
         final BottomNavigationBarCubit controller =
             context.read<BottomNavigationBarCubit>();
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              controller.titles[controller.selectedTapIndex],
-            ),
-          ),
+        return   Scaffold(
+          // appBar: AppBar(
+          //   title: Text(
+          //     controller.titles[controller.selectedTapIndex],
+          //   ),
+          // ),
           body: PageView(
             controller: controller.pageController,
             onPageChanged:(index) =>  controller.onChangeTabIndex(index),
-            children: [
-              DummyPage(),
+            children: const [
+              HomePage(),
             ],
           ),
           bottomNavigationBar: SizedBox(height: 100,
@@ -40,12 +42,13 @@ class DashboardPage extends StatelessWidget {
                     items: controller.bottomNavigationBarItems,
                   ),
                 ),
-                appBottomNavigationBar(context)
+                Card(color: Colors.white,
+                  child: appBottomNavigationBar(context))
               ],
             ),
           ),
-        );
-      },
-    );
-  }
-}
+      ) ;
+      })
+    );}}
+  
+

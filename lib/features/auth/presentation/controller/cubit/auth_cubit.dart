@@ -21,19 +21,6 @@ class AuthCubit extends Cubit<AuthState> {
     this.signUpUseCase,
     this.logInUseCase,
   ) : super(const AuthState());
-  double scale = 1.0;
-  Color c = Colors.grey;
-  d() {
-    scale = 1.5;
-    c = Colors.red;
-    emit(const AuthState());
-  }
-
-  f() {
-    scale = 1.0;
-    c = Colors.grey;
-    // emit(s());
-  }
 
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -46,7 +33,7 @@ class AuthCubit extends Cubit<AuthState> {
   final GlobalKey<FormState> logInFormkey = GlobalKey<FormState>();
   Future<void> signUp() async {
     if (formkey.currentState!.validate()) {
-      emit(const AuthState(signUpState: AuthRequestStateEnum.loading));
+      emit(const AuthState(signUpState: RequestStateEnum.loading));
       final result = await signUpUseCase(SignUpParameters(
           email: emailController.text,
           userName: usernameController.text,
@@ -54,10 +41,9 @@ class AuthCubit extends Cubit<AuthState> {
           phoneNumber: phoneNumerController.text));
       result.fold(
         (l) => emit(AuthState(
-            signUpState: AuthRequestStateEnum.failed,
-            signUpmessage: l.message)),
+            signUpState: RequestStateEnum.failed, signUpmessage: l.message)),
         (r) => emit(const AuthState(
-            signUpState: AuthRequestStateEnum.success,
+            signUpState: RequestStateEnum.success,
             signUpmessage: ViewConstants.signUpSuccessfully)),
       );
     }
@@ -65,7 +51,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> login() async {
     if (logInFormkey.currentState!.validate()) {
-      emit(const AuthState(logInState: AuthRequestStateEnum.loading));
+      emit(const AuthState(logInState: RequestStateEnum.loading));
 
       final result = await logInUseCase(LogInParameters(
           email: logInEmailController.text,
@@ -74,17 +60,21 @@ class AuthCubit extends Cubit<AuthState> {
           (l) => emit(
                 AuthState(
                     logInmessage: l.message,
-                    logInState: AuthRequestStateEnum.failed),
+                    logInState: RequestStateEnum.failed),
               ), (r) {
         emit(const AuthState(
-            logInState: AuthRequestStateEnum.success,
+            logInState: RequestStateEnum.success,
             logInmessage: ViewConstants.logInSuccessfully));
+           // goToDashboard(context);
       });
     }
   }
 
 //navigation
-  void goToDashboard() {}
+   void goToDashboard(BuildContext context) {
+    context.pushReplacement('/dashboard');
+  }
+
   static void goToSignUpPage(BuildContext context) {
     context.pushReplacement('/signup');
   }

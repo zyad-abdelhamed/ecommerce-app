@@ -4,7 +4,6 @@ import 'package:ecommerce_application/core/utils/app_material_button.dart';
 import 'package:ecommerce_application/core/utils/app_textfield.dart';
 import 'package:ecommerce_application/core/utils/controllers_extention.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
-import 'package:ecommerce_application/core/utils/loading_widget.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +16,9 @@ class SignUpFormComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state.signUpState == AuthRequestStateEnum.success) {
+          if (state.signUpState == RequestStateEnum.success) {
             appSneakBar(context: context, message: state.signUpmessage, isError: false,  );
-          } else if (state.signUpState == AuthRequestStateEnum.failed) {
+          } else if (state.signUpState == RequestStateEnum.failed) {
             appSneakBar(context: context, message: state.signUpmessage, isError: true);
           }
         },
@@ -66,7 +65,7 @@ class SignUpFormComponent extends StatelessWidget {
                           buttonFunction: () {
                             context.authController.signUp();
                           },
-                          buttonName:state.logInState == AuthRequestStateEnum.loading?'loading...': 'sign up')
+                          buttonName:state.logInState == RequestStateEnum.loading?'loading...': 'sign up')
                     ],
                   ));
         });

@@ -31,5 +31,11 @@ final GoRouter router = GoRouter(
         return const LogInPage();
       },
     ),
+    GoRoute(
+      path: '/dashboard',
+      builder: (BuildContext context, GoRouterState state) {
+        return const DashboardPage();
+      },
+    ),
   ],
 );

@@ -3,7 +3,6 @@ import 'package:ecommerce_application/core/utils/app_sneak_bar.dart';
 import 'package:ecommerce_application/core/utils/app_textfield.dart';
 import 'package:ecommerce_application/core/utils/controllers_extention.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
-import 'package:ecommerce_application/core/utils/loading_widget.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +16,10 @@ class LogInFormComponent extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) async {
           print(state);
-          if (state.logInState == AuthRequestStateEnum.success) {
+          if (state.logInState == RequestStateEnum.success) {
             appSneakBar(context: context, message: state.logInmessage, isError: false);
 
-          } else if (state.logInState == AuthRequestStateEnum.failed) {
+          } else if (state.logInState == RequestStateEnum.failed) {
             appSneakBar(context: context, message: state.logInmessage, isError: true);
           }
         },
@@ -62,7 +61,7 @@ class LogInFormComponent extends StatelessWidget {
                           buttonFunction: () {
                             context.authController.login();
                           },
-                          buttonName:state.logInState == AuthRequestStateEnum.loading? 'loading...' : 'login')
+                          buttonName:state.logInState == RequestStateEnum.loading? 'loading...' : 'login')
                     ],
                   ));
         });

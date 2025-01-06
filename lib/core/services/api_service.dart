@@ -9,4 +9,10 @@ class ApiService {
     Response response = await dio.post(url, queryParameters: body);
     return response.data;
   }
+
+  Future<Map<String, dynamic>> get(
+      {Map<String, dynamic>? headers, required String url}) async {
+    Response response = await dio.get(url, options: Options(headers: headers));
+    return response.data;
+  }
 }
