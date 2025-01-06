@@ -66,7 +66,7 @@ class ProductWidget extends StatelessWidget {
                                 ]),
                             child: AnimatedScale(
                               scale:controller.scale,
-                              duration: Duration(milliseconds: 500),
+                              duration: const Duration(milliseconds: 500),
                               child: Icon(
                                 Icons.favorite_outline,
                                 color: controller.c,

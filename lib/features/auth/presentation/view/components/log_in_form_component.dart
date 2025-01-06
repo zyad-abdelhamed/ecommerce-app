@@ -3,7 +3,6 @@ import 'package:ecommerce_application/core/utils/app_sneak_bar.dart';
 import 'package:ecommerce_application/core/utils/app_textfield.dart';
 import 'package:ecommerce_application/core/utils/controllers_extention.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
-import 'package:ecommerce_application/core/utils/loading_widget.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';

@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class AuthModel extends Equatable {
-  late final String token;
+   final String token;
 
-  AuthModel({required this.token});
-  AuthModel.fromjson({required Map<String, dynamic> jsondata}) {
-    token = jsondata['data']['token'];
+  const AuthModel({required this.token});
+  factory AuthModel.fromjson({required Map<String, dynamic> jsondata}) {
+   return AuthModel(token: jsondata['data']['token']);
   }
 
   @override
