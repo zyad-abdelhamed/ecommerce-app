@@ -67,12 +67,18 @@ class ProductWidget extends StatelessWidget {
                                       color: Colors.grey.withOpacity(0.3))
                                 ]),
                             child: AnimatedScale(
+<<<<<<< HEAD
                               scale:controller.scale,
                               duration: Duration(milliseconds: 500),
                               child: Icon(
                                 Icons.favorite_outline,
                                 color: controller.c,
                               ),
+=======
+                              scale: controller.scale,
+                              duration: const Duration(milliseconds: 500),
+                              child: controller.favoriteIcon,
+>>>>>>> 74eefad (zyad)
                             )),
                       ),
                     ),
