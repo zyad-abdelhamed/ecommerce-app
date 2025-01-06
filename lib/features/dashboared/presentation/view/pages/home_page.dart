@@ -21,28 +21,28 @@ class HomePage extends StatelessWidget {
         BlocProvider(
             create: (context) => DashboardBloc(dsl())..add(GetBannerdata())),
       ],
-      child:  Scaffold(
+      child:  const Scaffold(
         body: Column(
           children: [
-            const BannerWidgt(),
+            BannerWidgt(),
             SizedBoxs.sizedBoxH30,
              Padding(
-               padding: const EdgeInsets.symmetric(horizontal: 10.0),
+               padding: EdgeInsets.symmetric(horizontal: 10.0),
                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
+                      Text(
                        'products',
                         style: TextStyles.textStyle34,
                       ),
                       SizedBoxs.sizedBoxw5,
                       Text(
                         'view all',
-                        style: TextStyles.textStyle25.copyWith(color: Colors.black),
+                        style: TextStyles.textStyle25b,
                       )
                     ],
                   ),
              ),
-            const Expanded(child: ProductWidget())
+            Expanded(child: ProductWidget())
           ],
         ),
       ),

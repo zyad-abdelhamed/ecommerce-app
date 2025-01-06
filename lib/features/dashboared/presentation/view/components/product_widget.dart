@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
-import 'package:ecommerce_application/core/utils/app_bottom_navigation_bar.dart';
 import 'package:ecommerce_application/core/utils/app_material_button.dart';
 import 'package:ecommerce_application/core/utils/responsive_extention.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
@@ -18,70 +17,68 @@ class ProductWidget extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.all(10.0),
         child: GridView.builder(itemCount: state.products.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 15.0,
               mainAxisSpacing: 15.0,
-              childAspectRatio: 1 / 2.5
+             mainAxisExtent: context.height * 1/2 
               ),
           itemBuilder: (context, index) {
-            return Column(
+            return Column(mainAxisAlignment:MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Stack(
-                    children: [
-                      Container(
-                          margin: const EdgeInsets.only(bottom: 20),
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: CachedNetworkImage(imageUrl: state.products[index].image ,fit: BoxFit.fill,))),
-                      Positioned(
-                        top: 10.0,
-                        left: 10.0,
+                Stack(
+                  children: [
+                    Container(constraints: const BoxConstraints.expand(),
+                        margin: const EdgeInsets.only(bottom: 20),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: CachedNetworkImage(imageUrl: state.products[index].image ,fit: BoxFit.fill,))),
+                    Positioned(
+                      top: 10.0,
+                      left: 10.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 222, 73, 43),
+                            borderRadius: BorderRadius.circular(30)),
+                        padding: const EdgeInsets.only(
+                            top: 5, bottom: 5, left: 10, right: 10),
+                        child:  Text(
+                          state.products[index].discount.toString(),
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 0.0,
+                      right: 0.0,
+                      child: InkWell(
+                        onTap: () {controller.changeFavoriteIconWithAnimation();},
                         child: Container(
-                          decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 222, 73, 43),
-                              borderRadius: BorderRadius.circular(30)),
-                          padding: const EdgeInsets.only(
-                              top: 5, bottom: 5, left: 10, right: 10),
-                          child:  Text(
-                            state.products[index].discount.toString(),
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ),
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 5,
+                                      offset: const Offset(0, 4),
+                                      spreadRadius: 2,
+                                      color: Colors.grey.withOpacity(0.3))
+                                ]),
+                            child: AnimatedScale(
+                              scale: controller.scale,
+                              duration: const Duration(milliseconds: 500),
+                              child: controller.favoriteIcon,
+                            )),
                       ),
-                      Positioned(
-                        bottom: 0.0,
-                        right: 0.0,
-                        child: InkWell(
-                          onTap: () {controller.changeFavoriteIconWithAnimation();},
-                          child: Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        blurRadius: 5,
-                                        offset: const Offset(0, 4),
-                                        spreadRadius: 2,
-                                        color: Colors.grey.withOpacity(0.3))
-                                  ]),
-                              child: AnimatedScale(
-                                scale: controller.scale,
-                                duration: const Duration(milliseconds: 500),
-                                child: controller.favoriteIcon,
-                              )),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                  Text(
                   state.products[index].description,
-                  style: TextStyles.textStyle25.copyWith(overflow: TextOverflow.ellipsis,fontSize: 15),
-                ),
+                  style: TextStyles.textStyle25g.copyWith(overflow: TextOverflow.ellipsis,fontSize: 15),
+                                 ),
                  Text(
                   state.products[index].name,
                   style: TextStyles.textStyle34.copyWith(overflow: TextOverflow.ellipsis,fontSize: 20),

@@ -16,11 +16,6 @@ class DashboardPage extends StatelessWidget {
         final BottomNavigationBarCubit controller =
             context.read<BottomNavigationBarCubit>();
         return   Scaffold(
-          // appBar: AppBar(
-          //   title: Text(
-          //     controller.titles[controller.selectedTapIndex],
-          //   ),
-          // ),
           body: PageView(
             controller: controller.pageController,
             onPageChanged:(index) =>  controller.onChangeTabIndex(index),
@@ -42,8 +37,7 @@ class DashboardPage extends StatelessWidget {
                     items: controller.bottomNavigationBarItems,
                   ),
                 ),
-                Card(color: Colors.white,
-                  child: appBottomNavigationBar(context))
+                appBottomNavigationBar(context)
               ],
             ),
           ),
