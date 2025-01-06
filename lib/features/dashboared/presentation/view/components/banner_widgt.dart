@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/utils/loading_widget.dart';
+import 'package:ecommerce_application/core/utils/responsive_extention.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/bloc/dashboard_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +18,7 @@ class BannerWidgt extends StatelessWidget {
       buildWhen: (previous, current) => previous.banners != current.banners,
       builder: (context, state) {
         switch (state.requestStateEnum) {
-          case AuthRequestStateEnum.success:
+          case RequestStateEnum.success:
             return FadeIn(
                 child: CarouselSlider(
                     items: state.banners.reversed.map((item) {
@@ -28,7 +29,7 @@ class BannerWidgt extends StatelessWidget {
                       );
                     }).toList(),
                     options: CarouselOptions(
-                      height: 300,
+                      height: context.height * 1/4,
                       viewportFraction: 1.0,
                       autoPlay: true,
                       autoPlayInterval: ViewConstants.itervalDuration,
@@ -39,11 +40,11 @@ class BannerWidgt extends StatelessWidget {
                       pauseAutoPlayOnTouch: true,
                       // pauseAutoPlayInFiniteScroll: true
                     )));
-          case AuthRequestStateEnum.failed:
+          case RequestStateEnum.failed:
             return Center(
               child: Text(state.errorMessage),
             );
-          case AuthRequestStateEnum.loading:
+          case RequestStateEnum.loading:
             return getLoadingWidget();
         }
       },

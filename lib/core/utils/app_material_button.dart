@@ -2,13 +2,15 @@ import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:flutter/material.dart';
 
 Widget appMaterialButton(
-    {required VoidCallback buttonFunction, required String buttonName}) {
+    {required VoidCallback buttonFunction,
+    required String buttonName,
+    Color buttonColor = const Color.fromARGB(255, 222, 73, 43)}) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(50),
     child: MaterialButton(
       height: 50,
       onPressed: buttonFunction,
-      color: const Color.fromARGB(255, 222, 73, 43),
+      color: buttonColor,
       child: Text(
         buttonName,
         style:

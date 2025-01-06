@@ -1,9 +1,9 @@
 part of 'auth_cubit.dart';
 
 class AuthState extends Equatable {
-  final AuthRequestStateEnum? signUpState;
+  final RequestStateEnum? signUpState;
   final String signUpmessage;
-  final AuthRequestStateEnum? logInState;
+  final RequestStateEnum? logInState;
   final String logInmessage;
   const AuthState(
       {this.logInState,

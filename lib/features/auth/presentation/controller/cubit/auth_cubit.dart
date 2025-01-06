@@ -1,5 +1,4 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
-import 'package:ecommerce_application/core/services/shared.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/features/auth/domain/use_cases/log_in.dart';
 import 'package:ecommerce_application/features/auth/domain/use_cases/sign_up.dart';
@@ -22,19 +21,6 @@ class AuthCubit extends Cubit<AuthState> {
     this.signUpUseCase,
     this.logInUseCase,
   ) : super(const AuthState());
-  double scale = 1.0;
-  Color c = Colors.grey;
-  d() {
-    scale = 1.5;
-    c = Colors.red;
-    emit(const AuthState());
-  }
-
-  f() {
-    scale = 1.0;
-    c = Colors.grey;
-    // emit(s());
-  }
 
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -47,7 +33,7 @@ class AuthCubit extends Cubit<AuthState> {
   final GlobalKey<FormState> logInFormkey = GlobalKey<FormState>();
   Future<void> signUp() async {
     if (formkey.currentState!.validate()) {
-      emit(const AuthState(signUpState: AuthRequestStateEnum.loading));
+      emit(const AuthState(signUpState: RequestStateEnum.loading));
       final result = await signUpUseCase(SignUpParameters(
           email: emailController.text,
           userName: usernameController.text,
@@ -55,10 +41,9 @@ class AuthCubit extends Cubit<AuthState> {
           phoneNumber: phoneNumerController.text));
       result.fold(
         (l) => emit(AuthState(
-            signUpState: AuthRequestStateEnum.failed,
-            signUpmessage: l.message)),
+            signUpState: RequestStateEnum.failed, signUpmessage: l.message)),
         (r) => emit(const AuthState(
-            signUpState: AuthRequestStateEnum.success,
+            signUpState: RequestStateEnum.success,
             signUpmessage: ViewConstants.signUpSuccessfully)),
       );
     }
@@ -66,7 +51,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> login() async {
     if (logInFormkey.currentState!.validate()) {
-      emit(const AuthState(logInState: AuthRequestStateEnum.loading));
+      emit(const AuthState(logInState: RequestStateEnum.loading));
 
       final result = await logInUseCase(LogInParameters(
           email: logInEmailController.text,
@@ -75,27 +60,21 @@ class AuthCubit extends Cubit<AuthState> {
           (l) => emit(
                 AuthState(
                     logInmessage: l.message,
-                    logInState: AuthRequestStateEnum.failed),
+                    logInState: RequestStateEnum.failed),
               ), (r) {
-        insertTokenToCache(token: r.token);
-        getTokenFromCache(token: r.token);
         emit(const AuthState(
-            logInState: AuthRequestStateEnum.success,
+            logInState: RequestStateEnum.success,
             logInmessage: ViewConstants.logInSuccessfully));
+           // goToDashboard(context);
       });
     }
   }
-//insert and get token  
-  Future<void> insertTokenToCache({required String token}) async {
-    await Cache.insertcache(key: 'token', value: token);
-  }
-
-  static void getTokenFromCache({required String token}) {
-    token = Cache.getcache(key: 'token');
-  }
 
 //navigation
-  void goToDashboard() {}
+   void goToDashboard(BuildContext context) {
+    context.pushReplacement('/dashboard');
+  }
+
   static void goToSignUpPage(BuildContext context) {
     context.pushReplacement('/signup');
   }

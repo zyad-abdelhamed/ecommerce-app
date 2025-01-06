@@ -16,9 +16,9 @@ class SignUpFormComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state.signUpState == AuthRequestStateEnum.success) {
+          if (state.signUpState == RequestStateEnum.success) {
             appSneakBar(context: context, message: state.signUpmessage, isError: false,  );
-          } else if (state.signUpState == AuthRequestStateEnum.failed) {
+          } else if (state.signUpState == RequestStateEnum.failed) {
             appSneakBar(context: context, message: state.signUpmessage, isError: true);
           }
         },
@@ -65,7 +65,7 @@ class SignUpFormComponent extends StatelessWidget {
                           buttonFunction: () {
                             context.authController.signUp();
                           },
-                          buttonName:state.logInState == AuthRequestStateEnum.loading?'loading...': 'sign up')
+                          buttonName:state.logInState == RequestStateEnum.loading?'loading...': 'sign up')
                     ],
                   ));
         });
