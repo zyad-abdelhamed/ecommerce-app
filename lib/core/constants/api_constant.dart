@@ -4,5 +4,5 @@ class ApiConstant {
   static const String loginEndPoint = '${baseUrl}login';
   static const String getBannerEndPoint = '${baseUrl}banners';
   static const String getproductsEndPoint = '${baseUrl}home';
+  static const String favoritesEndPoint = "${baseUrl}favorites";
 }
-////////

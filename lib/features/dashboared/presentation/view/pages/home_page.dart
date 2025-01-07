@@ -25,9 +25,9 @@ class HomePage extends StatelessWidget {
         body: Column(
           children: [
             BannerWidgt(),
-            SizedBoxs.sizedBoxH30,
+             SizedBoxs.sizedBoxH10,
              Padding(
-               padding: EdgeInsets.symmetric(horizontal: 10.0),
+               padding: EdgeInsets.symmetric(horizontal: 15.0),
                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(

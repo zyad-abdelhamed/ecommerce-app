@@ -15,11 +15,12 @@ abstract class TextStyles {
     color: Colors.black);
 
     static const TextStyle textStyleOldPrice = TextStyle(
-    fontSize: 18,
+    fontSize: 15,
     color: Colors.blueGrey,
     decoration: TextDecoration.lineThrough);
     static const TextStyle textStyleNewPrice = TextStyle(
-    fontSize: 18,
+      fontWeight: FontWeight.bold,
+    fontSize: 20,
     color:  Color.fromARGB(255, 222, 73, 43),
    );
     
