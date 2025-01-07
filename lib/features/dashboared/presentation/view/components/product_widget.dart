@@ -15,25 +15,31 @@ class ProductWidget extends StatelessWidget {
     return BlocBuilder<ProductCubit, ProductState>(builder: (context, state) {
       final ProductCubit controller = context.read<ProductCubit>();
       return Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: GridView.builder(itemCount: state.products.length,
-          gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        child: GridView.builder(
+          itemCount: state.products.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 15.0,
               mainAxisSpacing: 15.0,
-             mainAxisExtent: context.height * 1/2 
-              ),
+              mainAxisExtent: context.height * (1 / 2 + 1 / 70)),
           itemBuilder: (context, index) {
-            return Column(mainAxisAlignment:MainAxisAlignment.spaceBetween,
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Stack(
                   children: [
-                    Container(constraints: const BoxConstraints.expand(),
+                    Container(
+                        height: context.height * 1 / 4,
+                        width: double.infinity,
                         margin: const EdgeInsets.only(bottom: 20),
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
-                            child: CachedNetworkImage(imageUrl: state.products[index].image ,fit: BoxFit.fill,))),
+                            child: CachedNetworkImage(
+                              imageUrl: state.products[index].image,
+                              fit: BoxFit.fill,
+                            ))),
                     Positioned(
                       top: 10.0,
                       left: 10.0,
@@ -43,8 +49,8 @@ class ProductWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30)),
                         padding: const EdgeInsets.only(
                             top: 5, bottom: 5, left: 10, right: 10),
-                        child:  Text(
-                          state.products[index].discount.toString(),
+                        child: Text(
+                          '${state.products[index].discount.toString()}%',
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
@@ -53,7 +59,9 @@ class ProductWidget extends StatelessWidget {
                       bottom: 0.0,
                       right: 0.0,
                       child: InkWell(
-                        onTap: () {controller.changeFavoriteIconWithAnimation();},
+                        onTap: () {
+                          controller.changeFavoriteIconWithAnimation();
+                        },
                         child: Container(
                             padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
@@ -67,23 +75,27 @@ class ProductWidget extends StatelessWidget {
                                       color: Colors.grey.withOpacity(0.3))
                                 ]),
                             child: AnimatedScale(
-                              scale:controller.scale,
+                              scale: controller.scale,
                               duration: const Duration(milliseconds: 500),
-                              child: controller.favoriteIcon
+                              child: controller.favoriteIcon,
                             )),
                       ),
                     ),
                   ],
                 ),
-                 Text(
+                Text(
+                  maxLines: 2,
                   state.products[index].description,
-                  style: TextStyles.textStyle25g.copyWith(overflow: TextOverflow.ellipsis,fontSize: 15),
-                                 ),
-                 Text(
-                  state.products[index].name,
-                  style: TextStyles.textStyle34.copyWith(overflow: TextOverflow.ellipsis,fontSize: 20),
+                  style: TextStyles.textStyle25g
+                      .copyWith(overflow: TextOverflow.ellipsis, fontSize: 15),
                 ),
-                 Row(
+                Text(
+                  maxLines: 2,
+                  state.products[index].name,
+                  style: TextStyles.textStyle34
+                      .copyWith(overflow: TextOverflow.ellipsis, fontSize: 18),
+                ),
+                Row(
                   children: [
                     Text(
                       state.products[index].oldprice.toString(),
@@ -96,9 +108,10 @@ class ProductWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                appMaterialButton(buttonFunction: () {
-                  
-                }, buttonName: 'add to cart',buttonColor: Colors.black)
+                appMaterialButton(
+                    buttonFunction: () {},
+                    buttonName: 'add to cart',
+                    buttonColor: Colors.black)
               ],
             );
           },
