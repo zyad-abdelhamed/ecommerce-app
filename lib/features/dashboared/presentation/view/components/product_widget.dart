@@ -1,8 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/app_material_button.dart';
+import 'package:ecommerce_application/core/utils/app_sneak_bar.dart';
+import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/utils/responsive_extention.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/favorite_icon_controller.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +16,14 @@ class ProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductCubit, ProductState>(builder: (context, state) {
+    return BlocConsumer<ProductCubit, ProductState>(listener: (context, state) {
+      if (state.addAndRemoveFavoritesState == RequestStateEnum.failed) {
+         appSneakBar(
+            context: context,
+            message: state.addAndRemoveFavoritesMessage,
+            isError: true);
+      }
+    }, builder: (context, state) {
       final ProductCubit controller = context.read<ProductCubit>();
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -60,7 +71,7 @@ class ProductWidget extends StatelessWidget {
                       right: 0.0,
                       child: InkWell(
                         onTap: () {
-                          controller.changeFavoriteIconWithAnimation();
+                          controller.addAndRemoveFavorites(productId: state.products[index].id.toString());
                         },
                         child: Container(
                             padding: const EdgeInsets.all(10),
@@ -75,9 +86,9 @@ class ProductWidget extends StatelessWidget {
                                       color: Colors.grey.withOpacity(0.3))
                                 ]),
                             child: AnimatedScale(
-                              scale: controller.scale,
+                              scale: dsl.get<FavoriteIconCubit>().getFavoritesOrNotFavoritesIconScale(productId: state.products[index].id.toString()),
                               duration: const Duration(milliseconds: 500),
-                              child: controller.favoriteIcon,
+                              child: dsl.get<FavoriteIconCubit>().getFavoritesOrNotFavoritesIcon(productId: state.products[index].id.toString()),
                             )),
                       ),
                     ),

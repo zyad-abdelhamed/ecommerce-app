@@ -10,7 +10,7 @@ class LogInUseCase
   final BaseAuthRepository baseAuthRepository;
   LogInUseCase(this.baseAuthRepository);
   @override
-  Future<Either<Failure, Unit>> call(LogInParameters parameters) async {
+  Future<Either<Failure, Unit>> call({required LogInParameters parameters}) async {
     return await baseAuthRepository.login(parameters);
   }
 }

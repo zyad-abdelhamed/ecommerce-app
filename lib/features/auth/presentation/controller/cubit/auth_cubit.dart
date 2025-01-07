@@ -34,11 +34,12 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signUp() async {
     if (formkey.currentState!.validate()) {
       emit(const AuthState(signUpState: RequestStateEnum.loading));
-      final result = await signUpUseCase(SignUpParameters(
-          email: emailController.text,
-          userName: usernameController.text,
-          password: passwordController.text,
-          phoneNumber: phoneNumerController.text));
+      final result = await signUpUseCase(
+          parameters: SignUpParameters(
+              email: emailController.text,
+              userName: usernameController.text,
+              password: passwordController.text,
+              phoneNumber: phoneNumerController.text));
       result.fold(
         (l) => emit(AuthState(
             signUpState: RequestStateEnum.failed, signUpmessage: l.message)),
@@ -53,9 +54,10 @@ class AuthCubit extends Cubit<AuthState> {
     if (logInFormkey.currentState!.validate()) {
       emit(const AuthState(logInState: RequestStateEnum.loading));
 
-      final result = await logInUseCase(LogInParameters(
-          email: logInEmailController.text,
-          password: logInPasswordController.text));
+      final result = await logInUseCase(
+          parameters: LogInParameters(
+              email: logInEmailController.text,
+              password: logInPasswordController.text));
       result.fold(
           (l) => emit(
                 AuthState(
@@ -65,13 +67,13 @@ class AuthCubit extends Cubit<AuthState> {
         emit(const AuthState(
             logInState: RequestStateEnum.success,
             logInmessage: ViewConstants.logInSuccessfully));
-           // goToDashboard(context);
+        // goToDashboard(context);
       });
     }
   }
 
 //navigation
-   void goToDashboard(BuildContext context) {
+  void goToDashboard(BuildContext context) {
     context.pushReplacement('/dashboard');
   }
 
