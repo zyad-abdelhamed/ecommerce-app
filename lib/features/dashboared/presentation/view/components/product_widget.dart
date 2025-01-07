@@ -15,21 +15,21 @@ class ProductWidget extends StatelessWidget {
     return BlocBuilder<ProductCubit, ProductState>(builder: (context, state) {
       final ProductCubit controller = context.read<ProductCubit>();
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        padding: const EdgeInsets.all(10.0),
         child: GridView.builder(itemCount: state.products.length,
           gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 15.0,
               mainAxisSpacing: 15.0,
-             mainAxisExtent: context.height * (1/2 + 1/70)
+             mainAxisExtent: context.height * 1/2 
               ),
           itemBuilder: (context, index) {
-            return Column(mainAxisAlignment:MainAxisAlignment.spaceAround,
+            return Column(mainAxisAlignment:MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Stack(
                   children: [
-                    Container(height: context.height * 1/4 ,width: double.infinity,
+                    Container(constraints: const BoxConstraints.expand(),
                         margin: const EdgeInsets.only(bottom: 20),
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
@@ -44,7 +44,7 @@ class ProductWidget extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             top: 5, bottom: 5, left: 10, right: 10),
                         child:  Text(
-                          '${state.products[index].discount.toString()}%',
+                          state.products[index].discount.toString(),
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
@@ -67,21 +67,21 @@ class ProductWidget extends StatelessWidget {
                                       color: Colors.grey.withOpacity(0.3))
                                 ]),
                             child: AnimatedScale(
-                              scale: controller.scale,
+                              scale:controller.scale,
                               duration: const Duration(milliseconds: 500),
-                              child: controller.favoriteIcon,
+                              child: controller.favoriteIcon
                             )),
                       ),
                     ),
                   ],
                 ),
-                 Text(maxLines: 2,
+                 Text(
                   state.products[index].description,
                   style: TextStyles.textStyle25g.copyWith(overflow: TextOverflow.ellipsis,fontSize: 15),
                                  ),
-                 Text(maxLines: 2,
+                 Text(
                   state.products[index].name,
-                  style: TextStyles.textStyle34.copyWith(overflow: TextOverflow.ellipsis,fontSize: 18),
+                  style: TextStyles.textStyle34.copyWith(overflow: TextOverflow.ellipsis,fontSize: 20),
                 ),
                  Row(
                   children: [

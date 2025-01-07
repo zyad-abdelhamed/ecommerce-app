@@ -4,7 +4,8 @@ import 'package:ecommerce_application/core/errors/failures.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/home_remote_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/Banner.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
-import 'package:ecommerce_application/features/dashboared/domain/repositories/base_home_repo.dart';
+
+import '../../domain/repositories/base_home_repo.dart';
 
 class HomeRepo extends BaseHomeRepo {
   final HomeRemoteDataSource homeRemoteDataSource;
