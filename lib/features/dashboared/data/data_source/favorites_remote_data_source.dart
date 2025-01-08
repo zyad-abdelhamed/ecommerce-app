@@ -1,7 +1,5 @@
 import 'package:ecommerce_application/core/constants/api_constant.dart';
 import 'package:ecommerce_application/core/services/api_service.dart';
-import 'package:ecommerce_application/core/services/auth_dependency_injection.dart';
-import 'package:ecommerce_application/features/auth/domain/entities/auth.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
 
 abstract class FavoritesRemoteDataSource {

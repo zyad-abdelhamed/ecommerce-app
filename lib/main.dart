@@ -19,10 +19,7 @@ import 'package:ecommerce_application/core/services/dashboard_debendency_injecti
 import 'package:ecommerce_application/core/services/navigation.dart';
 import 'package:ecommerce_application/core/theme/app_theme.dart';
 import 'package:ecommerce_application/core/services/shared.dart';
-import 'package:ecommerce_application/features/auth/data/datasources/auth_local_data_source.dart';
-import 'package:ecommerce_application/features/auth/domain/entities/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -6,5 +6,7 @@ class ApiConstant {
   static const String getproductsEndPoint = '${baseUrl}home';
   static const String favoritesEndPoint = "${baseUrl}favorites";
   static const String categoriesEndPoint = "${baseUrl}categories";
-  static  String token = '';
+  static const String cartsEndPoint = "${baseUrl}carts";
+
+  static String token = '';
 }
