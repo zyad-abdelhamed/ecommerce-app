@@ -25,11 +25,11 @@ class AuthRepository extends BaseAuthRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> login(LogInParameters logInParameters) async {
+  Future<Either<Failure, Auth>> login(LogInParameters logInParameters) async {
     try {
       final Auth result = await baseAuthRemteDataSource.login(logInParameters);
-      baseAuthLocalDataSource.insertTokenToCache(token: result.token!);
-      return right(unit);
+     // baseAuthLocalDataSource.insertTokenToCache(token: result.token!);
+      return right(result);
     } on ServerException catch (failure) {
       return left(ServerFailure(message: failure.message));
     }

@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/constants/api_constant.dart';
 import 'package:ecommerce_application/core/utils/app_bottom_navigation_bar.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/bottom_navigation_bar_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/categries_page.dart';
@@ -14,6 +15,7 @@ class DashboardPage extends StatelessWidget {
         create: (context) => BottomNavigationBarCubit(),
         child: BlocBuilder<BottomNavigationBarCubit, BottomNavigationBarState>(
             builder: (context, state) {
+              print(ApiConstant.token);
           final BottomNavigationBarCubit controller =
               context.read<BottomNavigationBarCubit>();
           print('Current selectedTapIndex: ${controller.selectedTapIndex}');

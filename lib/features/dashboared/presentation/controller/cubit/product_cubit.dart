@@ -36,13 +36,14 @@ class ProductCubit extends Cubit<ProductState> {
     result.fold(
         (failed) => emit(ProductState(
             addAndRemoveFavoritesState: RequestStateEnum.failed,
-            addAndRemoveFavoritesMessage: failed.message)), (success) {
+            addAndRemoveFavoritesMessage: failed.message)), (success) async{
       emit(const ProductState(
         addAndRemoveFavoritesState: RequestStateEnum.success,
       ));
       dsl
           .get<FavoriteIconCubit>()
           .changeFavoritesIconWithAnimation(productId: productId);
+        await  getProducts();
     });
   }
 }

@@ -18,7 +18,7 @@ class FavoritesRemoteDataSourceImpl implements FavoritesRemoteDataSource {
    Map<String, dynamic> responseBody = await apiService.post(
         body: {'product_id': productId},
         url: ApiConstant.favoritesEndPoint,
-        headers: {"Authorization": sl.get<Auth>().token});
+        headers: {"Authorization": ApiConstant.token});
 
 return responseBody;
   }

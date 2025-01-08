@@ -1,5 +1,8 @@
+import 'package:ecommerce_application/core/constants/api_constant.dart';
 import 'package:ecommerce_application/core/constants/view_constants.dart';
+import 'package:ecommerce_application/core/services/auth_dependency_injection.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
+import 'package:ecommerce_application/features/auth/data/datasources/auth_local_data_source.dart';
 import 'package:ecommerce_application/features/auth/domain/use_cases/log_in.dart';
 import 'package:ecommerce_application/features/auth/domain/use_cases/sign_up.dart';
 import 'package:equatable/equatable.dart';
@@ -64,10 +67,13 @@ class AuthCubit extends Cubit<AuthState> {
                     logInmessage: l.message,
                     logInState: RequestStateEnum.failed),
               ), (r) {
-        // emit(const AuthState(
-        //     logInState: RequestStateEnum.success,
-        //     logInmessage: ViewConstants.logInSuccessfully));
-        // goToDashboard(context);
+                ApiConstant.token = r.token ??'' ;
+                  sl.get<BaseAuthLocalDataSource>().insertTokenToCache(token: r.token ?? '');
+
+        emit(const AuthState(
+            logInState: RequestStateEnum.success,
+            logInmessage: ViewConstants.logInSuccessfully));
+       // goToDashboard(context);
       });
     }
   }

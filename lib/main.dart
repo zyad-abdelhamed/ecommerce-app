@@ -13,6 +13,7 @@
 //   // );
 //   // runApp(MyApp);
 // }
+import 'package:ecommerce_application/core/constants/api_constant.dart';
 import 'package:ecommerce_application/core/services/auth_dependency_injection.dart';
 import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
 import 'package:ecommerce_application/core/services/navigation.dart';
@@ -21,15 +22,15 @@ import 'package:ecommerce_application/core/services/shared.dart';
 import 'package:ecommerce_application/features/auth/data/datasources/auth_local_data_source.dart';
 import 'package:ecommerce_application/features/auth/domain/entities/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AuthDependencyInjection.init();
   DashboardDebendencyInjection.init();
   await Cache.cacheintialization();
-  sl
-      .get<BaseAuthLocalDataSource>()
-      .getTokenFromCache(token: sl.get<Auth>().token??'' );
+  //await sl.get<BaseAuthLocalDataSource>().getTokenFromCache;
+  ApiConstant.token = Cache.getcache(key: 'token');
   runApp(const MyApp());
 }
 
