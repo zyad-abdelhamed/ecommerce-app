@@ -64,9 +64,9 @@ class AuthCubit extends Cubit<AuthState> {
                     logInmessage: l.message,
                     logInState: RequestStateEnum.failed),
               ), (r) {
-        emit(const AuthState(
-            logInState: RequestStateEnum.success,
-            logInmessage: ViewConstants.logInSuccessfully));
+        // emit(const AuthState(
+        //     logInState: RequestStateEnum.success,
+        //     logInmessage: ViewConstants.logInSuccessfully));
         // goToDashboard(context);
       });
     }

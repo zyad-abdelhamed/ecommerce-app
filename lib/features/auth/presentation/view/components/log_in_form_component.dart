@@ -60,6 +60,7 @@ class LogInFormComponent extends StatelessWidget {
                       appMaterialButton(
                           buttonFunction: () {
                             context.authController.login();
+                            context.authController.goToDashboard(context);
                           },
                           buttonName:state.logInState == RequestStateEnum.loading? 'loading...' : 'login')
                     ],

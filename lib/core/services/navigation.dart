@@ -12,11 +12,11 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return sl
-                .get<BaseAuthLocalDataSource>()
-                .haveToken(token: sl.get<Auth>().token ?? '')
-            ? const DashboardPage()
-            : const LogInPage();
+         return LogInPage(); //sl
+        //         .get<BaseAuthLocalDataSource>()
+        //         .haveToken(token: sl.get<Auth>().token ?? '' )
+        //     ? const DashboardPage()
+        //     : const LogInPage();
       },
     ),
     GoRoute(

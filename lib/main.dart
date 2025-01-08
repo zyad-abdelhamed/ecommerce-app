@@ -29,7 +29,7 @@ void main() async {
   await Cache.cacheintialization();
   sl
       .get<BaseAuthLocalDataSource>()
-      .getTokenFromCache(token: sl.get<Auth>().token ?? '');
+      .getTokenFromCache(token: sl.get<Auth>().token??'' );
   runApp(const MyApp());
 }
 

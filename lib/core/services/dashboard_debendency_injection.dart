@@ -52,7 +52,6 @@ class DashboardDebendencyInjection {
     dsl.registerLazySingleton<BaseFavoritesRepo>(
       () => FavoritesRepo(dsl()),
     );
-    dsl.registerLazySingleton<BaseHomeRepo>(() => HomeRepo(dsl()));
     //datasource
     dsl.registerLazySingleton<FavoritesRemoteDataSource>(
       () => FavoritesRemoteDataSourceImpl(sl()),
