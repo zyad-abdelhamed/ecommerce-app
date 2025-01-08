@@ -5,5 +5,5 @@ import 'package:ecommerce_application/features/dashboared/domain/entity/product.
 
 abstract class BaseHomeRepo {
   Future<Either<Failure,List<Banners>>> getDataBanner();
-  Future<Either<Failure, List<Product>>> getproducts();
+  Future<Either<Failure, List<Product>>> getproducts({required int? categoryId});
 }

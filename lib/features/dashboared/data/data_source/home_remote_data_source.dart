@@ -8,7 +8,7 @@ import 'package:ecommerce_application/features/dashboared/data/model/product_mod
 
 abstract class HomeRemoteDataSource {
   Future<List<BannerModel>> getDataBanner();
-  Future<List<ProductModel>> getProducts();
+  Future<List<ProductModel>> getProducts({required int? categoryId});
 }
 
 class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
@@ -28,9 +28,10 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   }
 
   @override
-  Future<List<ProductModel>> getProducts() async {
+  Future<List<ProductModel>> getProducts({required int? categoryId}) async {
     Map<String, dynamic> responseBody = await apiService.get(
         url: ApiConstant.getproductsEndPoint,
+        body: {'id': categoryId},
         headers: {"Authorization": sl.get<Auth>().token});
     if (responseBody['status'] == true) {
       return List<ProductModel>.from((responseBody['data']['products'] as List)

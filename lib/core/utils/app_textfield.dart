@@ -1,17 +1,13 @@
+import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:flutter/material.dart';
 
 Widget getAppTextfield(
         {required String textFieldName,
         required BuildContext context,
-        required TextEditingController controller,bool obscure = false }) =>
+        required TextEditingController controller,
+        bool obscure = false}) =>
     DecoratedBox(
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-            blurRadius: 2,
-            offset: const Offset(0, 2),
-            spreadRadius: 1,
-            color: Colors.grey.withOpacity(0.2))
-      ]),
+      decoration: BoxDecoration(boxShadow: ViewConstants.appShadow),
       child: TextFormField(
         obscureText: obscure,
         controller: controller,
@@ -31,8 +27,6 @@ Widget getAppTextfield(
           labelStyle:
               const TextStyle(color: Color.fromARGB(255, 209, 207, 207)),
           border: InputBorder.none,
-        
         ),
-        
       ),
     );

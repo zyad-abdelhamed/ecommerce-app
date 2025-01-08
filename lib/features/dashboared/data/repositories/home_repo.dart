@@ -21,10 +21,10 @@ class HomeRepo extends BaseHomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getproducts() async{
+  Future<Either<Failure, List<Product>>> getproducts({required int? categoryId}) async{
      try {
-      List<Product> banners = await homeRemoteDataSource.getProducts();
-      return Right(banners);
+      List<Product> products = await homeRemoteDataSource.getProducts(categoryId: categoryId);
+      return Right(products);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message));
     }

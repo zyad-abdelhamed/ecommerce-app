@@ -5,14 +5,14 @@ import 'package:ecommerce_application/features/dashboared/domain/entity/product.
 
 import '../repositories/base_home_repo.dart';
 
-class GetProductsUseCase extends BaseUseCaseWithoutParameters<List<Product>>{
+class GetProductsUseCase extends BaseUseCaseWithParameters<List<Product>,int?>{
   final BaseHomeRepo baseHomeRepo;
 
   GetProductsUseCase(this.baseHomeRepo);
 
   @override
-  Future<Either<Failure, List<Product>>> call() async{
-  return await baseHomeRepo.getproducts();
+  Future<Either<Failure, List<Product>>> call({required int? parameters}) async{
+  return await baseHomeRepo.getproducts(categoryId: parameters);
   }
  
 }

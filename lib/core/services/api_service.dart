@@ -14,7 +14,7 @@ class ApiService {
   }
 
   Future<Map<String, dynamic>> get(
-      {Map<String, dynamic>? headers, required String url}) async {
+      {Map<String, dynamic>? headers,Map<String, dynamic>? body, required String url}) async {
     Response response = await dio.get(url, options: Options(headers: headers));
     return response.data;
   }

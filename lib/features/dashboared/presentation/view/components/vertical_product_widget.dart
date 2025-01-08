@@ -8,17 +8,18 @@ import 'package:ecommerce_application/core/utils/responsive_extention.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/favorite_icon_controller.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/view/components/favorite_icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductWidget extends StatelessWidget {
-  const ProductWidget({super.key});
+class VerticalProductWidget extends StatelessWidget {
+  const VerticalProductWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProductCubit, ProductState>(listener: (context, state) {
       if (state.addAndRemoveFavoritesState == RequestStateEnum.failed) {
-         appSneakBar(
+        appSneakBar(
             context: context,
             message: state.addAndRemoveFavoritesMessage,
             isError: true);
@@ -71,25 +72,21 @@ class ProductWidget extends StatelessWidget {
                       right: 0.0,
                       child: InkWell(
                         onTap: () {
-                          controller.addAndRemoveFavorites(productId: state.products[index].id.toString());
+                          controller.addAndRemoveFavorites(
+                              productId: state.products[index].id.toString());
                         },
-                        child: Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 5,
-                                      offset: const Offset(0, 4),
-                                      spreadRadius: 2,
-                                      color: Colors.grey.withOpacity(0.3))
-                                ]),
-                            child: AnimatedScale(
-                              scale: dsl.get<FavoriteIconCubit>().getFavoritesOrNotFavoritesIconScale(productId: state.products[index].id.toString()),
-                              duration: const Duration(milliseconds: 500),
-                              child: dsl.get<FavoriteIconCubit>().getFavoritesOrNotFavoritesIcon(productId: state.products[index].id.toString()),
-                            )),
+                        child: FavoriteIconWidget(
+                          icon: dsl
+                              .get<FavoriteIconCubit>()
+                              .getFavoritesOrNotFavoritesIcon(
+                                  productId:
+                                      state.products[index].id.toString()),
+                          scale: dsl
+                              .get<FavoriteIconCubit>()
+                              .getFavoritesOrNotFavoritesIconScale(
+                                  productId:
+                                      state.products[index].id.toString()),
+                        ),
                       ),
                     ),
                   ],

@@ -19,8 +19,8 @@ class ProductCubit extends Cubit<ProductState> {
   ProductCubit(this.getProductsUseCase, this.addAndRemoveFavoritesUseCase)
       : super(const ProductState());
 
-  getProducts() async {
-    Either<Failure, List<Product>> result = await getProductsUseCase();
+  getHomeProducts() async {
+    Either<Failure, List<Product>> result = await getProductsUseCase(parameters: 44);
     result.fold(
       (failure) => emit(ProductState(
           productsState: RequestStateEnum.failed,
@@ -43,7 +43,7 @@ class ProductCubit extends Cubit<ProductState> {
       dsl
           .get<FavoriteIconCubit>()
           .changeFavoritesIconWithAnimation(productId: productId);
-        await  getProducts();
+        await  getHomeProducts();
     });
   }
 }
