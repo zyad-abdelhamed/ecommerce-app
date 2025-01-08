@@ -33,8 +33,8 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         url: ApiConstant.getproductsEndPoint,
         headers: {"Authorization": sl.get<Auth>().token});
     if (responseBody['status'] == true) {
-      return List<ProductModel>.from(
-          (responseBody['data']['products'] as List).map((e) => ProductModel.fromjson(data: e)));
+      return List<ProductModel>.from((responseBody['data']['products'] as List)
+          .map((e) => ProductModel.fromjson(data: e)));
     } else {
       throw const ServerException(message: 'NO Data');
     }

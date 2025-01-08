@@ -45,7 +45,7 @@ class BannerWidgt extends StatelessWidget {
               child: Text(state.errorMessage),
             );
           case RequestStateEnum.loading:
-            return getLoadingWidget();
+            return Padding(padding:EdgeInsets.symmetric(vertical: context.height * 1/8,) ,child: getLoadingWidget());
         }
       },
     );
