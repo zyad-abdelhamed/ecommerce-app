@@ -12,9 +12,9 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return  sl
+        return sl
                 .get<BaseAuthLocalDataSource>()
-                .haveToken(token:ApiConstant.token )
+                .haveToken(token: ApiConstant.token)
             ? const DashboardPage()
             : const LogInPage();
       },

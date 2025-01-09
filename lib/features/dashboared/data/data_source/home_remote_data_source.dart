@@ -30,11 +30,10 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   @override
   Future<List<ProductModel>> getProducts({required int? categoryId}) async {
     Map<String, dynamic> responseBody = await apiService.get(
-        url: ApiConstant.getproductsEndPoint,
-        body: {'id': categoryId},
+        url: '${ApiConstant.getproductsEndPoint}$categoryId',
         headers: {"Authorization": sl.get<Auth>().token});
     if (responseBody['status'] == true) {
-      return List<ProductModel>.from((responseBody['data']['products'] as List)
+      return List<ProductModel>.from((responseBody['data']['data'] as List)
           .map((e) => ProductModel.fromjson(data: e)));
     } else {
       throw const ServerException(message: 'NO Data');

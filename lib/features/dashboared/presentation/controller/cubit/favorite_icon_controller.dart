@@ -1,9 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:flutter/material.dart';
 
-class FavoriteIconCubit extends Cubit<ProductState> { 
-  FavoriteIconCubit() : super(const ProductState());
+class FavoriteIconController  { 
 //define variables
   double favoriteIconScale = 1.0;
   Icon favoriteIcon = const Icon(
@@ -42,19 +40,17 @@ class FavoriteIconCubit extends Cubit<ProductState> {
 //change icon and scale with animation
   void changeFavoriteIconToFavoritesIconWithAnimation() {
     favoriteIconScale = 1.5;
-    favoriteIcon = const Icon(
+    favoriteIcon =  Icon(
       Icons.favorite,
       color: Colors.red,
     );
-    emit(const ProductState());
   }
 
   void changeFavoriteIconToNotFavoritesIconWithAnimation() {
     favoriteIconScale = 1.0;
-    favoriteIcon = const Icon(
+    favoriteIcon =  Icon(
       Icons.favorite_outline,
       color: Colors.grey,
     );
-    emit(const ProductState());
   }
 }

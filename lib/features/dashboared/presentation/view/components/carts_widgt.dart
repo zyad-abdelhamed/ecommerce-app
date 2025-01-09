@@ -43,7 +43,7 @@ class CartsWidgt extends StatelessWidget {
                         descreption: state.carts[index].description,
                         oldPrice: state.carts[index].oldprice.toString(),
                         newPrice: state.carts[index].price.toString(),
-                        bottomRightOfStackWidget: const FavoriteIconWidget(
+                        bottomRightOfStackWidget: const FavoriteIconWidget(productId: '53',
                             scale: 1, icon: Icon(FontAwesomeIcons.heart)),
                       );
                     },

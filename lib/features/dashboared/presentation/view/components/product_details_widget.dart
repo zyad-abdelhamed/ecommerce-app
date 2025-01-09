@@ -2,11 +2,11 @@ import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:flutter/material.dart';
 
-class ProductDetailsAndAddToCartButtonWidget extends StatelessWidget {
+class ProductDetailsWidget extends StatelessWidget {
   final int maxLines;
   final String name, descreption, oldPrice, newPrice;
   final Widget buttonWidget;
-  const ProductDetailsAndAddToCartButtonWidget({
+  const ProductDetailsWidget({
     super.key,
     required this.maxLines,
     required this.name,
