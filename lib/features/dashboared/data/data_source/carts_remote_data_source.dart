@@ -12,12 +12,12 @@ class CartsRemoteDataSourceImpl extends CartsRemoteDataSource {
   CartsRemoteDataSourceImpl(this.apiService);
   @override
   Future<List<ProductModel>> getCarts() async {
-    Map<String, dynamic> responseBody =
-        await apiService.get(url: ApiConstant.cartsEndPoint);
+    Map<String, dynamic> responseBody = await apiService.get(
+        headers: {'Authorization': ApiConstant.token},
+        url: ApiConstant.cartsEndPoint);
     if (responseBody['status'] == true) {
-      return List<ProductModel>.from((responseBody['data']['cart_items']
-              ['product'])
-          .map((e) => ProductModel.fromjson(data: e)));
+      return List<ProductModel>.from((responseBody['data']['cart_items'])
+          .map((e) => ProductModel.cartandfavouritesnamedconstructor(data: e)));
     } else {
       throw const ServerException(message: 'NoData');
     }

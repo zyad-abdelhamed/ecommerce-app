@@ -20,4 +20,14 @@ class ProductModel extends Product {
         image: data['image'].toString(),
         discount: data['discount'].toInt());
   }
+   factory ProductModel.cartandfavouritesnamedconstructor({required Map<String, dynamic> data}) {
+    return ProductModel(
+        name: data['product']['name'].toString(),
+        price: data['product']['price'].toInt(),
+        id: data['product']['id'].toInt(),
+        description: data['product']['description'].toString(),
+        oldprice: data['product']['old_price'].toInt(),
+        image: data['product']['image'].toString(),
+        discount: data['product']['discount'].toInt());
+  }
 }
