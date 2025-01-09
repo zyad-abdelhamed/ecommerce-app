@@ -20,6 +20,7 @@ class HomePage extends StatelessWidget {
         ),
         BlocProvider(
             create: (context) => DashboardBloc(dsl())..add(GetBannerdata())),
+       
       ],
       child:  const Scaffold(
         body: Column(

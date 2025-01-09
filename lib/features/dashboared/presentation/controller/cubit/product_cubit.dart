@@ -6,8 +6,10 @@ import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/add_and_remove_favorites_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_products_use_case.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/cart_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/favorite_icon_controller.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'product_state.dart';
 
@@ -17,7 +19,10 @@ class ProductCubit extends Cubit<ProductState> {
   static Set<String> favoritesProductsId = {};
 
   ProductCubit(this.getProductsUseCase, this.addAndRemoveFavoritesUseCase)
-      : super(const ProductState());
+      : super(const ProductState()){
+        dsl.get<CartCubit>().getcarts();
+      }
+ 
 
   getHomeProducts() async {
     Either<Failure, List<Product>> result = await getProductsUseCase(parameters: 44);

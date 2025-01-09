@@ -10,7 +10,7 @@ class CartsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CartCubit(dsl())..getcarts(),
+      create: (context) => CartCubit(dsl(),dsl())..getcarts(),
       child:const Scaffold(
         body: CartsWidgt()
           

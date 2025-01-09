@@ -6,6 +6,7 @@ import 'package:ecommerce_application/core/utils/app_sneak_bar.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/utils/responsive_extention.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/cart_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/favorite_icon_controller.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/favorite_icon_widget.dart';
@@ -26,6 +27,7 @@ class VerticalProductWidget extends StatelessWidget {
       }
     }, builder: (context, state) {
       final ProductCubit controller = context.read<ProductCubit>();
+
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: GridView.builder(
@@ -117,8 +119,22 @@ class VerticalProductWidget extends StatelessWidget {
                   ],
                 ),
                 appMaterialButton(
-                    buttonFunction: () {},
-                    buttonName: 'add to cart',
+                    buttonFunction: () {
+                      dsl.get<CartCubit>().addOrRemoveProductFromCartF(
+                          productId: state.products[index].id.toString());
+                     
+
+                      // cubit.addOrRemoveProductFromCart(productId:state.products[index].id.toString() );
+                      // cubit.addOrRemoveIdInSetOfProductInCart(productId:state.products[index].id.toString() );
+                      print(
+                          "${dsl.get<CartCubit>().productsInCart}>>>>>>>>>>>>>>>>>>");
+                    },
+                    buttonName: dsl
+                            .get<CartCubit>()
+                            .productsInCart
+                            .contains(state.products[index].id.toString())
+                        ? 'remove from cart'
+                        : 'add to cart',
                     buttonColor: Colors.black)
               ],
             );
