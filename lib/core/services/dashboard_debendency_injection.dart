@@ -10,6 +10,7 @@ import 'package:ecommerce_application/features/dashboared/domain/repositories/ba
 import 'package:ecommerce_application/features/dashboared/domain/usecases/add_and_remove_favorites_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/banner_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_categories_use_case.dart';
+import 'package:ecommerce_application/features/dashboared/domain/usecases/get_favorites_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_products_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/bloc/dashboard_bloc.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/categories_cubit.dart';
@@ -24,16 +25,17 @@ GetIt dsl = GetIt.instance;
 class DashboardDebendencyInjection {
   static void init() {
     //bloc
-    dsl.registerFactory(() => CategoriesCubit(dsl()));
+    dsl.registerFactory(() => CategoriesCubit(dsl(), dsl()));
     dsl.registerFactory(() => DashboardBloc(dsl()));
-    dsl.registerFactory(
-      () => ProductCubit(dsl(),dsl()),
+    dsl.registerFactory<ProductCubit>(
+      () => ProductCubit(dsl(), dsl(),dsl()),
     );
+    dsl.registerLazySingleton<FavoriteIconController>(() => FavoriteIconController(),);
     //usecases
     dsl.registerLazySingleton(() => GetCategoriesUseCase(dsl()));
-      
-    dsl.registerLazySingleton<FavoriteIconCubit>(() => FavoriteIconCubit(),);
-    //usecases
+    dsl.registerLazySingleton(() => GetFavoritesUseCase(dsl()),);
+    
+
     dsl.registerLazySingleton<AddAndRemoveFavoritesUseCase>(
       () => AddAndRemoveFavoritesUseCase(dsl()),
     );
@@ -45,14 +47,13 @@ class DashboardDebendencyInjection {
     dsl.registerLazySingleton<BaseCategoryRepo>(() => CategoriesRepo(dsl()));
     dsl.registerLazySingleton<BaseHomeRepo>(() => HomeRepo(dsl()));
     //datasource
-    
-  
+
     dsl.registerLazySingleton<CategoriesRemoteDataSource>(
         () => CategoriesRemoteDataSourceImpl(dsl()));
     dsl.registerLazySingleton<BaseFavoritesRepo>(
       () => FavoritesRepo(dsl()),
     );
-    //datasource
+
     dsl.registerLazySingleton<FavoritesRemoteDataSource>(
       () => FavoritesRemoteDataSourceImpl(sl()),
     );

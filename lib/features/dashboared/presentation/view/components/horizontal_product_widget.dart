@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:ecommerce_application/core/utils/responsive_extention.dart';
-import 'package:ecommerce_application/features/dashboared/presentation/view/components/product_details_and_add_to_cart_button_widget.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/view/components/product_details_widget.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalProductWidget extends StatelessWidget {
@@ -52,7 +52,7 @@ class HorizontalProductWidget extends StatelessWidget {
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.only(left: 10),
-                  child: ProductDetailsAndAddToCartButtonWidget(
+                  child: ProductDetailsWidget(
                     maxLines: 1,
                     buttonWidget: buttonWidget,
                     name: name,

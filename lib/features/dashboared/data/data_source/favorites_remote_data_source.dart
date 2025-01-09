@@ -1,9 +1,10 @@
 import 'package:ecommerce_application/core/constants/api_constant.dart';
+import 'package:ecommerce_application/core/errors/exceptions.dart';
 import 'package:ecommerce_application/core/services/api_service.dart';
-import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
+import 'package:ecommerce_application/features/dashboared/data/model/product_model.dart';
 
 abstract class FavoritesRemoteDataSource {
-  Future<List<Product>> getFavorites();
+  Future<List<ProductModel>> getFavorites();
   Future<Map<String, dynamic>> addAndRemoveFavourites({required String productId});
 }
 
@@ -22,8 +23,18 @@ return responseBody;
   }
 
   @override
-  Future<List<Product>> getFavorites() {
-    // TODO: implement getFavorites
-    throw UnimplementedError();
+  Future<List<ProductModel>> getFavorites() async{
+    var responseBody = await apiService.get(
+        
+        url: ApiConstant.favoritesEndPoint,
+        headers: {"Authorization": ApiConstant.token});
+        if (responseBody['status'] == true) {
+      return List<ProductModel>.from((responseBody['data']['data'])
+          .map((e) => ProductModel.fromjson(data: e)));
+    } else {
+      throw const ServerException(message: "NoData");
+    }
+
+  
   }
 }
