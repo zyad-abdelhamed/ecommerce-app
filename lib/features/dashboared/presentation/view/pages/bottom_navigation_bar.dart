@@ -1,6 +1,7 @@
 import 'package:ecommerce_application/core/constants/api_constant.dart';
 import 'package:ecommerce_application/core/utils/app_bottom_navigation_bar.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/bottom_navigation_bar_cubit.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/view/pages/carts_page.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/categries_page.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/favorites_page.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/home_page.dart';
@@ -31,7 +32,7 @@ class DashboardPage extends StatelessWidget {
                 HomePage(),
                 CategoryPage(),
                 FavoritesPage(),
-                Text('1'),
+                CartsPage(),
                 Center(child: Text('1')),
               ],
             ),
