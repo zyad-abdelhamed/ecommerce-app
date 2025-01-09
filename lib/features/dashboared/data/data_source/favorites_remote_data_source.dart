@@ -30,7 +30,7 @@ return responseBody;
         headers: {"Authorization": ApiConstant.token});
         if (responseBody['status'] == true) {
       return List<ProductModel>.from((responseBody['data']['data'])
-          .map((e) => ProductModel.fromjson(data: e)));
+          .map((e) => ProductModel.cartandfavouritesnamedconstructor(data: e)));
     } else {
       throw const ServerException(message: "NoData");
     }

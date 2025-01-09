@@ -17,12 +17,7 @@ class HomeProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProductCubit, ProductState>(listener: (context, state) {
-      if (state.addAndRemoveFavoritesState == RequestStateEnum.success) {
-        appSneakBar(
-            context: context,
-            message: 'success',
-            isError: false);
-      }
+     
     }, builder: (context, state) {
       print('////////////////////////////////////');
       print(ProductCubit.favoritesProductsId);

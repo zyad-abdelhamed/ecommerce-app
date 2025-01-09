@@ -24,10 +24,10 @@ class ProductCubit extends Cubit<ProductState> {
   getHomeProducts() async {
     Either<Failure, List<Product>> result = await getProductsUseCase(parameters: 0);
     result.fold(
-      (failure) => emit(ProductState(
+      (failure) => emit(state.copywith(
           productsState: RequestStateEnum.failed,
           productsMessage: failure.message)),
-      (products) => emit(ProductState(
+      (products) => emit(state.copywith(
           products: products, productsState: RequestStateEnum.success)),
     );
   }
@@ -36,30 +36,31 @@ class ProductCubit extends Cubit<ProductState> {
     Either<Failure, Unit> result =
         await addAndRemoveFavoritesUseCase(parameters: productId);
     result.fold(
-        (failed) => emit(ProductState(
+        (failed) => emit(state.copywith(
             addAndRemoveFavoritesState: RequestStateEnum.failed,
             addAndRemoveFavoritesMessage: failed.message)), (success) async{
-              await getFavorites();
-      emit(const ProductState(
-addAndRemoveFavoritesState: RequestStateEnum.success      ));
-      // dsl
-      //     .get<FavoriteIconCubit>()
-      //     .changeFavoritesIconWithAnimation(productId: productId);
-         //  getHomeProducts();
-    });
+            //  await getFavorites();
+              d(productId: productId);
+               dsl
+          .get<FavoriteIconController>()
+          .changeFavoritesIconWithAnimation(productId: productId);
+          
+      emit( state.copywith(
+addAndRemoveFavoritesState: RequestStateEnum.success      ));    });
   }
    getFavorites()async{
     Either<Failure, List<Product>> result = await getFavoritesUseCase() ;
     result.fold(
-      (failure) => emit(ProductState(
+      (failure) => emit(state.copywith(
           favoritesProductsState: RequestStateEnum.failed,
           favoritesProductsMessage: failure.message)),
       (products) { 
          for (var item in products) {
-        favoritesProductsId.add(item.id.toString());}
-        emit(ProductState(
-         favoritesProducts: products, favoritesProductsState: RequestStateEnum.success));}
-    );
+        favoritesProductsId.add(item.id.toString());
+       }
+        emit(state.copywith(
+         favoritesProducts: products, favoritesProductsState: RequestStateEnum.success));
+    } );
    }
   d({required String productId}){
     if(favoritesProductsId.contains(productId)){

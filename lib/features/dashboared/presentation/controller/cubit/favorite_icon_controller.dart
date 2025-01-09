@@ -40,19 +40,17 @@ class FavoriteIconController  {
 //change icon and scale with animation
   void changeFavoriteIconToFavoritesIconWithAnimation() {
     favoriteIconScale = 1.5;
-    favoriteIcon = const Icon(
+    favoriteIcon =  Icon(
       Icons.favorite,
       color: Colors.red,
     );
-    // emit(const ProductState());
   }
 
   void changeFavoriteIconToNotFavoritesIconWithAnimation() {
     favoriteIconScale = 1.0;
-    favoriteIcon = const Icon(
+    favoriteIcon =  Icon(
       Icons.favorite_outline,
       color: Colors.grey,
     );
-    // emit(const ProductState());
   }
 }

@@ -23,8 +23,6 @@ class FavoriteIconWidget extends StatelessWidget {
 
         return GestureDetector(
           onTap: () {
-            controller.d(productId: productId);
-
             controller.addAndRemoveFavorites(productId: productId);
           },
           child: Container(
