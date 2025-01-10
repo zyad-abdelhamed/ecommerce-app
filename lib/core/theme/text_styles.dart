@@ -6,11 +6,11 @@ abstract class TextStyles {
     fontWeight: FontWeight.bold
   );
 
-  static const TextStyle textStyle25g = TextStyle(
+  static const TextStyle textStyle18grey = TextStyle(
     fontSize: 18,
     color: Color.fromARGB(255, 179, 176, 176));
 
-    static const TextStyle textStyle25b = TextStyle(
+    static const TextStyle textStyle18black = TextStyle(
     fontSize: 18,
     color: Colors.black);
 
@@ -23,5 +23,8 @@ abstract class TextStyles {
     fontSize: 20,
     color:  Color.fromARGB(255, 222, 73, 43),
    );
+   static  TextStyle textStyle16grey = TextStyle(
+    fontSize: 16,
+    color: Colors.grey[600]);
     
 }

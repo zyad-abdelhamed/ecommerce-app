@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                       SizedBoxs.sizedBoxw5,
                       Text(
                         'view all',
-                        style: TextStyles.textStyle25b,
+                        style: TextStyles.textStyle18black,
                       )
                     ],
                   ),

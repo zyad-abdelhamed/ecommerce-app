@@ -30,7 +30,7 @@ class ProductDetailsWidget extends StatelessWidget {
         Text(
           maxLines: maxLines,
           descreption,
-          style: TextStyles.textStyle25g
+          style: TextStyles.textStyle18grey
               .copyWith(overflow: TextOverflow.ellipsis, fontSize: 15),
         ),
         Row(
