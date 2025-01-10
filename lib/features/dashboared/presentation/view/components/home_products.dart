@@ -4,6 +4,7 @@ import 'package:ecommerce_application/core/utils/app_sneak_bar.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/utils/loading_widget.dart';
 import 'package:ecommerce_application/core/utils/responsive_extention.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/cart_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/favorite_icon_controller.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/favorite_icon_widget.dart';
@@ -43,8 +44,11 @@ class HomeProducts extends StatelessWidget {
                 oldPrice: state.products[index].oldprice.toString(),
                 newPrice: state.products[index].price.toString(),
                 buttonWidget: appMaterialButton(
-                    buttonFunction: () {},
-                    buttonName: 'add to cart',
+                    buttonFunction: () {
+                      dsl.get<CartCubit>().addOrRemoveProductFromCartF(productId:  state.products[index].id.toString() );
+                      print(CartCubit.productsInCart);
+                    },
+                    buttonName: CartCubit.productsInCart.contains(state.products[index].id.toString())? 'remove from cart':'add to cart',
                     buttonColor: Colors.black),
                 bottomRightOfStackWidget: FavoriteIconWidget(
                   scale: dsl

@@ -17,4 +17,16 @@ class CartsRepo extends BaseCartRepo {
       return Left(ServerFailure(message: e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> addOrRemoveProductFromCart(
+      {required String productId}) async {
+    try {
+      var result = await cartsRemoteDataSource.addOrRemoveProductFromCart(
+          productId: productId);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
 }

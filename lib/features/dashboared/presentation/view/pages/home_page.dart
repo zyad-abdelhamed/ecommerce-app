@@ -16,10 +16,11 @@ class HomePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ProductCubit(dsl(),dsl(),dsl())..getHomeProducts()..getFavorites(),
+          create: (context) => ProductCubit(dsl(),dsl(),dsl())..getFavorites()..getHomeProducts()..soliman(),
         ),
         BlocProvider(
             create: (context) => DashboardBloc(dsl())..add(GetBannerdata())),
+       
       ],
       child:  const Scaffold(
         body: Column(

@@ -11,6 +11,7 @@ import 'package:ecommerce_application/features/dashboared/data/data_source/favor
 import 'package:ecommerce_application/features/dashboared/data/repositories/favorites_repo.dart';
 import 'package:ecommerce_application/features/dashboared/domain/repositories/base_favorites_repo.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/add_and_remove_favorites_use_case.dart';
+import 'package:ecommerce_application/features/dashboared/domain/usecases/add_or_remove_product_from_cart.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/banner_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_carts_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_categories_use_case.dart';
@@ -30,6 +31,8 @@ GetIt dsl = GetIt.instance;
 class DashboardDebendencyInjection {
   static void init() {
     //bloc
+    dsl.registerFactory(() => CartCubit(dsl(), dsl()));
+  
     dsl.registerFactory(() => CategoriesCubit(dsl(), dsl()));
     dsl.registerFactory(() => DashboardBloc(dsl()));
     dsl.registerFactory<ProductCubit>(
@@ -37,6 +40,7 @@ class DashboardDebendencyInjection {
     );
     dsl.registerLazySingleton<FavoriteIconController>(() => FavoriteIconController(),);
     //usecases
+    dsl.registerLazySingleton(() => AddOrRemoveProductFromCart(dsl()));
     dsl.registerLazySingleton(() => GetCartsUseCase(dsl()));
     dsl.registerLazySingleton(() => GetCategoriesUseCase(dsl()));
     dsl.registerLazySingleton(() => GetFavoritesUseCase(dsl()),);

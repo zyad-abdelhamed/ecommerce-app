@@ -6,7 +6,7 @@ class ProductState extends Equatable {
   final RequestStateEnum productsState;
   final String productsMessage;
   //add And Remove Favorites variables
-  final RequestStateEnum? addAndRemoveFavoritesState;
+  final RequestStateEnum addAndRemoveFavoritesState;
   final String addAndRemoveFavoritesMessage;
 
   final List<Product> favoritesProducts;
@@ -17,7 +17,7 @@ class ProductState extends Equatable {
       {this.products = const [],
       this.productsState = RequestStateEnum.loading,
       this.productsMessage = '',
-      this.addAndRemoveFavoritesState,
+      this.addAndRemoveFavoritesState = RequestStateEnum.loading,
       this.addAndRemoveFavoritesMessage = '',
       this.favoritesProducts = const [],
       this.favoritesProductsMessage = '',

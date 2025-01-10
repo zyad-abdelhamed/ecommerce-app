@@ -7,8 +7,10 @@ import 'package:ecommerce_application/features/dashboared/domain/entity/product.
 import 'package:ecommerce_application/features/dashboared/domain/usecases/add_and_remove_favorites_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_favorites_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_products_use_case.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/cart_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/favorite_icon_controller.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'product_state.dart';
 
@@ -20,6 +22,10 @@ class ProductCubit extends Cubit<ProductState> {
 
   ProductCubit(this.getProductsUseCase, this.addAndRemoveFavoritesUseCase, this.getFavoritesUseCase)
       : super(const ProductState());
+
+  soliman()async{
+    return await dsl.get<CartCubit>().getcarts();
+  }
 
   getHomeProducts() async {
     Either<Failure, List<Product>> result = await getProductsUseCase(parameters: 0);

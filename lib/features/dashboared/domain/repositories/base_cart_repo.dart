@@ -4,4 +4,6 @@ import 'package:ecommerce_application/features/dashboared/domain/entity/product.
 
 abstract class BaseCartRepo {
   Future<Either<Failure, List<Product>>> getCarts();
+  Future<Either<Failure, Unit>> addOrRemoveProductFromCart(
+      {required String productId});
 }

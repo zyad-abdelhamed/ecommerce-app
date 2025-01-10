@@ -1,6 +1,8 @@
+import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/utils/loading_widget.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/cart_cubit.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/favorite_icon_widget.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/horizontal_product_widget.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/remove_button_widget.dart';
@@ -14,7 +16,11 @@ class CartsWidgt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, CartState>(
+      buildWhen: (previous, current) => previous.carts != current.carts,
       builder: (context, state) {
+        
+        CartCubit cubit = context.read<CartCubit>();
+        
         switch (state.requestStateEnum) {
           case RequestStateEnum.success:
             return state.carts.isEmpty
