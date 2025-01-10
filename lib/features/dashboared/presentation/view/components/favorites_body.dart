@@ -15,6 +15,7 @@ class FavoritesBody extends StatelessWidget {
       },
       builder: (context, state) {
         return ListView.builder(
+          itemCount: state.favoritesProducts.length,
           itemBuilder: (context, index) {
          return   HorizontalProductWidget(
               buttonWidget: const RemoveButtonWidget(),

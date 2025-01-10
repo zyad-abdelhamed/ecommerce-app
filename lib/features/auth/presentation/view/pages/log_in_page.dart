@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/constants/view_constants.dart';
 import '../../../../../core/theme/text_styles.dart';
-import '../../../../../core/utils/app_bottom_navigation_bar.dart';
 
 class LogInPage extends StatelessWidget {
   const LogInPage({super.key});
@@ -15,10 +14,9 @@ class LogInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => AuthCubit(sl(), sl()),
-        child: Scaffold(
+        child: const Scaffold(
           resizeToAvoidBottomInset: false,
-          bottomNavigationBar: appBottomNavigationBar(context),
-          body: const Padding(
+          body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
