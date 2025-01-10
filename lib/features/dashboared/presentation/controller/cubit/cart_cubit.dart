@@ -13,7 +13,7 @@ class CartCubit extends Cubit<CartState> {
   CartCubit(this.getCartsUseCase, this.addOrRemoveProductFromCart)
       : super(const CartState());
 
-  Set<String> productsInCart = {};
+ static Set<String> productsInCart = {};
   
   getcarts() async {
   print("Calling getcarts...");  // تحقق من أن الدالة يتم استدعاؤها
@@ -45,12 +45,12 @@ class CartCubit extends Cubit<CartState> {
     result.fold((l) {
       print('fail');
       emit(CartState(
-          message: l.message, requestStateEnum: RequestStateEnum.failed));
+          addOrRemoveFromCartsMessage: l.message, addOrRemoveFromCartsrequestStateEnum: RequestStateEnum.failed));
     }, (r) async {
       print('success');
       addOrRemoveIdInSetOfProductInCart(productId: productId);
-       await getcarts();
-      emit(const CartState(requestStateEnum: RequestStateEnum.success));
+
+      emit(const CartState(addOrRemoveFromCartsrequestStateEnum: RequestStateEnum.success));
      
     });
   }

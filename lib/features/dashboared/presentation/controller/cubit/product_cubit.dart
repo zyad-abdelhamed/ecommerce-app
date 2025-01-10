@@ -23,6 +23,10 @@ class ProductCubit extends Cubit<ProductState> {
   ProductCubit(this.getProductsUseCase, this.addAndRemoveFavoritesUseCase, this.getFavoritesUseCase)
       : super(const ProductState());
 
+  soliman()async{
+    return await dsl.get<CartCubit>().getcarts();
+  }
+
   getHomeProducts() async {
     Either<Failure, List<Product>> result = await getProductsUseCase(parameters: 0);
     result.fold(

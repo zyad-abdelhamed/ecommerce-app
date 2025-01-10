@@ -18,7 +18,8 @@ class CartsWidgt extends StatelessWidget {
       buildWhen: (previous, current) => previous.carts != current.carts,
       builder: (context, state) {
         
-        //CartCubit cubit = context.read<CartCubit>();
+        CartCubit cubit = context.read<CartCubit>();
+        
         switch (state.requestStateEnum) {
           case RequestStateEnum.success:
             return state.carts.isEmpty
@@ -30,9 +31,9 @@ class CartsWidgt extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return HorizontalProductWidget(
                         buttonWidget: OutlinedButton(
-                            onPressed: () {
-                              // cubit.addOrRemoveProductFromCart(parameters: );
-                              // cubit.getcarts();
+                            onPressed: ()async {
+                              await cubit.addOrRemoveProductFromCartF(productId: state.carts[index].id.toString());
+                               await cubit.getcarts();
                             },
                             child: const Text(
                               'remove from cart',

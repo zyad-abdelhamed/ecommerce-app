@@ -32,7 +32,7 @@ class DashboardDebendencyInjection {
   static void init() {
     //bloc
     dsl.registerFactory(() => CartCubit(dsl(), dsl()));
-    dsl.registerFactory(() => CategoriesCubit(dsl(),dsl()));
+  
     dsl.registerFactory(() => CategoriesCubit(dsl(), dsl()));
     dsl.registerFactory(() => DashboardBloc(dsl()));
     dsl.registerFactory<ProductCubit>(
