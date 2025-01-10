@@ -49,6 +49,7 @@ class ProductCubit extends Cubit<ProductState> {
 addAndRemoveFavoritesState: RequestStateEnum.success      ));    });
   }
    getFavorites()async{
+    //state.favoritesProducts.clear();
     Either<Failure, List<Product>> result = await getFavoritesUseCase() ;
     result.fold(
       (failure) => emit(state.copywith(

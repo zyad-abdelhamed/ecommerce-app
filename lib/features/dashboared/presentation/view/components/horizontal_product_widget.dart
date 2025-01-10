@@ -1,23 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:ecommerce_application/core/utils/responsive_extention.dart';
+import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/product_details_widget.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalProductWidget extends StatelessWidget {
   //define variabels
-  final String imageUrl, name, descreption, oldPrice, newPrice;
   final Widget buttonWidget;
   final Widget bottomRightOfStackWidget;
+  final List<Product> productsList;
+  final int index;
   //constructor
   const HorizontalProductWidget(
       {super.key,
       required this.buttonWidget,
-      required this.imageUrl,
-      required this.name,
-      required this.descreption,
-      required this.oldPrice,
-      required this.newPrice,
+      required this.productsList,
+      required this.index,
       required this.bottomRightOfStackWidget});
 
   @override
@@ -44,7 +43,7 @@ class HorizontalProductWidget extends StatelessWidget {
                         topLeft: Radius.circular(15),
                         bottomLeft: Radius.circular(15)),
                     child: CachedNetworkImage(
-                      imageUrl: imageUrl,
+                      imageUrl: productsList[index].image,
                       fit: BoxFit.fill,
                     ),
                   )),
@@ -55,10 +54,10 @@ class HorizontalProductWidget extends StatelessWidget {
                   child: ProductDetailsWidget(
                     maxLines: 1,
                     buttonWidget: buttonWidget,
-                    name: name,
-                    descreption: descreption,
-                    oldPrice: oldPrice,
-                    newPrice: newPrice,
+                    name: productsList[index].name,
+                    descreption: productsList[index].description,
+                    oldPrice: productsList[index].oldprice.toString(),
+                    newPrice: productsList[index].price.toString(),
                   ),
                 ),
               )

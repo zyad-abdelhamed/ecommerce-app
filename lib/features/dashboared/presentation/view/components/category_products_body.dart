@@ -32,23 +32,21 @@ class CategoryProductsBody extends StatelessWidget {
                           buttonFunction: () {},
                           buttonName: 'add to cart',
                           buttonColor: Colors.black),
-                      imageUrl: state.categoryProducts[index].image,
-                      name: state.categoryProducts[index].name,
-                      descreption: state.categoryProducts[index].description,
-                      oldPrice:
-                          state.categoryProducts[index].oldprice.toString(),
-                      newPrice: state.categoryProducts[index].price.toString(),
-                      bottomRightOfStackWidget:  FavoriteIconWidget(
-                  scale: dsl
-                      .get<FavoriteIconController>()
-                      .getFavoritesOrNotFavoritesIconScale(
-                          productId: state.categoryProducts[index].id.toString()),
-                  icon: dsl
-                      .get<FavoriteIconController>()
-                      .getFavoritesOrNotFavoritesIcon(
-                          productId: state.categoryProducts[index].id.toString()),
-                  productId: state.categoryProducts[index].id.toString(),
-                ));
+                      productsList: state.categoryProducts,
+                      index: index,
+                      bottomRightOfStackWidget: FavoriteIconWidget(
+                        scale: dsl
+                            .get<FavoriteIconController>()
+                            .getFavoritesOrNotFavoritesIconScale(
+                                productId: state.categoryProducts[index].id
+                                    .toString()),
+                        icon: dsl
+                            .get<FavoriteIconController>()
+                            .getFavoritesOrNotFavoritesIcon(
+                                productId: state.categoryProducts[index].id
+                                    .toString()),
+                        productId: state.categoryProducts[index].id.toString(),
+                      ));
                 },
               ),
             ),
