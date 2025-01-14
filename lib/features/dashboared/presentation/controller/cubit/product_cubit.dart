@@ -20,15 +20,17 @@ class ProductCubit extends Cubit<ProductState> {
   final GetFavoritesUseCase getFavoritesUseCase;
   static Set<String> favoritesProductsId = {};
 
-  ProductCubit(this.getProductsUseCase, this.addAndRemoveFavoritesUseCase, this.getFavoritesUseCase)
+  ProductCubit(this.getProductsUseCase, this.addAndRemoveFavoritesUseCase,
+      this.getFavoritesUseCase)
       : super(const ProductState());
 
-  soliman()async{
+  Future<void> soliman() async {
     return await dsl.get<CartCubit>().getcarts();
   }
 
   getHomeProducts() async {
-    Either<Failure, List<Product>> result = await getProductsUseCase(parameters: 0);
+    Either<Failure, List<Product>> result =
+        await getProductsUseCase(parameters: 0);
     result.fold(
       (failure) => emit(state.copywith(
           productsState: RequestStateEnum.failed,
@@ -38,42 +40,43 @@ class ProductCubit extends Cubit<ProductState> {
     );
   }
 
-  addAndRemoveFavorites({required String productId}) async {
+ void addAndRemoveFavorites({required String productId}) async {
     Either<Failure, Unit> result =
         await addAndRemoveFavoritesUseCase(parameters: productId);
     result.fold(
         (failed) => emit(state.copywith(
             addAndRemoveFavoritesState: RequestStateEnum.failed,
-            addAndRemoveFavoritesMessage: failed.message)), (success) async{
-            //  await getFavorites();
-              d(productId: productId);
-               dsl
-          .get<FavoriteIconController>()
-          .changeFavoritesIconWithAnimation(productId: productId);
-          
-      emit( state.copywith(
-addAndRemoveFavoritesState: RequestStateEnum.success      ));    });
+            addAndRemoveFavoritesMessage: failed.message)), (success)  async{
+      if (favoritesProductsId.contains(productId)) {
+        favoritesProductsId.remove(productId);
+      } else {
+        favoritesProductsId.add(productId);
+      }
+      await getFavorites();
+      emit(
+          state.copywith(addAndRemoveFavoritesState: RequestStateEnum.success));
+     });
   }
-   getFavorites()async{
-    //state.favoritesProducts.clear();
-    Either<Failure, List<Product>> result = await getFavoritesUseCase() ;
+
+ Future<void> getFavorites() async {
+   // state.favoritesProducts.clear();
+    Either<Failure, List<Product>> result = await getFavoritesUseCase();
     result.fold(
-      (failure) => emit(state.copywith(
-          favoritesProductsState: RequestStateEnum.failed,
-          favoritesProductsMessage: failure.message)),
-      (products) { 
-         for (var item in products) {
-        favoritesProductsId.add(item.id.toString());
-       }
-        emit(state.copywith(
-         favoritesProducts: products, favoritesProductsState: RequestStateEnum.success));
-    } );
-   }
-  d({required String productId}){
-    if(favoritesProductsId.contains(productId)){
-      favoritesProductsId.remove(productId);
-    }else{
-      favoritesProductsId.add(productId);
-    }
+        (failure) => emit(state.copywith(
+            favoritesProductsState: RequestStateEnum.failed,
+            favoritesProductsMessage: failure.message)), (products) {
+          favoritesProductsId = products.map((item) => item.id.toString()).toSet();
+      emit(state.copywith(
+          favoritesProducts: products,
+          favoritesProductsState: RequestStateEnum.success));
+    });
   }
+
+  // d({required String productId}) {
+  //   if (favoritesProductsId.contains(productId)) {
+  //     favoritesProductsId.remove(productId);
+  //   } else {
+  //     favoritesProductsId.add(productId);
+  //   }
+  // }
 }

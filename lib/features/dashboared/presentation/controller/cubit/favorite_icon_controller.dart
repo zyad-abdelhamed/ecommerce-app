@@ -27,30 +27,4 @@ class FavoriteIconController  {
 
     return favoriteIconScale;
   }
-
-//animation function
-  void changeFavoritesIconWithAnimation({required String productId}) {
-    if (ProductCubit.favoritesProductsId.contains(productId)) {
-      changeFavoriteIconToNotFavoritesIconWithAnimation();
-    } else {
-      changeFavoriteIconToFavoritesIconWithAnimation();
-    }
-  }
-
-//change icon and scale with animation
-  void changeFavoriteIconToFavoritesIconWithAnimation() {
-    favoriteIconScale = 1.5;
-    favoriteIcon =  Icon(
-      Icons.favorite,
-      color: Colors.red,
-    );
-  }
-
-  void changeFavoriteIconToNotFavoritesIconWithAnimation() {
-    favoriteIconScale = 1.0;
-    favoriteIcon =  Icon(
-      Icons.favorite_outline,
-      color: Colors.grey,
-    );
-  }
 }

@@ -15,9 +15,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => ProductCubit(dsl(),dsl(),dsl())..getFavorites()..getHomeProducts()..soliman(),
-        ),
+        
         BlocProvider(
             create: (context) => DashboardBloc(dsl())..add(GetBannerdata())),
        

@@ -20,7 +20,9 @@ import 'package:ecommerce_application/core/services/navigation.dart';
 import 'package:ecommerce_application/core/theme/app_theme.dart';
 import 'package:ecommerce_application/core/services/shared.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/cart_cubit.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,10 +38,14 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: router,
-      theme: appTheme,
+    return BlocProvider(
+          create: (context) => ProductCubit(dsl(),dsl(),dsl())..getFavorites()..getHomeProducts()..soliman(),
+        
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: router,
+        theme: appTheme,
+    ),
     );
   }
 }

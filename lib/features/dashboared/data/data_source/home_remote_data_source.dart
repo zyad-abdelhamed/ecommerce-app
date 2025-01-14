@@ -17,8 +17,9 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   HomeRemoteDataSourceImpl(this.apiService);
   @override
   Future<List<BannerModel>> getDataBanner() async {
-    Map<String, dynamic> responseBody =
-        await apiService.get(url: ApiConstant.getBannerEndPoint);
+    Map<String, dynamic> responseBody = await apiService.get(
+        apiServiceInputModel:
+            ApiServiceInputModel(url: ApiConstant.getBannerEndPoint));
     if (responseBody['status'] == true) {
       return List<BannerModel>.from(
           (responseBody['data'] as List).map((e) => BannerModel.fromJson(e)));
@@ -30,13 +31,13 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   @override
   Future<List<ProductModel>> getProducts({required int? categoryId}) async {
     Map<String, dynamic> responseBody = await apiService.get(
-        url: '${ApiConstant.getproductsEndPoint}$categoryId',
-        headers: {"Authorization": sl.get<Auth>().token});
-    if (responseBody['status'] == true) {
+        apiServiceInputModel: ApiServiceInputModel(
+            url: '${ApiConstant.getproductsEndPoint}$categoryId',
+            headers: {"Authorization": sl.get<Auth>().token}));
+        //  saveBooksData(books, kFeaturedBox);
+
       return List<ProductModel>.from((responseBody['data']['data'] as List)
           .map((e) => ProductModel.fromjson(data: e)));
-    } else {
-      throw const ServerException(message: 'NO Data');
-    }
+    
   }
 }

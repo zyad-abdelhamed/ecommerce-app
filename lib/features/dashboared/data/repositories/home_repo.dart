@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_application/core/errors/exceptions.dart';
+import 'package:dio/dio.dart';
 import 'package:ecommerce_application/core/errors/failures.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/home_remote_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/Banner.dart';
@@ -15,9 +15,12 @@ class HomeRepo extends BaseHomeRepo {
     try {
       List<Banners> banners = await homeRemoteDataSource.getDataBanner();
       return Right(banners);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message));
-    }
+    }  catch (e) {
+  if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+}
   }
 
   @override
@@ -25,8 +28,11 @@ class HomeRepo extends BaseHomeRepo {
      try {
       List<Product> products = await homeRemoteDataSource.getProducts(categoryId: categoryId);
       return Right(products);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message));
-    }
+    }  catch (e) {
+  if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+}
   }
 }

@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_application/core/errors/exceptions.dart';
+import 'package:dio/dio.dart';
 import 'package:ecommerce_application/core/errors/failures.dart';
 import 'package:ecommerce_application/features/auth/data/datasources/auth_local_data_source.dart';
 import 'package:ecommerce_application/features/auth/data/datasources/auth_remote_data_source.dart';
@@ -19,9 +19,12 @@ class AuthRepository extends BaseAuthRepository {
     try {
       await baseAuthRemteDataSource.signUp(signUpParameters);
       return right(unit);
-    } on ServerException catch (failure) {
-      return left(ServerFailure(message: failure.message));
-    }
+    }  catch (e) {
+  if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+}
   }
 
   @override
@@ -30,8 +33,11 @@ class AuthRepository extends BaseAuthRepository {
       final Auth result = await baseAuthRemteDataSource.login(logInParameters);
      // baseAuthLocalDataSource.insertTokenToCache(token: result.token!);
       return right(result);
-    } on ServerException catch (failure) {
-      return left(ServerFailure(message: failure.message));
-    }
+    } catch (e) {
+  if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+}
   }
 }

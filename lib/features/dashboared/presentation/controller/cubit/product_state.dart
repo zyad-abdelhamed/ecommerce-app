@@ -57,3 +57,4 @@ class ProductState extends Equatable {
         addAndRemoveFavoritesMessage
       ];
 }
+class S extends ProductState{}

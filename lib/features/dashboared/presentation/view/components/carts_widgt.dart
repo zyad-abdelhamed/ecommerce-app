@@ -2,6 +2,7 @@ import 'package:ecommerce_application/core/services/dashboard_debendency_injecti
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/utils/loading_widget.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/cart_cubit.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/favorite_icon_controller.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/favorite_icon_widget.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/horizontal_product_widget.dart';
@@ -34,10 +35,18 @@ class CartsWidgt extends StatelessWidget {
                         buttonWidget: const RemoveButtonWidget(),
                         productsList: state.carts,
                         index: index,
-                        bottomRightOfStackWidget: const FavoriteIconWidget(
-                            productId: '53',
-                            scale: 1,
-                            icon: Icon(FontAwesomeIcons.heart)),
+                        bottomRightOfStackWidget:  FavoriteIconWidget(
+                            scale: dsl
+                                .get<FavoriteIconController>()
+                                .getFavoritesOrNotFavoritesIconScale(
+                                    productId:
+                                        state.carts[index].id.toString()),
+                            icon: dsl
+                                .get<FavoriteIconController>()
+                                .getFavoritesOrNotFavoritesIcon(
+                                    productId:
+                                        state.carts[index].id.toString()),
+                            productId: state.carts[index].id.toString(),),
                       );
                     },
                   );

@@ -5,7 +5,8 @@ import 'package:ecommerce_application/features/dashboared/data/model/product_mod
 
 abstract class FavoritesRemoteDataSource {
   Future<List<ProductModel>> getFavorites();
-  Future<Map<String, dynamic>> addAndRemoveFavourites({required String productId});
+  Future<Map<String, dynamic>> addAndRemoveFavourites(
+      {required String productId});
 }
 
 class FavoritesRemoteDataSourceImpl implements FavoritesRemoteDataSource {
@@ -13,28 +14,28 @@ class FavoritesRemoteDataSourceImpl implements FavoritesRemoteDataSource {
 
   FavoritesRemoteDataSourceImpl(this.apiService);
   @override
-  Future<Map<String, dynamic>> addAndRemoveFavourites({required String productId}) async {
-   Map<String, dynamic> responseBody = await apiService.post(
-        body: {'product_id': productId},
-        url: ApiConstant.favoritesEndPoint,
-        headers: {"Authorization": ApiConstant.token});
+  Future<Map<String, dynamic>> addAndRemoveFavourites(
+      {required String productId}) async {
+    Map<String, dynamic> responseBody = await apiService.post(
+        apiServiceInputModel: ApiServiceInputModel(
+            body: {'product_id': productId},
+            url: ApiConstant.favoritesEndPoint,
+            headers: {"Authorization": ApiConstant.token}));
 
-return responseBody;
+    return responseBody;
   }
 
   @override
-  Future<List<ProductModel>> getFavorites() async{
+  Future<List<ProductModel>> getFavorites() async {
     var responseBody = await apiService.get(
-        
-        url: ApiConstant.favoritesEndPoint,
-        headers: {"Authorization": ApiConstant.token});
-        if (responseBody['status'] == true) {
+        apiServiceInputModel: ApiServiceInputModel(
+            url: ApiConstant.favoritesEndPoint,
+            headers: {"Authorization": ApiConstant.token}));
+    if (responseBody['status'] == true) {
       return List<ProductModel>.from((responseBody['data']['data'])
           .map((e) => ProductModel.cartandfavouritesnamedconstructor(data: e)));
     } else {
       throw const ServerException(message: "NoData");
     }
-
-  
   }
 }

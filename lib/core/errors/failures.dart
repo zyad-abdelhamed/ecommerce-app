@@ -1,62 +1,62 @@
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
-class Failure extends Equatable{
+ abstract class Failure extends Equatable{
   final String message;
 
-  const Failure({required this.message});
+  const Failure(this.message);
   @override
   List<Object?> get props => [message];
 }
 
-class ServerFailure extends Failure{
-  const ServerFailure({required super.message});
+// class ServerFailure extends Failure{
+//   const ServerFailure({required super.message});
   
-}
-/*
-import 'package:dio/dio.dart';
+// }
 
-abstract class Failure {
-  final String message;
+// import 'package:dio/dio.dart';
 
-  Failure(this.message);
-}
+// abstract class Failure {
+//   final String message;
+
+//   Failure(this.message);
+// }
 
 class ServerFailure extends Failure {
-  ServerFailure(super.message);
-
-  factory ServerFailure.fromDiorError(DioError e) {
+const ServerFailure( super.message);
+  factory ServerFailure.fromDiorError(DioException e) {
     switch (e.type) {
-      case DioErrorType.connectionTimeout:
-        return ServerFailure('Connection timeout with api server');
+      case DioExceptionType.connectionTimeout:
+        return const ServerFailure('Connection timeout with api server');
 
-      case DioErrorType.sendTimeout:
-        return ServerFailure('Send timeout with ApiServer');
-      case DioErrorType.receiveTimeout:
-        return ServerFailure('Receive timeout with ApiServer');
-      case DioErrorType.badCertificate:
-        return ServerFailure('badCertificate with api server');
-      case DioErrorType.badResponse:
+      case DioExceptionType.sendTimeout:
+        return const ServerFailure('Send timeout with ApiServer');
+      case DioExceptionType.receiveTimeout:
+        return const ServerFailure('Receive timeout with ApiServer');
+      case DioExceptionType.badCertificate:
+        return const ServerFailure('badCertificate with api server');
+      case DioExceptionType.badResponse:
         return ServerFailure.fromResponse(
             e.response!.statusCode!, e.response!.data);
-      case DioErrorType.cancel:
-        return ServerFailure('Request to ApiServer was canceld');
-      case DioErrorType.connectionError:
-        return ServerFailure('No Internet Connection');
-      case DioErrorType.unknown:
-        return ServerFailure('Opps There was an Error, Please try again');
+      case DioExceptionType.cancel:
+        return const ServerFailure('Request to ApiServer was canceld');
+      case DioExceptionType.connectionError:
+        return const ServerFailure('No Internet Connection');
+      case DioExceptionType.unknown:
+        return const ServerFailure('Opps There was an Error, Please try again');
     }
   }
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
     if (statusCode == 404) {
-      return ServerFailure('Your request was not found, please try later');
+      return const ServerFailure('Your request was not found, please try later');
     } else if (statusCode == 500) {
-      return ServerFailure('There is a problem with server, please try later');
+      return const ServerFailure('There is a problem with server, please try later');
     } else if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(response['error']['message']);
+      return ServerFailure(response['message']);
     } else {
-      return ServerFailure('There was an error , please try again');
+      return const ServerFailure('There was an error , please try again');
     }
   }
 }
-*/ 
+ 

@@ -15,8 +15,9 @@ class CartsRemoteDataSourceImpl extends CartsRemoteDataSource {
   @override
   Future<List<ProductModel>> getCarts() async {
     Map<String, dynamic> responseBody = await apiService.get(
-        headers: {'Authorization': ApiConstant.token},
-        url: ApiConstant.cartsEndPoint);
+        apiServiceInputModel: ApiServiceInputModel(
+            headers: {'Authorization': ApiConstant.token},
+            url: ApiConstant.cartsEndPoint));
     if (responseBody['status'] == true) {
       return List<ProductModel>.from((responseBody['data']['cart_items'])
           .map((e) => ProductModel.cartandfavouritesnamedconstructor(data: e)));
@@ -28,9 +29,10 @@ class CartsRemoteDataSourceImpl extends CartsRemoteDataSource {
   @override
   Future<Unit> addOrRemoveProductFromCart({required String productId}) async {
     Map<String, dynamic> responseBody = await apiService.post(
-        body: {'product_id': productId},
-        url: ApiConstant.cartsEndPoint,
-        headers: {'Authorization': ApiConstant.token});
+        apiServiceInputModel: ApiServiceInputModel(
+            body: {'product_id': productId},
+            url: ApiConstant.cartsEndPoint,
+            headers: {'Authorization': ApiConstant.token}));
     if (responseBody['status'] == false) {
       throw ServerException(message: responseBody['message']);
     }
