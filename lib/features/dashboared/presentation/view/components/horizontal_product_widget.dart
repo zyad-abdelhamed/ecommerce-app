@@ -30,7 +30,7 @@ class HorizontalProductWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             boxShadow: ViewConstants.appShadow,
           ),
-          height: context.height * 1 / 6,
+          height: context.height * 1 /6,
           margin: const EdgeInsets.all(10.0),
           width: double.infinity,
           child: Row(

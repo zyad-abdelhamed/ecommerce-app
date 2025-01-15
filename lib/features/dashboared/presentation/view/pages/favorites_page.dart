@@ -10,10 +10,9 @@ class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductCubit(dsl(),dsl(),dsl())..getFavorites(),
-      child: const Scaffold(
-        body: FavoritesBody(),
-      ),
+      create: (context) =>
+          ProductCubit(dsl(), dsl(), dsl(), dsl(), dsl())..getFavorites(),
+      child: const FavoritesBody(),
     );
   }
 }

@@ -24,13 +24,11 @@ import 'package:ecommerce_application/features/dashboared/domain/usecases/get_pr
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_user_data_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/logout_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/bloc/dashboard_bloc.dart';
-import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/cart_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/categories_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/favorite_icon_controller.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/user_cubit.dart';
 import 'package:get_it/get_it.dart';
-
 import '../../features/dashboared/domain/repositories/base_home_repo.dart';
 
 GetIt dsl = GetIt.instance;
@@ -38,12 +36,10 @@ GetIt dsl = GetIt.instance;
 class DashboardDebendencyInjection {
   static void init() {
     //bloc
-    dsl.registerFactory(() => CartCubit(dsl(), dsl()));
-
     dsl.registerFactory(() => CategoriesCubit(dsl(), dsl()));
     dsl.registerFactory(() => DashboardBloc(dsl()));
     dsl.registerFactory<ProductCubit>(
-      () => ProductCubit(dsl(), dsl(), dsl()),
+      () => ProductCubit(dsl(), dsl(), dsl(), dsl(), dsl()),
     );
     dsl.registerLazySingleton<FavoriteIconController>(
       () => FavoriteIconController(),
@@ -58,7 +54,6 @@ class DashboardDebendencyInjection {
     dsl.registerLazySingleton(
       () => GetFavoritesUseCase(dsl()),
     );
-
     //usecases
     dsl.registerLazySingleton<AddAndRemoveFavoritesUseCase>(
       () => AddAndRemoveFavoritesUseCase(dsl()),
@@ -81,7 +76,6 @@ class DashboardDebendencyInjection {
       () => UserRepo(dsl(), dsl()),
     );
     //datasource
-
     dsl.registerLazySingleton<CategoriesRemoteDataSource>(
         () => CategoriesRemoteDataSourceImpl(dsl()));
     dsl.registerLazySingleton<BaseFavoritesRepo>(

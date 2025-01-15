@@ -15,36 +15,40 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        
         BlocProvider(
             create: (context) => DashboardBloc(dsl())..add(GetBannerdata())),
-       
+        BlocProvider(
+            create: (context) => ProductCubit(dsl(), dsl(), dsl(), dsl(), dsl())
+              ..getHomeProductsData())
       ],
-      child:  const Scaffold(
-        body: Column(
+      child:  const Column(
           children: [
             BannerWidgt(),
-             SizedBoxs.sizedBoxH10,
-             Padding(
-               padding: EdgeInsets.symmetric(horizontal: 15.0),
-               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                       'products',
-                        style: TextStyles.textStyle34,
-                      ),
-                      SizedBoxs.sizedBoxw5,
-                      Text(
-                        'view all',
-                        style: TextStyles.textStyle18black,
-                      )
-                    ],
+            SizedBoxs.sizedBoxH10,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'products',
+                    style: TextStyles.textStyle34,
                   ),
-             ),
-            Expanded(child: HomeProducts())
+                  SizedBoxs.sizedBoxw5,
+                  Text(
+                    'view all',
+                    style: TextStyles.textStyle18black,
+                  )
+                ],
+              ),
+            ),
+            Expanded(child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.0),
+              child: HomeProducts(),
+            ))
           ],
         ),
-      ),
+     
     );
   }
 }

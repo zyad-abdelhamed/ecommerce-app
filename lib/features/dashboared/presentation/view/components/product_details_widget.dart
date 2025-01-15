@@ -28,7 +28,7 @@ class ProductDetailsWidget extends StatelessWidget {
               .copyWith(overflow: TextOverflow.ellipsis, fontSize: 18),
         ),
         Text(
-          maxLines: maxLines,
+          maxLines: 1,
           descreption,
           style: TextStyles.textStyle18grey
               .copyWith(overflow: TextOverflow.ellipsis, fontSize: 15),
