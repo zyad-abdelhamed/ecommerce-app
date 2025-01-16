@@ -22,11 +22,10 @@ class HomeProducts extends StatelessWidget {
           final ProductCubit controller = context.read<ProductCubit>();
           switch (state.productsState) {
             case RequestStateEnum.success:
-              return GridView.builder(
+              return SliverGrid.builder(
                 itemCount: state.products.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 15.0,
                     mainAxisSpacing: 15.0,
                     mainAxisExtent: context.height * .45,
                     ),
@@ -41,16 +40,14 @@ class HomeProducts extends StatelessWidget {
                                 productId:
                                     state.products[index].id.toString());
                           },
-                          buttonName: controller.getCartButtonName(index: index),
+                          buttonName: controller.getCartButtonName(productId: state.products[index].id.toString()),
                           buttonColor: Colors.black),
                           //favorites
-                      bottomRightOfStackWidget: InkWell(
+                      bottomRightOfStackWidget: GestureDetector(
                         onTap: () =>  controller.addAndRemoveFavorites(
                                 productId:
                                     state.products[index].id.toString()),
-                        child: FavoriteIconWidget(
-                          
-                             
+                        child: FavoriteIconWidget(  
                           scale: dsl
                               .get<FavoriteIconController>()
                               .getFavoritesOrNotFavoritesIconScale(
@@ -68,11 +65,13 @@ class HomeProducts extends StatelessWidget {
                 },
               );
             case RequestStateEnum.failed:
-              return Center(
-                child: Text(state.productsMessage),
+              return SliverToBoxAdapter(
+                child: Center(
+                  child: Text(state.productsMessage),
+                ),
               );
             case RequestStateEnum.loading:
-              return getLoadingWidget();
+              return SliverToBoxAdapter(child: getLoadingWidget());
           }
         });
   }

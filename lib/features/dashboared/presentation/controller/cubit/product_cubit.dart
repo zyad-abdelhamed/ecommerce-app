@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_application/core/errors/failures.dart';
+import 'package:ecommerce_application/core/theme/app_colors.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
-import 'package:ecommerce_application/core/utils/responsive_extention.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/add_and_remove_favorites_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/add_or_remove_product_from_cart.dart';
@@ -39,24 +39,18 @@ class ProductCubit extends Cubit<ProductState> {
 
 ///////////////////////////////////////////////////////////
   //get products
-  int crossAxisCount = 1;
-  double? getMainAxisExtent({required BuildContext context}){
-     if(crossAxisCount==1){
-    return context.height * .45;
-    }else{
-     return context.height * 1 / 6 + 20;
+  void changeProductsDisplay() {
+    if (state.crossAxisCount == 1) {
+      emit(state.copywith(
+          productsDisplayState: ChangeProductsDisplayStateEnum.vertical,
+          crossAxisCount: 2,displayProductsIcon: const Icon(Icons.list)));
+    } else {
+      emit(state.copywith(
+          productsDisplayState: ChangeProductsDisplayStateEnum.horizontal,
+          crossAxisCount: 1,displayProductsIcon: const Icon(Icons.grid_3x3)));
     }
   }
- void changeProductsDisplay(){
-    if(crossAxisCount==1){
-      crossAxisCount = 2;
-      emit(state.copywith(productsDisplayState: ChangeProductsDisplayStateEnum.vertical));
-    }else{
-      crossAxisCount = 1;
-      emit(state.copywith(productsDisplayState: ChangeProductsDisplayStateEnum.horizontal));
-    }
 
-  }
   void getProducts({required int categoryId, String? categoryName}) async {
     Either<Failure, List<Product>> result =
         await getProductsUseCase(parameters: categoryId);
@@ -106,7 +100,7 @@ class ProductCubit extends Cubit<ProductState> {
 
   ////////////////////////////////////////////////////////////
   //cart
-  Set<String> productsInCart = {};
+  static Set<String> productsInCart = {};
 
   getcarts() async {
     var result = await getCartsUseCase();
@@ -140,10 +134,17 @@ class ProductCubit extends Cubit<ProductState> {
     });
   }
 
-  String getCartButtonName({required int index}) {
-    if (productsInCart.contains(state.products[index].id.toString())) {
+  String getCartButtonName({required String productId}) {
+    if (productsInCart.contains(productId)) {
       return 'remove from cart';
     }
     return 'add to cart';
+  }
+
+  Color getCartContainerColor({required String productId}) {
+    if (productsInCart.contains(productId)) {
+      return AppColors.primaryColor;
+    }
+    return  AppColors.inActiveColor;
   }
 }

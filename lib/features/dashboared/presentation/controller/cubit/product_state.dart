@@ -1,27 +1,33 @@
 part of 'product_cubit.dart';
 
 class ProductState extends Equatable {
-  //home products variables
+  //home products
   final List<Product> products;
   final RequestStateEnum productsState;
   final String productsMessage;
-  //add And Remove Favorites variables
+  //add And Remove Favorites
   final RequestStateEnum addAndRemoveFavoritesState;
   final String addAndRemoveFavoritesMessage;
-
+  //favorites
   final List<Product> favoritesProducts;
   final RequestStateEnum favoritesProductsState;
   final String favoritesProductsMessage;
+  //products display
   final ChangeProductsDisplayStateEnum? productsDisplayState;
+  final int crossAxisCount;
+  final Icon displayProductsIcon;
   //cart
   final String cartProductsMessage;
   final RequestStateEnum cartProductsState;
   final List<Product> cartProducts;
+  //add and remove cart
   final String addOrRemoveFromCartsMessage;
   final RequestStateEnum? addOrRemoveFromCartsrequestStateEnum;
 
   const ProductState(
-      {this.products = const [],
+      {
+      //home products
+      this.products = const [],
       this.productsState = RequestStateEnum.loading,
       this.productsMessage = '',
       this.productsDisplayState,
@@ -32,12 +38,16 @@ class ProductState extends Equatable {
       this.favoritesProducts = const [],
       this.favoritesProductsMessage = '',
       this.favoritesProductsState = RequestStateEnum.loading,
-      //cart
+      //add and remove cart
       this.addOrRemoveFromCartsMessage = '',
       this.addOrRemoveFromCartsrequestStateEnum,
+      //cart
       this.cartProducts = const [],
       this.cartProductsMessage = '',
-      this.cartProductsState = RequestStateEnum.loading});
+      this.cartProductsState = RequestStateEnum.loading,
+      //products display
+      this.crossAxisCount = 1,
+      this.displayProductsIcon = const Icon(Icons.grid_3x3)});
 
   ProductState copywith(
       {List<Product>? products,
@@ -53,7 +63,9 @@ class ProductState extends Equatable {
       List<Product>? cartProducts,
       String? addOrRemoveFromCartsMessage,
       RequestStateEnum? addOrRemoveFromCartsrequestStateEnum,
-      ChangeProductsDisplayStateEnum? productsDisplayState}) {
+      ChangeProductsDisplayStateEnum? productsDisplayState,
+      int? crossAxisCount,
+      Icon? displayProductsIcon}) {
     return ProductState(
         products: products ?? this.products,
         productsState: productsState ?? this.productsState,
@@ -75,7 +87,9 @@ class ProductState extends Equatable {
         cartProducts: cartProducts ?? this.cartProducts,
         cartProductsMessage: cartProductsMessage ?? this.cartProductsMessage,
         cartProductsState: cartProductsState ?? this.cartProductsState,
-        productsDisplayState: productsDisplayState ?? this.productsDisplayState);
+        productsDisplayState: productsDisplayState ?? this.productsDisplayState,
+        crossAxisCount: crossAxisCount ?? this.crossAxisCount,
+        displayProductsIcon: displayProductsIcon ?? this.displayProductsIcon);
   }
 
   @override
@@ -93,11 +107,8 @@ class ProductState extends Equatable {
         cartProductsState,
         addOrRemoveFromCartsMessage,
         addOrRemoveFromCartsrequestStateEnum,
-        productsDisplayState
+        productsDisplayState,
+        crossAxisCount,
+        displayProductsIcon
       ];
 }
-
-// class C extends ProductState{
-//   @override
-//   List<Object?> get props => [];
-// }

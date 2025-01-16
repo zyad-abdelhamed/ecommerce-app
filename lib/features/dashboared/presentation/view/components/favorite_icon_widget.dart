@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteIconWidget extends StatelessWidget {
@@ -18,16 +19,10 @@ class FavoriteIconWidget extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
             color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                  blurRadius: 5,
-                  offset: const Offset(0, 4),
-                  spreadRadius: 2,
-                  color: Colors.grey.withOpacity(0.3))
-            ]),
+            boxShadow: ViewConstants.appShadow),
         child: AnimatedScale(
           scale: scale,
-          duration: const Duration(milliseconds: 500),
+          duration: ViewConstants.favoritesAnimationDuration,
           child: icon,
         ));
   }
