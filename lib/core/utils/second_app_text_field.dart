@@ -1,12 +1,12 @@
-import 'package:ecommerce_application/core/constants/view_constants.dart';
+import 'package:ecommerce_application/core/utils/app_textfield.dart';
 import 'package:flutter/material.dart';
 
-Widget getAppTextfield(
+Widget getSecondAppTextfield(
         {required AppTextFieldInputMdel appTextFieldInputMdel}) =>
-    DecoratedBox(
-      decoration: BoxDecoration(boxShadow: ViewConstants.appShadow),
+    ClipRRect(
+      borderRadius: BorderRadius.circular(15),
       child: TextFormField(
-        obscureText: appTextFieldInputMdel.obscure,
+        onChanged: appTextFieldInputMdel.onChangedFunction,
         controller: appTextFieldInputMdel.controller,
         validator: (value) {
           if (appTextFieldInputMdel.controller.text.isEmpty) {
@@ -17,7 +17,7 @@ Widget getAppTextfield(
         },
         decoration: InputDecoration(
           contentPadding:
-              const EdgeInsets.symmetric(vertical: 18, horizontal: 15),
+              const EdgeInsets.symmetric(vertical: 9, horizontal: 15),
           filled: true,
           fillColor: Colors.white,
           labelText: appTextFieldInputMdel.textFieldName,
@@ -27,18 +27,3 @@ Widget getAppTextfield(
         ),
       ),
     );
-//input model
-class AppTextFieldInputMdel {
-  final String textFieldName;
-  final BuildContext context;
-  final TextEditingController controller;
-  final bool obscure;
-  final ValueChanged<String>? onChangedFunction;
-
-  AppTextFieldInputMdel( 
-      {required this.textFieldName,
-      required this.context,
-      required this.controller,
-      this.onChangedFunction,
-      this.obscure = false});
-}

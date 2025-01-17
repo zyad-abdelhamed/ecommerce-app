@@ -19,6 +19,8 @@ class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
     BottomNavigationBarItem(
         icon: Icon(FontAwesomeIcons.heart), label: 'Favourite'),
     BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.cartShopping), label: 'Cart'),
+        BottomNavigationBarItem(icon: Icon(CupertinoIcons.search), label: 'search'),
+
     BottomNavigationBarItem(
         icon: Icon(FontAwesomeIcons.user), label: 'Profile'),
   ];

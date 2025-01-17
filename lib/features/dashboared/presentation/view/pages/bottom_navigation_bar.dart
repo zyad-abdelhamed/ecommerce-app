@@ -4,6 +4,7 @@ import 'package:ecommerce_application/features/dashboared/presentation/view/page
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/favorites_page.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/home_page.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/profile_page.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/view/pages/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,6 +30,7 @@ class DashboardPage extends StatelessWidget {
                 CategoryPage(),
                 FavoritesPage(),
                 CartsPage(),
+                SearchPage(),
                 ProfilePage()
               ],
             ),

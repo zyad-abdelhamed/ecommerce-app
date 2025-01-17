@@ -14,8 +14,9 @@ class BannerWidgt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DashboardBloc, DashboardState>(
-      buildWhen: (previous, current) => previous.banners != current.banners,
+      buildWhen: (previous, current) => previous.requestStateEnum != current.requestStateEnum,
       builder: (context, state) {
+        print('build banners');
         switch (state.requestStateEnum) {
           case RequestStateEnum.success:
             return CarouselSlider(
