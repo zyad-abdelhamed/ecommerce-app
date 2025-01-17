@@ -32,7 +32,7 @@ class HorizontalProductWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
               boxShadow: ViewConstants.appShadow,
             ),
-            height: context.height * 1 /6,
+            height: context.height * 1 / 6,
             margin: const EdgeInsets.all(10.0),
             width: double.infinity,
             child: Row(
@@ -67,8 +67,32 @@ class HorizontalProductWidget extends StatelessWidget {
             ),
           ),
           //end bottom of stack
-          //bottom right of stack
-          Positioned(bottom: 0.0, right: 0.0, child: bottomRightOfStackWidget ?? const SizedBox())
+          /////////////////////////////////////////////////////////
+          //begin top of stack
+          //discount
+          Positioned(
+              top: 10.0,
+              left: 10.0,
+              child: productsList[index].discount.toString() !=
+                      '0' //check discount = 0 or not
+                  ? Container(
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 222, 73, 43),
+                          borderRadius: BorderRadius.circular(30)),
+                      padding: const EdgeInsets.only(
+                          top: 5, bottom: 5, left: 10, right: 10),
+                      child: Text(
+                        '${productsList[index].discount.toString()}%',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    )
+                  : const SizedBox()),
+          //widget of bottom right of stack
+          Positioned(
+              bottom: 0.0,
+              right: 0.0,
+              child: bottomRightOfStackWidget ?? const SizedBox())
+          //end top of stack
         ],
       ),
     );

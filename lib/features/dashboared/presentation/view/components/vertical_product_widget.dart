@@ -41,20 +41,22 @@ class VerticalProductWidget extends StatelessWidget {
                           fit: BoxFit.fill,
                         ))),
                 Positioned(
-                  top: 10.0,
-                  left: 10.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 222, 73, 43),
-                        borderRadius: BorderRadius.circular(30)),
-                    padding: const EdgeInsets.only(
-                        top: 5, bottom: 5, left: 10, right: 10),
-                    child: Text(
-                      '${productsList[index].discount.toString()}%',
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
+                    top: 10.0,
+                    left: 10.0,
+                    child: productsList[index].discount.toString() !=
+                            '0' //check discount = 0 or not
+                        ? Container(
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 222, 73, 43),
+                                borderRadius: BorderRadius.circular(30)),
+                            padding: const EdgeInsets.only(
+                                top: 5, bottom: 5, left: 10, right: 10),
+                            child: Text(
+                              '${productsList[index].discount.toString()}%',
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          )
+                        : const SizedBox()),
                 Positioned(
                     bottom: 0.0, right: 0.0, child: bottomRightOfStackWidget),
               ],

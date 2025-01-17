@@ -8,4 +8,14 @@ class SearchCubit extends Cubit<SearchState> {
   SearchCubit() : super(SearchInitial());
     final TextEditingController searchController = TextEditingController();
 
+  //   List<ProductsModel> filterproducts = [];
+  // void Search({required String input}) {
+  //   filterproducts = products
+  //       .where((element) =>
+  //           element.name!.toLowerCase().startsWith(input.toLowerCase()))
+  //       .toList();
+  //       emit(FilterProdectsDataSuccess());
+  // }
+
+
 }
