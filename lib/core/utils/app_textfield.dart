@@ -34,11 +34,15 @@ class AppTextFieldInputMdel {
   final TextEditingController controller;
   final bool obscure;
   final ValueChanged<String>? onChangedFunction;
+  final IconData? suffixIcon;
+  final VoidCallback? suffixIconFunction;
 
   AppTextFieldInputMdel( 
       {required this.textFieldName,
       required this.context,
       required this.controller,
       this.onChangedFunction,
+      this.suffixIcon,
+      this.suffixIconFunction,
       this.obscure = false});
 }

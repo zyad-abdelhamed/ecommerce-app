@@ -30,7 +30,7 @@ class CartsWidgt extends StatelessWidget {
                           removeButtonFunction: () =>
                               controller.addOrRemoveCartProducts(
                                   productId:
-                                      state.cartProducts[index].toString()),
+                                      state.cartProducts[index].id.toString()),
                         ),
                         productsList: state.cartProducts,
                         index: index,

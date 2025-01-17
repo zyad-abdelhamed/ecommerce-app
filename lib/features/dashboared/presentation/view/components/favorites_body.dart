@@ -11,8 +11,8 @@ class FavoritesBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProductCubit, ProductState>(
-      listener: (context, state) {},
+    return BlocBuilder<ProductCubit, ProductState>(
+      // listener: (context, state) {},
       builder: (context, state) {
         final ProductCubit controller = context.read<ProductCubit>();
 

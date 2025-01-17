@@ -16,13 +16,21 @@ Widget getSecondAppTextfield(
           }
         },
         decoration: InputDecoration(
+          suffix: GestureDetector(
+              onTap: appTextFieldInputMdel.suffixIconFunction,
+              child: CircleAvatar(
+                backgroundColor: Colors.black,
+                child: Icon(
+                  appTextFieldInputMdel.suffixIcon,
+                  color: Colors.white,
+                ),
+              )),
           contentPadding:
               const EdgeInsets.symmetric(vertical: 9, horizontal: 15),
           filled: true,
           fillColor: Colors.white,
-          labelText: appTextFieldInputMdel.textFieldName,
-          labelStyle:
-              const TextStyle(color: Color.fromARGB(255, 209, 207, 207)),
+          hintText: appTextFieldInputMdel.textFieldName,
+          hintStyle: const TextStyle(color: Color.fromARGB(255, 209, 207, 207)),
           border: InputBorder.none,
         ),
       ),
