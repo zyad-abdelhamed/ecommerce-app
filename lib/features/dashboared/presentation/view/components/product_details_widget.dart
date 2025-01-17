@@ -46,7 +46,7 @@ class ProductDetailsWidget extends StatelessWidget {
             )
           ],
         ),
-        buttonWidget
+        Flexible(child: buttonWidget)//flexible in order to bottom over flow issue
       ],
     );
   }

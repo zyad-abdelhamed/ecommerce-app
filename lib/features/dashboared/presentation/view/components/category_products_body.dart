@@ -14,7 +14,7 @@ class CategoryProductsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductCubit, ProductState>(
-      buildWhen: (previous, current) => previous.productsState != current.productsState,
+     // buildWhen: (previous, current) => previous.productsState != current.productsState,
       builder: (context, state) {
         final ProductCubit controller = context.read<ProductCubit>();
          print('build category products');

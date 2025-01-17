@@ -27,7 +27,8 @@ class SignUpPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                crossAxisAlignment: CrossAxisAlignment
+                    .stretch, //in order to stretch width of app material button
                 children: [
                   Text(
                     ViewConstants.signUp,

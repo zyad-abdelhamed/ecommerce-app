@@ -17,7 +17,7 @@ class SearchTextFieldBlocBuilder extends StatelessWidget {
                 textFieldName: ' Enter Product Name',
                 context: context,
                 controller: controller.searchController,
-                suffixIcon: CupertinoIcons.xmark
+                icon: CupertinoIcons.xmark
                 ));
       },
     );
