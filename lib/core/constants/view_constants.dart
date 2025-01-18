@@ -4,6 +4,10 @@ class ViewConstants {
   static const String alreadyHaveANAccount = 'Already have an account?  ';
   static const String signUp = 'sign up';
   static const String login = 'LogIn';
+  static const String personalInfo = 'Personal Information';
+  static const String password = 'Password';
+  static const String change = 'Change';
+  static const String settings = 'Settings';
   static const String signUpSuccessfully = 'sign up successfully';
   static const String logInSuccessfully = 'log in successfully';
   static const Duration itervalDuration = Duration(seconds: 2);

@@ -4,7 +4,6 @@ import 'package:ecommerce_application/core/errors/failures.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/favorites_remote_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
 import 'package:ecommerce_application/features/dashboared/domain/repositories/base_favorites_repo.dart';
-import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 
 class FavoritesRepo extends BaseFavoritesRepo{
   final FavoritesRemoteDataSource favoritesRemoteDataSource;

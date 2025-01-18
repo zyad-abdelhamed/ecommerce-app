@@ -18,7 +18,7 @@ class CategoryProductsBody extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.list)),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.list)),
             //begin of gridview
             Expanded(
               child: GridView.builder(

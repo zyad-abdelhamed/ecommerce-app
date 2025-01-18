@@ -40,7 +40,7 @@ class FavoriteIconController  {
 //change icon and scale with animation
   void changeFavoriteIconToFavoritesIconWithAnimation() {
     favoriteIconScale = 1.5;
-    favoriteIcon =  Icon(
+    favoriteIcon =  const Icon(
       Icons.favorite,
       color: Colors.red,
     );
@@ -48,7 +48,7 @@ class FavoriteIconController  {
 
   void changeFavoriteIconToNotFavoritesIconWithAnimation() {
     favoriteIconScale = 1.0;
-    favoriteIcon =  Icon(
+    favoriteIcon =  const Icon(
       Icons.favorite_outline,
       color: Colors.grey,
     );
