@@ -7,7 +7,11 @@ class ViewConstants {
   static const String personalInfo = 'Personal Information';
   static const String password = 'Password';
   static const String change = 'Change';
+  static const String checkOut = 'Checkout';
   static const String settings = 'Settings';
+  static const String shippingAddress = 'Shipping address';
+  static const String deliveryMethod = 'Delivery method';
+
   static const String signUpSuccessfully = 'sign up successfully';
   static const String logInSuccessfully = 'log in successfully';
   static const Duration itervalDuration = Duration(seconds: 2);
