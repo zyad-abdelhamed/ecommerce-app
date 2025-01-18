@@ -13,4 +13,7 @@ class SizedBoxs {
   static const SizedBox sizedBoxw5 = SizedBox(
     width: 5,
   );
+  static const SizedBox sizedBoxw15 = SizedBox(
+    width: 15,
+  );
 }

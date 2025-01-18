@@ -1,7 +1,6 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:ecommerce_application/core/services/auth_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
-import 'package:ecommerce_application/core/utils/app_bottom_navigation_bar.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
 import 'package:ecommerce_application/features/auth/presentation/view/components/sign_up_form_component.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,12 +23,12 @@ class SignUpPage extends StatelessWidget {
                   },
                   icon: const Icon(CupertinoIcons.back)),
             ),
-            bottomNavigationBar: appBottomNavigationBar(context),
             body: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                crossAxisAlignment: CrossAxisAlignment
+                    .stretch, //in order to stretch width of app material button
                 children: [
                   Text(
                     ViewConstants.signUp,

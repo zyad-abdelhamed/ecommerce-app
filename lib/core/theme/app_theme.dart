@@ -1,15 +1,16 @@
+import 'package:ecommerce_application/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ThemeData appTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.grey[100],
+    scaffoldBackgroundColor: const Color.fromARGB(255, 243, 243, 243),
     primaryColor: const Color.fromARGB(255, 222, 73, 43),
-    appBarTheme: AppBarTheme(
-        backgroundColor: Colors.transparent.withOpacity(0.0),
-        centerTitle: true),
+    textTheme: GoogleFonts.montserratTextTheme(ThemeData.light().textTheme),
+    appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.transparent, centerTitle: true),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      selectedItemColor: Color.fromARGB(255, 222, 73, 43),
-      unselectedItemColor: Colors.grey,
+      selectedItemColor: AppColors.primaryColor,
+      unselectedItemColor: AppColors.inActiveColor,
       showUnselectedLabels: true,
       enableFeedback: true,
-    )
-    );
+    ));

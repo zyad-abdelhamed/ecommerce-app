@@ -1,10 +1,11 @@
+import 'package:ecommerce_application/core/theme/app_colors.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:flutter/material.dart';
 
 Widget appMaterialButton(
     {required VoidCallback buttonFunction,
     required String buttonName,
-    Color buttonColor = const Color.fromARGB(255, 222, 73, 43)}) {
+    Color buttonColor = AppColors.primaryColor}) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(50),
     child: MaterialButton(
@@ -14,7 +15,7 @@ Widget appMaterialButton(
       child: Text(
         buttonName,
         style:
-            TextStyles.textStyle34.copyWith(color: Colors.white, fontSize: 20),
+            TextStyles.textStyle18BoldWhite,
       ),
     ),
   );

@@ -28,9 +28,9 @@ class ProductDetailsWidget extends StatelessWidget {
               .copyWith(overflow: TextOverflow.ellipsis, fontSize: 18),
         ),
         Text(
-          maxLines: maxLines,
+          maxLines: 1,
           descreption,
-          style: TextStyles.textStyle25g
+          style: TextStyles.textStyle18grey
               .copyWith(overflow: TextOverflow.ellipsis, fontSize: 15),
         ),
         Row(
@@ -46,7 +46,7 @@ class ProductDetailsWidget extends StatelessWidget {
             )
           ],
         ),
-        buttonWidget
+        Flexible(child: buttonWidget)//flexible in order to bottom over flow issue
       ],
     );
   }

@@ -17,58 +17,60 @@ class LogInFormComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) async {
-          
           print(state);
           print("${ApiConstant.token}==========================");
           if (state.logInState == RequestStateEnum.success) {
-            appSneakBar(context: context, message: state.logInmessage, isError: false);
+            appSneakBar(
+                context: context, message: state.logInmessage, isError: false);
             context.pushReplacement('/dashboard');
           } else if (state.logInState == RequestStateEnum.failed) {
-            appSneakBar(context: context, message: state.logInmessage, isError: true);
+            appSneakBar(
+                context: context, message: state.logInmessage, isError: true);
           }
         },
         buildWhen: (previous, current) =>
             previous.logInState != current.logInState,
         builder: (context, state) {
-
           return Form(
-                  key: context.authController.logInFormkey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      getAppTextfield(
+              key: context.authController.logInFormkey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  getAppTextfield(
+                      appTextFieldInputMdel: AppTextFieldInputMdel(
                           textFieldName: 'email',
                           controller:
                               context.authController.logInEmailController,
-                          context: context),
-                      SizedBoxs.sizedBoxH10,
-                      getAppTextfield(
+                          context: context)),
+                  SizedBoxs.sizedBoxH10,
+                  getAppTextfield(
+                      appTextFieldInputMdel: AppTextFieldInputMdel(
                           obscure: true,
                           textFieldName: 'password',
                           controller:
                               context.authController.logInPasswordController,
-                          context: context),
-                      SizedBoxs.sizedBoxH20,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                              onPressed: () {
-                                AuthCubit.goToSignUpPage(context);
-                              },
-                              child:
-                                  const Text('Do not have any account?Signup'))
-                        ],
-                      ),
-                      SizedBoxs.sizedBoxH30,
-                      appMaterialButton(
-                          buttonFunction: () {
-                            context.authController.login();
-                           
+                          context: context)),
+                  SizedBoxs.sizedBoxH20,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                          onPressed: () {
+                            AuthCubit.goToSignUpPage(context);
                           },
-                          buttonName:state.logInState == RequestStateEnum.loading? 'loading...' : 'login')
+                          child: const Text('Do not have any account?Signup'))
                     ],
-                  ));
+                  ),
+                  SizedBoxs.sizedBoxH30,
+                  appMaterialButton(
+                      buttonFunction: () {
+                        context.authController.login();
+                      },
+                      buttonName: state.logInState == RequestStateEnum.loading
+                          ? 'loading...'
+                          : 'login')
+                ],
+              ));
         });
   }
 }

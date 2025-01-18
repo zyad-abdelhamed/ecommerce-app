@@ -13,40 +13,41 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('build home page');
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ProductCubit(dsl(),dsl(),dsl())..getFavorites()..getHomeProducts()..soliman(),
-        ),
-        BlocProvider(
             create: (context) => DashboardBloc(dsl())..add(GetBannerdata())),
-       
+        BlocProvider(
+            create: (context) => ProductCubit(dsl(), dsl(), dsl(), dsl(), dsl())
+              ..getHomeProductsData())
       ],
-      child:  const Scaffold(
-        body: Column(
-          children: [
-            BannerWidgt(),
-             SizedBoxs.sizedBoxH10,
-             Padding(
-               padding: EdgeInsets.symmetric(horizontal: 15.0),
-               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                       'products',
-                        style: TextStyles.textStyle34,
-                      ),
-                      SizedBoxs.sizedBoxw5,
-                      Text(
-                        'view all',
-                        style: TextStyles.textStyle25b,
-                      )
-                    ],
-                  ),
-             ),
-            Expanded(child: HomeProducts())
+      child:  const CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(child: BannerWidgt()),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.0,vertical: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'products',
+                      style: TextStyles.textStyle34,
+                    ),
+                    SizedBoxs.sizedBoxw5,
+                    Text(
+                      'view all',
+                      style: TextStyles.textStyle18black,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            HomeProducts()
           ],
         ),
-      ),
+     
     );
   }
 }

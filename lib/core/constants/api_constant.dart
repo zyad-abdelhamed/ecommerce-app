@@ -7,6 +7,9 @@ class ApiConstant {
   static const String favoritesEndPoint = "${baseUrl}favorites";
   static const String categoriesEndPoint = "${baseUrl}categories";
   static const String cartsEndPoint = "${baseUrl}carts";
+  static const String getUserDataEndpoint = '${baseUrl}profile';
+  static const String logOutEndpoint = '${baseUrl}logout';
+
 
   static String token = '';
 }

@@ -19,6 +19,8 @@ class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
     BottomNavigationBarItem(
         icon: Icon(FontAwesomeIcons.heart), label: 'Favourite'),
     BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.cartShopping), label: 'Cart'),
+        BottomNavigationBarItem(icon: Icon(CupertinoIcons.search), label: 'search'),
+
     BottomNavigationBarItem(
         icon: Icon(FontAwesomeIcons.user), label: 'Profile'),
   ];
@@ -26,16 +28,13 @@ class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
   final PageController pageController = PageController();
 
 void onPageChanged(int index) {
-  print('onPageChanged called with index: $index');
   selectedTapIndex = index; // تحديث المؤشر عند تغيير الصفحة
   emit(DashBoardChangeItemState()); // تحديث الحالة
 }
   void onChangeTabIndex(int index) {
-  print('onChangeTabIndex called with index: $index');
   if (index != selectedTapIndex) {
     selectedTapIndex = index;
     pageController.jumpToPage(selectedTapIndex); // الانتقال إلى الصفحة المطلوبة
-    print('Updated selectedTapIndex to: $selectedTapIndex');
     emit(DashBoardChangeItemState()); // تحديث الحالة
   }
 }
