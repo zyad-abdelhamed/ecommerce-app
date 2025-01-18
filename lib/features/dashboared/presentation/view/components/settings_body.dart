@@ -29,7 +29,7 @@ class SettingsBody extends StatelessWidget {
           SizedBoxs.sizedBoxH10,
           const Text(
             ViewConstants.personalInfo,
-            style: TextStyles.textStyle25b,
+            style: TextStyles.textStyle18black,
           ),
           SizedBoxs.sizedBoxH10,
           const TextField(),
@@ -41,7 +41,7 @@ class SettingsBody extends StatelessWidget {
             children: [
               const Text(
                 ViewConstants.password,
-                style: TextStyles.textStyle25b,
+                style: TextStyles.textStyle18black,
               ),
               TextButton(
                   onPressed: () {
@@ -54,7 +54,7 @@ class SettingsBody extends StatelessWidget {
                   },
                   child: const Text(
                     ViewConstants.change,
-                    style: TextStyles.textStyle25g,
+                    style: TextStyles.textStyle18grey,
                   ))
             ],
           ),
@@ -98,11 +98,11 @@ Future customBottomSheet({
               children: [
                 Text(
                   ViewConstants.password,
-                  style: TextStyles.textStyle25b,
+                  style: TextStyles.textStyle18black,
                 ),
                 Text(
                   ViewConstants.change,
-                  style: TextStyles.textStyle25b,
+                  style: TextStyles.textStyle18black,
                 )
               ],
             ),
@@ -111,15 +111,15 @@ Future customBottomSheet({
                 key: passwordChangeKey,
                 child: Column(
                   children: [
-                    getAppTextfield(
+                    getAppTextfield(appTextFieldInputMdel: AppTextFieldInputMdel(
                         textFieldName: 'Old Password',
                         context: context,
-                        controller: oldPasswordController),
+                        controller: oldPasswordController),),
                           SizedBoxs.sizedBoxH20,
-            getAppTextfield(
+            getAppTextfield(appTextFieldInputMdel: AppTextFieldInputMdel(
                 textFieldName: 'New Password',
                 context: context,
-                controller: newPasswordController),
+                controller: newPasswordController)),
             SizedBoxs.sizedBoxH20,
             getAppTextfieldWithVaildator(
                 function: (value) {

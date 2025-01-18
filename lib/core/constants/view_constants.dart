@@ -17,7 +17,7 @@ class ViewConstants {
         blurRadius: 2,
         offset: const Offset(0, 2),
         spreadRadius: 1,
-        color: Colors.grey.withValues(alpha: 0.2))
+        color: Colors.grey.withOpacity(0.2))
   ];
   static const Duration favoritesAnimationDuration =
       Duration(milliseconds: 500);
