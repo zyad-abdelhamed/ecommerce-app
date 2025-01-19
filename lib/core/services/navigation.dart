@@ -7,6 +7,7 @@ import 'package:ecommerce_application/features/dashboared/presentation/view/page
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/product_details_page.dart';
 import 'package:ecommerce_application/features/onboarding/presentation/view/pages/onboarding_page.dart';
 import 'package:ecommerce_application/features/payment_integration/presentation/views/pages/dummy_payment_page1.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/view/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -38,6 +39,12 @@ final GoRouter router = GoRouter(
       path: '/dashboard',
       builder: (BuildContext context, GoRouterState state) {
         return const DashboardPage();
+      },
+    ),
+    GoRoute(
+      path: '/settings',
+      builder: (BuildContext context, GoRouterState state) {
+        return const SettingsPage();
       },
     ),
     // GoRoute(

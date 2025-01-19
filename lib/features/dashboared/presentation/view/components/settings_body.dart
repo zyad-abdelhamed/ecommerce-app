@@ -1,10 +1,16 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
-import 'package:ecommerce_application/core/utils/app_material_button.dart';
+import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
 import 'package:ecommerce_application/core/utils/app_textfield.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/theme/text_styles.dart';
+import '../../../../../core/utils/app_material_button.dart';
+import '../../../../../core/utils/app_sneak_bar.dart';
+import '../../../../../core/utils/enums.dart';
+import '../../../domain/usecases/change_password_use_case.dart';
 
 // ignore: must_be_immutable
 class SettingsBody extends StatelessWidget {
@@ -45,12 +51,13 @@ class SettingsBody extends StatelessWidget {
               ),
               TextButton(
                   onPressed: () {
-                    customBottomSheet(
-                        context: context,
-                        passwordChangeKey: passwordChangeKey,
-                        oldPasswordController: oldPasswordController,
-                        newPasswordController: newPasswordController,
-                        repeatPasswordController: repeatPasswordController);
+                    showChangePasswordBottomSheet(
+                      context: context,
+                      passwordChangeKey: passwordChangeKey,
+                      oldPasswordController: oldPasswordController,
+                      newPasswordController: newPasswordController,
+                      repeatPasswordController: repeatPasswordController,
+                    );
                   },
                   child: const Text(
                     ViewConstants.change,
@@ -67,85 +74,134 @@ class SettingsBody extends StatelessWidget {
 
 ///////////
 
-Future customBottomSheet({
+void showChangePasswordBottomSheet({
   required BuildContext context,
   required GlobalKey<FormState> passwordChangeKey,
   required TextEditingController oldPasswordController,
   required TextEditingController newPasswordController,
   required TextEditingController repeatPasswordController,
 }) {
-  return showModalBottomSheet(
+  showModalBottomSheet(
+    isScrollControlled: true,
     context: context,
     shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
     builder: (context) {
-      return Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: 50,
-              height: 5,
-              decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(10)),
-            ),
-            SizedBoxs.sizedBoxH10,
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  ViewConstants.password,
-                  style: TextStyles.textStyle18black,
-                ),
-                Text(
-                  ViewConstants.change,
-                  style: TextStyles.textStyle18black,
-                )
-              ],
-            ),
-            SizedBoxs.sizedBoxH20,
-            Form(
-                key: passwordChangeKey,
-                child: Column(
-                  children: [
-                    getAppTextfield(appTextFieldInputMdel: AppTextFieldInputMdel(
-                        textFieldName: 'Old Password',
-                        context: context,
-                        controller: oldPasswordController),),
-                          SizedBoxs.sizedBoxH20,
-            getAppTextfield(appTextFieldInputMdel: AppTextFieldInputMdel(
-                textFieldName: 'New Password',
-                context: context,
-                controller: newPasswordController)),
-            SizedBoxs.sizedBoxH20,
-            getAppTextfieldWithVaildator(
-                function: (value) {
-                  if (repeatPasswordController.text.isEmpty) {
-                    return 'this field must not be empty';
-                  } else if (repeatPasswordController.text !=
-                      newPasswordController.text) {
-                    return 'not equel with new password';
-                  } else {
-                    return null;
-                  }
-                },
-                textFieldName: 'Repeat Password',
-                context: context,
-                controller: repeatPasswordController),
-                  ],
-                )),
-          
-            SizedBoxs.sizedBoxH20,
-            appMaterialButton(
-                buttonFunction: () {
-                  if(passwordChangeKey.currentState!.validate()){
+      return BlocProvider(
+        create: (context) => UserCubit(dsl(), dsl(), dsl()),
+        child: BlocConsumer<UserCubit, UserState>(
+          listener: (context, state)async {
+            print(state);
+            print( state.changePasswordMessage);
+             if (state.changePasswordState == RequestStateEnum.success) {
+              Navigator.pop(context);
+            appSneakBar(
 
-                  }
-                }, buttonName: 'SAVE PASSWORD')
-          ],
+                context: context, message: 'password changed successfully', isError: false);
+           
+          } else if (state.changePasswordState == RequestStateEnum.failed) {
+                          Navigator.pop(context);
+
+           appSneakBar(
+      context: context, 
+      message: state.changePasswordMessage.isNotEmpty 
+          ? state.changePasswordMessage 
+          : 'Failed to change password', 
+      isError: true,
+    );
+          }
+          },
+          builder: (context, state) {
+            return Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 50,
+                    height: 5,
+                    decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                  SizedBoxs.sizedBoxH10,
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        ViewConstants.password,
+                        style: TextStyles.textStyle18black,
+                      ),
+                      Text(
+                        ViewConstants.change,
+                        style: TextStyles.textStyle18black,
+                      ),
+                    ],
+                  ),
+                  SizedBoxs.sizedBoxH20,
+                  Form(
+                    key: passwordChangeKey,
+                    child: Column(
+                      children: [
+                        getAppTextfield(
+                          appTextFieldInputMdel: AppTextFieldInputMdel(
+                            obscure: true,
+                            textFieldName: 'Old Password',
+                            context: context,
+                            controller: oldPasswordController,
+                          ),
+                        ),
+                        SizedBoxs.sizedBoxH20,
+                        getAppTextfield(
+                          appTextFieldInputMdel: AppTextFieldInputMdel(
+                            obscure: true,
+                            textFieldName: 'New Password',
+                            context: context,
+                            controller: newPasswordController,
+                          ),
+                        ),
+                        SizedBoxs.sizedBoxH20,
+                        getAppTextfieldWithVaildator(
+                          obscure: true,
+                          function: (value) {
+                            if (repeatPasswordController.text.isEmpty) {
+                              return 'this field must not be empty';
+                            } else if (repeatPasswordController.text !=
+                                newPasswordController.text) {
+                              return 'not equal with new password';
+                            } else {
+                              return null;
+                            }
+                          },
+                          textFieldName: 'Repeat Password',
+                          context: context,
+                          controller: repeatPasswordController,
+                        ),
+                        SizedBoxs.sizedBoxH20,
+                        appMaterialButton(
+                          buttonFunction: () {
+                            if (passwordChangeKey.currentState!.validate()) {
+                              final cubit = context.read<UserCubit>();
+                              cubit.changePassword(
+                                parameters: ChangePasswordParameters(
+                                  currentPassword: oldPasswordController.text,
+                                  newPassword: repeatPasswordController.text,
+                                ),
+                              );
+                            }
+                          },
+                          buttonName: state.changePasswordState ==
+                                  RequestStateEnum.loading
+                              ? 'LOADING...'
+                              : 'SAVE PASSWORD',
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       );
     },

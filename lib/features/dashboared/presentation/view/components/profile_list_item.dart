@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class ProfileListTile extends StatelessWidget {
   final String title;
   final String subtitle;
-
- const ProfileListTile({super.key, required this.title, required this.subtitle});
+  final GestureTapCallback function;
+ const ProfileListTile({super.key, required this.title, required this.subtitle , required this.function});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,7 @@ class ProfileListTile extends StatelessWidget {
       ),
       subtitle: Text(subtitle),
       trailing: const Icon(Icons.arrow_forward_ios),
-      onTap: () {
-        //todo: implement on tap action
-      },
+      onTap: function,
     );
   }
 }

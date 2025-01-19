@@ -23,13 +23,9 @@ class UserLocalDataSource implements BaseUserLocalDataSource {
   @override
   Future<UserModel> getCachedUserData() {
     final jsonString = Cache.getcache(key: "CACHED_user_data");
-    if (jsonString != null) {
-      Map<String, dynamic> decodeJsonData = json.decode(jsonString);
-      UserModel jsonToUserModel = UserModel.formJson(data: decodeJsonData);
+    Map<String, dynamic> decodeJsonData = json.decode(jsonString);
+    UserModel jsonToUserModel = UserModel.formJson(data: decodeJsonData);
 
-      return Future.value(jsonToUserModel);
-    } else {
-      throw const ServerException(message: 'cache error');
+    return Future.value(jsonToUserModel);
     }
-  }
 }

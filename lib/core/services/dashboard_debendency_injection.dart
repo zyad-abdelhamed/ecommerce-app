@@ -17,6 +17,7 @@ import 'package:ecommerce_application/features/dashboared/domain/repositories/ba
 import 'package:ecommerce_application/features/dashboared/domain/usecases/add_and_remove_favorites_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/add_or_remove_product_from_cart.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/banner_use_case.dart';
+import 'package:ecommerce_application/features/dashboared/domain/usecases/change_password_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_carts_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_categories_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_favorites_use_case.dart';
@@ -45,7 +46,7 @@ class DashboardDebendencyInjection {
       () => FavoriteIconController(),
     );
     dsl.registerFactory<UserCubit>(
-      () => UserCubit(dsl(), dsl()),
+      () => UserCubit(dsl(), dsl(), dsl()),
     );
     //usecases
     dsl.registerLazySingleton(() => AddOrRemoveProductFromCart(dsl()));
@@ -68,6 +69,7 @@ class DashboardDebendencyInjection {
     dsl.registerLazySingleton(
       () => LogoutUseCase(dsl()),
     );
+    dsl.registerLazySingleton(() => ChangePasswordUseCase(dsl()));
     //repositories
     dsl.registerLazySingleton<BaseCartRepo>(() => CartsRepo(dsl()));
     dsl.registerLazySingleton<BaseCategoryRepo>(() => CategoriesRepo(dsl()));
