@@ -9,7 +9,7 @@ class ApiConstant {
   static const String cartsEndPoint = "${baseUrl}carts";
   static const String getUserDataEndpoint = '${baseUrl}profile';
   static const String logOutEndpoint = '${baseUrl}logout';
-
+  static const String changePasswordEndpoint = '${baseUrl}change-password';
 
   static String token = '';
 }

@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:ecommerce_application/core/errors/failures.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/user.dart';
+import 'package:ecommerce_application/features/dashboared/domain/usecases/change_password_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_user_data_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/logout_use_case.dart';
 import 'package:equatable/equatable.dart';
@@ -14,7 +15,9 @@ part 'user_state.dart';
 class UserCubit extends Cubit<UserState> {
   final GetUserDataUseCase getUserDataUseCase;
   final LogoutUseCase logoutUseCase;
-  UserCubit(this.getUserDataUseCase, this.logoutUseCase)
+  final ChangePasswordUseCase changePasswordUseCase;
+  UserCubit(
+      this.getUserDataUseCase, this.logoutUseCase, this.changePasswordUseCase)
       : super(const UserState());
 
   void getUserData() async {
@@ -35,5 +38,17 @@ class UserCubit extends Cubit<UserState> {
             logOutState: RequestStateEnum.failed,
             logOutMessage: failure.message)),
         (success) => context.pushReplacement('/login'));
+  }
+
+  void changePassword({required ChangePasswordParameters parameters}) async {
+    emit(const UserState(changePasswordState: RequestStateEnum.loading));
+    Either<Failure, Unit> result =
+        await changePasswordUseCase(parameters: parameters);
+    result.fold(
+        (l) => emit(state.copyWith(
+            changePasswordMessage: l.message,
+            changePasswordState: RequestStateEnum.failed)),
+        (r) => emit(
+            state.copyWith(changePasswordState: RequestStateEnum.success)));
   }
 }
