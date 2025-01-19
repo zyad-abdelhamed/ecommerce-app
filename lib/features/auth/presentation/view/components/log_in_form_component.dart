@@ -1,7 +1,7 @@
 import 'package:ecommerce_application/core/constants/api_constant.dart';
-import 'package:ecommerce_application/core/utils/app_material_button.dart';
-import 'package:ecommerce_application/core/utils/app_sneak_bar.dart';
-import 'package:ecommerce_application/core/utils/app_textfield.dart';
+import 'package:ecommerce_application/core/widgets/app_material_button.dart';
+import 'package:ecommerce_application/core/widgets/app_sneak_bar.dart';
+import 'package:ecommerce_application/core/widgets/app_textfield.dart';
 import 'package:ecommerce_application/core/utils/controllers_extention.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
@@ -17,8 +17,7 @@ class LogInFormComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) async {
-          print(state);
-          print("${ApiConstant.token}==========================");
+         
           if (state.logInState == RequestStateEnum.success) {
             appSneakBar(
                 context: context, message: state.logInmessage, isError: false);
@@ -28,9 +27,11 @@ class LogInFormComponent extends StatelessWidget {
                 context: context, message: state.logInmessage, isError: true);
           }
         },
-        buildWhen: (previous, current) =>
-            previous.logInState != current.logInState,
+        // buildWhen: (previous, current) =>
+        //     previous.logInState != current.logInState,
         builder: (context, state) {
+           print(state);
+          print("${ApiConstant.token}==========================");
           return Form(
               key: context.authController.logInFormkey,
               child: Column(

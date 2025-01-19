@@ -1,6 +1,6 @@
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
-import 'package:ecommerce_application/core/utils/loading_widget.dart';
+import 'package:ecommerce_application/core/widgets/loading_widget.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/user_cubit.dart';
 import 'package:flutter/material.dart';

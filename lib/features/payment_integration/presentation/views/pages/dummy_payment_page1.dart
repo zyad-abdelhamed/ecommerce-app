@@ -1,6 +1,6 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
-import 'package:ecommerce_application/core/utils/app_material_button.dart';
+import 'package:ecommerce_application/core/widgets/app_material_button.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

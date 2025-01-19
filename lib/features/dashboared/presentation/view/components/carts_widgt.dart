@@ -1,5 +1,5 @@
 import 'package:ecommerce_application/core/utils/enums.dart';
-import 'package:ecommerce_application/core/utils/loading_widget.dart';
+import 'package:ecommerce_application/core/widgets/loading_widget.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/horizontal_product_widget.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/remove_button_widget.dart';

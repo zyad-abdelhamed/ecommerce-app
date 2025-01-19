@@ -1,14 +1,14 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
-import 'package:ecommerce_application/core/utils/app_textfield.dart';
+import 'package:ecommerce_application/core/widgets/app_textfield.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/theme/text_styles.dart';
-import '../../../../../core/utils/app_material_button.dart';
-import '../../../../../core/utils/app_sneak_bar.dart';
+import '../../../../../core/widgets/app_material_button.dart';
+import '../../../../../core/widgets/app_sneak_bar.dart';
 import '../../../../../core/utils/enums.dart';
 import '../../../domain/usecases/change_password_use_case.dart';
 

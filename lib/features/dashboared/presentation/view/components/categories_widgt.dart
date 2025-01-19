@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
-import 'package:ecommerce_application/core/utils/loading_widget.dart';
+import 'package:ecommerce_application/core/widgets/loading_widget.dart';
 import 'package:ecommerce_application/core/utils/responsive_extention.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/categories_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/category_products_page.dart';

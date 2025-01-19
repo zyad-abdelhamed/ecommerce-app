@@ -13,21 +13,25 @@ class LogInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+        lazy: true,
         create: (context) => AuthCubit(sl(), sl()),
         child: const Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  ViewConstants.login,
-                  style: TextStyles.textStyle34,
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      ViewConstants.login,
+                      style: TextStyles.textStyle34,
+                    ),
+                    LogInFormComponent()
+                  ],
                 ),
-                LogInFormComponent()
-              ],
+              ),
             ),
           ),
         ));

@@ -9,23 +9,19 @@ class NextButtonWidget extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<OnboardingCubit, OnboardingState>(
-  builder: (context, state) {
-            final OnboardingCubit controller = context.read<OnboardingCubit>();
+    final OnboardingCubit controller = context.read<OnboardingCubit>();
 
-        return GestureDetector(
-          onTap: () => controller.animateToNextPage(context: context),
-          child: const CircleAvatar(
-            backgroundColor: AppColors.primaryColor,
-            radius: 79.5,
-            child: Icon(
-              Icons.skip_next,
-              size: 50,
-              color: AppColors.scaffoldBackgroundColor,
-            ),
-          ),
-        );
-      },
+    return GestureDetector(
+      onTap: () => controller.animateToNextPage(context: context),
+      child: const CircleAvatar(
+        backgroundColor: AppColors.primaryColor,
+        radius: 79.5,
+        child: Icon(
+          Icons.skip_next,
+          size: 50,
+          color: AppColors.scaffoldBackgroundColor,
+        ),
+      ),
     );
   }
 }
