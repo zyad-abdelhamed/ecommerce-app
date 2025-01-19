@@ -21,7 +21,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   }
 
   static void goToLoginPage({required BuildContext context}) {
-    context.pushReplacement('/login');
+    context.pushReplacement('/dashboard');
   }
 
   @override

@@ -16,6 +16,11 @@ class UserCubit extends Cubit<UserState> {
   final GetUserDataUseCase getUserDataUseCase;
   final LogoutUseCase logoutUseCase;
   final ChangePasswordUseCase changePasswordUseCase;
+  TextEditingController oldPasswordController = TextEditingController();
+  TextEditingController newPasswordController = TextEditingController();
+  TextEditingController repeatPasswordController = TextEditingController();
+
+  GlobalKey<FormState> passwordChangeKey = GlobalKey<FormState>();
   UserCubit(
       this.getUserDataUseCase, this.logoutUseCase, this.changePasswordUseCase)
       : super(const UserState());
