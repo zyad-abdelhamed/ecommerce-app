@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -5,7 +6,7 @@ abstract class TextStyles {
   static const TextStyle textStyle34 =
       TextStyle(fontSize: 34, fontWeight: FontWeight.bold);
   static const TextStyle textStyle20Boldgreen =
-      TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.green);
+      TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green);
   static const TextStyle textStyle18BoldWhite =
       TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18);
   static const TextStyle textStyle18grey =
@@ -25,7 +26,8 @@ abstract class TextStyles {
   );
   static TextStyle textStyle16grey =
       TextStyle(fontSize: 16, color: Colors.grey[600]);
-
+  static TextStyle textStyle16primarycolorwithopacity =
+      TextStyle(fontSize: 16, color: AppColors.inActivePrimaryColor);
   static TextStyle textStyle20Bold =
       GoogleFonts.abhayaLibre(fontSize: 20, fontWeight: FontWeight.bold);
 }

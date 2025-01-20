@@ -1,7 +1,7 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
-import 'package:ecommerce_application/core/utils/app_sneak_bar.dart';
-import 'package:ecommerce_application/core/utils/app_material_button.dart';
-import 'package:ecommerce_application/core/utils/app_textfield.dart';
+import 'package:ecommerce_application/core/widgets/app_sneak_bar.dart';
+import 'package:ecommerce_application/core/widgets/app_material_button.dart';
+import 'package:ecommerce_application/core/widgets/app_textfield.dart';
 import 'package:ecommerce_application/core/utils/controllers_extention.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
@@ -27,8 +27,8 @@ class SignUpFormComponent extends StatelessWidget {
                 context: context, message: state.signUpmessage, isError: true);
           }
         },
-        buildWhen: (previous, current) =>
-            previous.signUpState != current.signUpState,
+        // buildWhen: (previous, current) =>
+        //     previous.signUpState != current.signUpState,
         builder: (context, state) {
           print('///////////////////////////////////');
           print(state);

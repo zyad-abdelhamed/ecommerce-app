@@ -1,8 +1,8 @@
 import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
-import 'package:ecommerce_application/core/utils/app_material_button.dart';
-import 'package:ecommerce_application/core/utils/app_textfield.dart';
-import 'package:ecommerce_application/core/utils/second_app_text_field.dart';
+import 'package:ecommerce_application/core/widgets/app_material_button.dart';
+import 'package:ecommerce_application/core/widgets/app_textfield.dart';
+import 'package:ecommerce_application/core/widgets/second_app_text_field.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/carts_widgt.dart';
