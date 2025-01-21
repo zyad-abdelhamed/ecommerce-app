@@ -16,8 +16,8 @@ class CartsRemoteDataSourceImpl extends CartsRemoteDataSource {
   Future<List<ProductModel>> getCarts() async {
     Map<String, dynamic> responseBody = await apiService.get(
         apiServiceInputModel: ApiServiceInputModel(
-            headers: {'Authorization': ApiConstant.token},
-            url: ApiConstant.cartsEndPoint));
+            url: ApiConstant.cartsEndPoint,
+            apiHeaders: ApiHeadersEnum.backEndHeadersWithToken));
     if (responseBody['status'] == true) {
       return List<ProductModel>.from((responseBody['data']['cart_items'])
           .map((e) => ProductModel.cartandfavouritesnamedconstructor(data: e)));
@@ -32,7 +32,7 @@ class CartsRemoteDataSourceImpl extends CartsRemoteDataSource {
         apiServiceInputModel: ApiServiceInputModel(
             body: {'product_id': productId},
             url: ApiConstant.cartsEndPoint,
-            headers: {'Authorization': ApiConstant.token}));
+            apiHeaders: ApiHeadersEnum.backEndHeadersWithToken));
     if (responseBody['status'] == false) {
       throw ServerException(message: responseBody['message']);
     }

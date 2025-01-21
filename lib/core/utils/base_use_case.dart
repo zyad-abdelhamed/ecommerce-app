@@ -5,7 +5,6 @@ abstract class BaseUseCaseWithParameters<t, parameters> {
   Future<Either<Failure, t>> call({required parameters parameters});
 }
 
-
 abstract class BaseUseCaseWithoutParameters<t> {
   Future<Either<Failure, t>> call();
 }

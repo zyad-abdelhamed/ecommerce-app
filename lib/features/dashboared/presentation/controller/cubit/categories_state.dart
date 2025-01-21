@@ -4,10 +4,9 @@ class CategoriesState extends Equatable {
   final String message;
   final List<Categories> categories;
   final RequestStateEnum requestStateEnum;
-  
+
   const CategoriesState(
-      {
-      this.categories = const [],
+      {this.categories = const [],
       this.message = '',
       this.requestStateEnum = RequestStateEnum.loading});
 
@@ -16,6 +15,5 @@ class CategoriesState extends Equatable {
         message,
         categories,
         requestStateEnum,
-       
       ];
 }

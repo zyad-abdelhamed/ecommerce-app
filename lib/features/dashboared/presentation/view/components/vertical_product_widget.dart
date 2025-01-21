@@ -23,7 +23,8 @@ class VerticalProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => ProductDetailsPage(product: productsList[index]),//go to product details page
+        builder: (context) => ProductDetailsPage(
+            product: productsList[index]), //go to product details page
       )),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),

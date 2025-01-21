@@ -19,25 +19,25 @@ class AuthRepository extends BaseAuthRepository {
     try {
       await baseAuthRemteDataSource.signUp(signUpParameters);
       return right(unit);
-    }  catch (e) {
-  if (e is DioException) {
+    } catch (e) {
+      if (e is DioException) {
         return left(ServerFailure.fromDiorError(e));
       }
       return left(ServerFailure(e.toString()));
-}
+    }
   }
 
   @override
   Future<Either<Failure, Auth>> login(LogInParameters logInParameters) async {
     try {
       final Auth result = await baseAuthRemteDataSource.login(logInParameters);
-     // baseAuthLocalDataSource.insertTokenToCache(token: result.token!);
+      // baseAuthLocalDataSource.insertTokenToCache(token: result.token!);
       return right(result);
     } catch (e) {
-  if (e is DioException) {
+      if (e is DioException) {
         return left(ServerFailure.fromDiorError(e));
       }
       return left(ServerFailure(e.toString()));
-}
+    }
   }
 }

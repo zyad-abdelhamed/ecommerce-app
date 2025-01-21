@@ -12,4 +12,5 @@ class ApiConstant {
   static const String changePasswordEndpoint = '${baseUrl}change-password';
 
   static String token = '';
+  static const String stripeSecretKey = 'sk_test_51QjRIfCmjutEmYkFNQZQI2oRizE7HOgSdMOvxy0ITrEeSDkU0GQuAdobJ7StMbBb2NvgLcZ2B4Z2oQGIBayQyDqn00cmDlac28';
 }

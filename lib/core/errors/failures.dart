@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
- abstract class Failure extends Equatable{
+abstract class Failure extends Equatable {
   final String message;
 
   const Failure(this.message);
@@ -11,7 +11,7 @@ import 'package:equatable/equatable.dart';
 
 // class ServerFailure extends Failure{
 //   const ServerFailure({required super.message});
-  
+
 // }
 
 // import 'package:dio/dio.dart';
@@ -23,7 +23,7 @@ import 'package:equatable/equatable.dart';
 // }
 
 class ServerFailure extends Failure {
-const ServerFailure( super.message);
+  const ServerFailure(super.message);
   factory ServerFailure.fromDiorError(DioException e) {
     switch (e.type) {
       case DioExceptionType.connectionTimeout:
@@ -49,9 +49,11 @@ const ServerFailure( super.message);
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
     if (statusCode == 404) {
-      return const ServerFailure('Your request was not found, please try later');
+      return const ServerFailure(
+          'Your request was not found, please try later');
     } else if (statusCode == 500) {
-      return const ServerFailure('There is a problem with server, please try later');
+      return const ServerFailure(
+          'There is a problem with server, please try later');
     } else if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       return ServerFailure(response['message']);
     } else {
@@ -59,4 +61,3 @@ const ServerFailure( super.message);
     }
   }
 }
- 

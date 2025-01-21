@@ -6,7 +6,7 @@ part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
   SearchCubit() : super(SearchInitial());
-    final TextEditingController searchController = TextEditingController();
+  final TextEditingController searchController = TextEditingController();
 
   //   List<ProductsModel> filterproducts = [];
   // void Search({required String input}) {
@@ -16,6 +16,4 @@ class SearchCubit extends Cubit<SearchState> {
   //       .toList();
   //       emit(FilterProdectsDataSuccess());
   // }
-
-
 }

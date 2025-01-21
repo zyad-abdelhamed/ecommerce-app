@@ -17,8 +17,8 @@ class FavoritesPage extends StatelessWidget {
       child: const CustomScrollView(slivers: [
         SliverToBoxAdapter(
           child: Padding(
-            padding:
-                EdgeInsets.only(top: 100, left: 16.0, right: 16.0, bottom: 16.0),
+            padding: EdgeInsets.only(
+                top: 100, left: 16.0, right: 16.0, bottom: 16.0),
             child: Text(
               'favorites',
               style: TextStyles.textStyle34,

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 // import 'package:hive/hive.dart';
 // part 'product.g.dart';
 // @HiveType(typeId: 0)

@@ -11,8 +11,8 @@ class PageViewItem extends StatelessWidget {
       children: [
         Text(
           pageViewItemModel.titel,
-          style: TextStyles.textStyle20Bold.copyWith( color: Colors.black,fontSize: 27),
-
+          style: TextStyles.textStyle20Bold
+              .copyWith(color: Colors.black, fontSize: 27),
         ),
         SizedBox(
           height: 300,

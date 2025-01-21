@@ -67,13 +67,15 @@ class AuthCubit extends Cubit<AuthState> {
                     logInmessage: l.message,
                     logInState: RequestStateEnum.failed),
               ), (r) {
-                ApiConstant.token = r.token ??'' ;
-                  sl.get<BaseAuthLocalDataSource>().insertTokenToCache(token: r.token ?? '');
+        ApiConstant.token = r.token ?? '';
+        sl
+            .get<BaseAuthLocalDataSource>()
+            .insertTokenToCache(token: r.token ?? '');
 
         emit(const AuthState(
             logInState: RequestStateEnum.success,
             logInmessage: ViewConstants.logInSuccessfully));
-       // goToDashboard(context);
+        // goToDashboard(context);
       });
     }
   }

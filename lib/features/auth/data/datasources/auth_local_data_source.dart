@@ -3,28 +3,26 @@ import 'package:ecommerce_application/core/services/shared.dart';
 
 abstract class BaseAuthLocalDataSource {
   Future<void> insertTokenToCache({required String token});
-   Future<void> getTokenFromCache();
- bool haveToken({required String token});
+  Future<void> getTokenFromCache();
+  bool haveToken({required String token});
 }
 
-class AuthLocalDataSource extends BaseAuthLocalDataSource{
-  
+class AuthLocalDataSource extends BaseAuthLocalDataSource {
   @override
-  Future<void> getTokenFromCache()async {
-    ApiConstant.token =  Cache.getcache(key: 'token');
+  Future<void> getTokenFromCache() async {
+    ApiConstant.token = Cache.getcache(key: 'token');
   }
 
   @override
- bool haveToken({required String token}) {
-    if( token=="" ){
+  bool haveToken({required String token}) {
+    if (token == "") {
       return false;
     }
     return true;
   }
 
   @override
-  Future<void> insertTokenToCache({required String token}) async{
-       await Cache.insertcache(key: 'token', value: token);
-
+  Future<void> insertTokenToCache({required String token}) async {
+    await Cache.insertcache(key: 'token', value: token);
   }
 }

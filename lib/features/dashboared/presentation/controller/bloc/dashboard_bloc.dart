@@ -21,8 +21,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     final result = await bannerUseCase.call();
     result.fold(
       (l) => emit(DashboardState(
-          errorMessage: l.message,
-          requestStateEnum: RequestStateEnum.failed)),
+          errorMessage: l.message, requestStateEnum: RequestStateEnum.failed)),
       (r) => emit(DashboardState(
           banners: r, requestStateEnum: RequestStateEnum.success)),
     );

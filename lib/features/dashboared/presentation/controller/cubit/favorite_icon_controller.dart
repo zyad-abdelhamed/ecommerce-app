@@ -1,7 +1,7 @@
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:flutter/material.dart';
 
-class FavoriteIconController  { 
+class FavoriteIconController {
 //define variables
   double favoriteIconScale = 1.0;
   Icon favoriteIcon = const Icon(

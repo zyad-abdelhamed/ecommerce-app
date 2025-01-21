@@ -43,11 +43,13 @@ class ProductCubit extends Cubit<ProductState> {
     if (state.crossAxisCount == 1) {
       emit(state.copywith(
           productsDisplayState: ChangeProductsDisplayStateEnum.vertical,
-          crossAxisCount: 2,displayProductsIcon: const Icon(Icons.list)));
+          crossAxisCount: 2,
+          displayProductsIcon: const Icon(Icons.list)));
     } else {
       emit(state.copywith(
           productsDisplayState: ChangeProductsDisplayStateEnum.horizontal,
-          crossAxisCount: 1,displayProductsIcon: const Icon(Icons.grid_3x3)));
+          crossAxisCount: 1,
+          displayProductsIcon: const Icon(Icons.grid_3x3)));
     }
   }
 
@@ -145,6 +147,6 @@ class ProductCubit extends Cubit<ProductState> {
     if (productsInCart.contains(productId)) {
       return AppColors.primaryColor;
     }
-    return  AppColors.inActiveColor;
+    return AppColors.inActiveColor;
   }
 }

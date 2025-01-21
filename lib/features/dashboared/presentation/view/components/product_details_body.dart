@@ -50,7 +50,7 @@ class ProductDetailsBody extends StatelessWidget {
                             right: Radius.circular(10)),
                         child: CachedNetworkImage(
                           fit: BoxFit.fill,
-                         imageUrl: product.image,
+                          imageUrl: product.image,
                         ),
                       )),
                 ],

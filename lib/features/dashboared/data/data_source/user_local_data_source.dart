@@ -26,5 +26,5 @@ class UserLocalDataSource implements BaseUserLocalDataSource {
     UserModel jsonToUserModel = UserModel.formJson(data: decodeJsonData);
 
     return Future.value(jsonToUserModel);
-    }
+  }
 }

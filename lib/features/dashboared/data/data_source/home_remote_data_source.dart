@@ -1,8 +1,6 @@
 import 'package:ecommerce_application/core/constants/api_constant.dart';
 import 'package:ecommerce_application/core/errors/exceptions.dart';
 import 'package:ecommerce_application/core/services/api_service.dart';
-import 'package:ecommerce_application/core/services/auth_dependency_injection.dart';
-import 'package:ecommerce_application/features/auth/domain/entities/auth.dart';
 import 'package:ecommerce_application/features/dashboared/data/model/banner_model.dart';
 import 'package:ecommerce_application/features/dashboared/data/model/product_model.dart';
 
@@ -18,8 +16,9 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   @override
   Future<List<BannerModel>> getDataBanner() async {
     Map<String, dynamic> responseBody = await apiService.get(
-        apiServiceInputModel:
-            ApiServiceInputModel(url: ApiConstant.getBannerEndPoint));
+        apiServiceInputModel: ApiServiceInputModel(
+            url: ApiConstant.getBannerEndPoint,
+            apiHeaders: ApiHeadersEnum.backEndHeadersWithoutToken));
     if (responseBody['status'] == true) {
       return List<BannerModel>.from(
           (responseBody['data'] as List).map((e) => BannerModel.fromJson(e)));
@@ -33,11 +32,10 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
     Map<String, dynamic> responseBody = await apiService.get(
         apiServiceInputModel: ApiServiceInputModel(
             url: '${ApiConstant.getproductsEndPoint}$categoryId',
-            headers: {"Authorization": sl.get<Auth>().token}));
-        //  saveBooksData(books, kFeaturedBox);
+            apiHeaders: ApiHeadersEnum.backEndHeadersWithToken));
+    //  saveBooksData(books, kFeaturedBox);
 
-      return List<ProductModel>.from((responseBody['data']['data'] as List)
-          .map((e) => ProductModel.fromjson(data: e)));
-    
+    return List<ProductModel>.from((responseBody['data']['data'] as List)
+        .map((e) => ProductModel.fromjson(data: e)));
   }
 }

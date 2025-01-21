@@ -20,7 +20,7 @@ class UserRemoteDataSource extends BaseUserRemoteDataSource {
     Map<String, dynamic> responseBody = await apiService.get(
         apiServiceInputModel: ApiServiceInputModel(
             url: ApiConstant.getUserDataEndpoint,
-            headers: {'Authorization': ApiConstant.token}));
+            apiHeaders: ApiHeadersEnum.backEndHeadersWithToken));
     return UserModel.formJson(data: responseBody['data']);
   }
 
@@ -29,7 +29,7 @@ class UserRemoteDataSource extends BaseUserRemoteDataSource {
     await apiService.post(
         apiServiceInputModel: ApiServiceInputModel(
             url: ApiConstant.logOutEndpoint,
-            headers: {'Authorization': ApiConstant.token}));
+            apiHeaders: ApiHeadersEnum.backEndHeadersWithToken));
     return Future.value(unit);
   }
 
@@ -38,13 +38,11 @@ class UserRemoteDataSource extends BaseUserRemoteDataSource {
     Map<String, dynamic> responseBody = await apiService.post(
         apiServiceInputModel: ApiServiceInputModel(
             url: ApiConstant.changePasswordEndpoint,
-            headers: {
-          'Authorization': ApiConstant.token
-        },
             body: {
-          'current_password': parameters.currentPassword,
-          'new_password': parameters.newPassword
-        }));
+              'current_password': parameters.currentPassword,
+              'new_password': parameters.newPassword
+            },
+            apiHeaders: ApiHeadersEnum.backEndHeadersWithToken));
     if (responseBody['status'] == false) {
       throw ServerException(message: responseBody['message']);
     } else {

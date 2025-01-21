@@ -25,8 +25,8 @@ class ViewConstants {
   ];
   static const Duration favoritesAnimationDuration =
       Duration(milliseconds: 500);
-  static  ispayPalActive(bool isActive){
-    if(isActive == true){
+  static ispayPalActive(bool isActive) {
+    if (isActive == true) {
       isActive = false;
     }
   }

@@ -14,8 +14,7 @@ Widget appMaterialButton(
       color: buttonColor,
       child: Text(
         buttonName,
-        style:
-            TextStyles.textStyle18BoldWhite,
+        style: TextStyles.textStyle18BoldWhite,
       ),
     ),
   );

@@ -10,12 +10,13 @@ class CategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CategoriesCubit(dsl(),dsl())..getCategories(),
-      child: Directionality(textDirection: TextDirection.rtl,
+      create: (context) => CategoriesCubit(dsl(), dsl())..getCategories(),
+      child: Directionality(
+        textDirection: TextDirection.rtl,
         child: Scaffold(
-            appBar:AppBar(
+            appBar: AppBar(
               backgroundColor: Colors.white,
-              title:  const Text('categories'),
+              title: const Text('categories'),
             ),
             body: const CategoriesWidgt()),
       ),

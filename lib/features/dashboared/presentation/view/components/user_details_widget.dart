@@ -15,30 +15,32 @@ class UserDetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
-       // final UserCubit controller = context.read<UserCubit>();
-      return state.userDataState == RequestStateEnum.success?  SizedBox(
-          height: 80,
-          child: Row(
-            children: [
-              const CircleAvatar(
-                radius: 30,
-                backgroundImage: AssetImage('assets/test.jpg'),
-              ),
-              SizedBoxs.sizedBoxw15,
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text( state.userData.name,
-                      style: TextStyles.textStyle18black
-                          .copyWith(fontWeight: FontWeight.bold)),
-                  Text(state.userData.email,
-                      style: TextStyles.textStyle16grey),
-                ],
+        // final UserCubit controller = context.read<UserCubit>();
+        return state.userDataState == RequestStateEnum.success
+            ? SizedBox(
+                height: 80,
+                child: Row(
+                  children: [
+                    const CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage('assets/test.jpg'),
+                    ),
+                    SizedBoxs.sizedBoxw15,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(state.userData.name,
+                            style: TextStyles.textStyle18black
+                                .copyWith(fontWeight: FontWeight.bold)),
+                        Text(state.userData.email,
+                            style: TextStyles.textStyle16grey),
+                      ],
+                    )
+                  ],
+                ),
               )
-            ],
-          ),
-        ):  getLoadingWidget();
+            : getLoadingWidget();
       },
     );
   }

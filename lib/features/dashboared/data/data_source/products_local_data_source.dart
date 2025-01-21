@@ -1,6 +1,8 @@
 import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
 import 'package:hive/hive.dart';
+
 const String hiveKeyProducts = "products";
+
 abstract class BaseProductsLocalDataSource {
   List<Product> fetchProducts();
 }
@@ -24,7 +26,7 @@ class ProductsLocalDataSource extends BaseProductsLocalDataSource {
   //   var box = Hive.box<BookEntity>(kNewestBox);
   //   return box.values.toList();
   // }
-  
+
   @override
   List<Product> fetchProducts() {
     Box<Product> productsBox = Hive.box<Product>(hiveKeyProducts);
