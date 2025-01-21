@@ -12,21 +12,22 @@ class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+      lazy: true,
       create: (context) =>
           ProductCubit(dsl(), dsl(), dsl(), dsl(), dsl())..getFavorites(),
-      child: const CustomScrollView(slivers: [
+      child:  CustomScrollView(slivers: [
         SliverToBoxAdapter(
           child: Padding(
             padding:
-                EdgeInsets.only(top: 100, left: 16.0, right: 16.0, bottom: 16.0),
+                const EdgeInsets.only(top: 100, left: 16.0, right: 16.0, bottom: 16.0),
             child: Text(
               'favorites',
-              style: TextStyles.textStyle34,
+              style: TextStyles.textStyle34(context: context),
             ),
           ),
         ),
-        DisplayPrductsIconButtonWidget(),
-        FavoritesBody()
+        const DisplayPrductsIconButtonWidget(),
+        const FavoritesBody()
       ]),
     );
   }

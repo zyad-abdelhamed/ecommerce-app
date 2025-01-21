@@ -24,8 +24,8 @@ class ProductDetailsWidget extends StatelessWidget {
         Text(
           maxLines: maxLines,
           name,
-          style: TextStyles.textStyle34
-              .copyWith(overflow: TextOverflow.ellipsis, fontSize: 18),
+          style: TextStyles.textStyle34(context: context)
+             // .copyWith(overflow: TextOverflow.ellipsis, fontSize: 18),
         ),
         Text(
           maxLines: 1,

@@ -14,6 +14,7 @@ class CategoryProductsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+      lazy: true,
       create: (context) => ProductCubit(dsl(), dsl(), dsl(), dsl(), dsl())
         ..getProducts(categoryId: categoryId, categoryName: categoryName),
       child: Scaffold(

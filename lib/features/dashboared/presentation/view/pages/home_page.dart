@@ -17,37 +17,38 @@ class HomePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
+            lazy: true,
             create: (context) => DashboardBloc(dsl())..add(GetBannerdata())),
         BlocProvider(
+            lazy: true,
             create: (context) => ProductCubit(dsl(), dsl(), dsl(), dsl(), dsl())
               ..getHomeProductsData())
       ],
-      child:  const CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(child: BannerWidgt()),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.0,vertical: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'products',
-                      style: TextStyles.textStyle34,
-                    ),
-                    SizedBoxs.sizedBoxw5,
-                    Text(
-                      'view all',
-                      style: TextStyles.textStyle18black,
-                    )
-                  ],
-                ),
+      child:  CustomScrollView(
+        slivers: [
+          const SliverToBoxAdapter(child: BannerWidgt()),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'products',
+                    style: TextStyles.textStyle34(context: context),
+                  ),
+                  SizedBoxs.sizedBoxw5,
+                  const Text(
+                    'view all',
+                    style: TextStyles.textStyle18black,
+                  )
+                ],
               ),
             ),
-            HomeProducts()
-          ],
-        ),
-     
+          ),
+          const HomeProducts()
+        ],
+      ),
     );
   }
 }

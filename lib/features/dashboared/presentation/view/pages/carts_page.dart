@@ -15,6 +15,7 @@ class CartsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+        lazy: true,
         create: (context) =>
             ProductCubit(dsl(), dsl(), dsl(), dsl(), dsl())..getcarts(),
         child: Padding(
@@ -26,9 +27,9 @@ class CartsPage extends StatelessWidget {
               Container(
                 height: 140,
                 alignment: Alignment.bottomLeft,
-                child: const Text(
+                child:  Text(
                   'My Cart',
-                  style: TextStyles.textStyle34,
+                  style: TextStyles.textStyle34(context: context),
                 ),
               ),
               const Expanded(child: CartsWidgt()),

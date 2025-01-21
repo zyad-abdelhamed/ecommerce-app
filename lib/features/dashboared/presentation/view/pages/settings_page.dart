@@ -12,7 +12,7 @@ class SettingsPage extends StatelessWidget {
       appBar: AppBar(
         leading: const Icon(FontAwesomeIcons.arrowLeftLong),
       ),
-      body: SettingsBody(),
+      body: const SettingsBody(),
     );
   }
 }

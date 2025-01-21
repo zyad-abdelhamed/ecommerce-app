@@ -3,6 +3,8 @@ part of 'product_cubit.dart';
 class ProductState extends Equatable {
   //home products
   final List<Product> products;
+final List<Product> searchProductsList;
+  final RequestStateEnum? searchState;
   final RequestStateEnum productsState;
   final String productsMessage;
   //add And Remove Favorites
@@ -27,6 +29,8 @@ class ProductState extends Equatable {
   const ProductState(
       {
       //home products
+      this.searchState,
+      this.searchProductsList=const [],
       this.products = const [],
       this.productsState = RequestStateEnum.loading,
       this.productsMessage = '',
@@ -52,6 +56,8 @@ class ProductState extends Equatable {
   ProductState copywith(
       {List<Product>? products,
       RequestStateEnum? productsState,
+      List<Product>? searchProductsList,
+      RequestStateEnum? searchState,
       String? productsMessage,
       RequestStateEnum? addAndRemoveFavoritesState,
       String? addAndRemoveFavoritesMessage,
@@ -89,7 +95,10 @@ class ProductState extends Equatable {
         cartProductsState: cartProductsState ?? this.cartProductsState,
         productsDisplayState: productsDisplayState ?? this.productsDisplayState,
         crossAxisCount: crossAxisCount ?? this.crossAxisCount,
-        displayProductsIcon: displayProductsIcon ?? this.displayProductsIcon);
+        displayProductsIcon: displayProductsIcon ?? this.displayProductsIcon,
+        searchProductsList: searchProductsList ?? this.searchProductsList,
+        searchState: searchState ?? this.searchState
+        );
   }
 
   @override
@@ -109,6 +118,8 @@ class ProductState extends Equatable {
         addOrRemoveFromCartsrequestStateEnum,
         productsDisplayState,
         crossAxisCount,
-        displayProductsIcon
+        displayProductsIcon,
+        searchProductsList,
+        searchState
       ];
 }

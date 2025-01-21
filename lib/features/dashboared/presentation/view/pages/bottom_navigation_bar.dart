@@ -14,6 +14,7 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+        lazy: true,
         create: (context) => BottomNavigationBarCubit(),
         child: BlocBuilder<BottomNavigationBarCubit, BottomNavigationBarState>(
             builder: (context, state) {

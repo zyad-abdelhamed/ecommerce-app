@@ -16,6 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'product_state.dart';
 
 class ProductCubit extends Cubit<ProductState> {
+
   //use cases
   final GetProductsUseCase getProductsUseCase;
   final AddAndRemoveFavoritesUseCase addAndRemoveFavoritesUseCase;
@@ -35,6 +36,7 @@ class ProductCubit extends Cubit<ProductState> {
     await getFavorites();
     await getcarts();
     getProducts(categoryId: 0);
+    
   }
 
 ///////////////////////////////////////////////////////////
@@ -43,11 +45,13 @@ class ProductCubit extends Cubit<ProductState> {
     if (state.crossAxisCount == 1) {
       emit(state.copywith(
           productsDisplayState: ChangeProductsDisplayStateEnum.vertical,
-          crossAxisCount: 2,displayProductsIcon: const Icon(Icons.list)));
+          crossAxisCount: 2,
+          displayProductsIcon: const Icon(Icons.list)));
     } else {
       emit(state.copywith(
           productsDisplayState: ChangeProductsDisplayStateEnum.horizontal,
-          crossAxisCount: 1,displayProductsIcon: const Icon(Icons.grid_3x3)));
+          crossAxisCount: 1,
+          displayProductsIcon: const Icon(Icons.grid_3x3)));
     }
   }
 
@@ -62,7 +66,25 @@ class ProductCubit extends Cubit<ProductState> {
           productsState: RequestStateEnum.success, products: products));
     });
   }
+    final TextEditingController searchController = TextEditingController();
 
+void search({required String input}) async{
+  Either<Failure, List<Product>> resul =
+        await getProductsUseCase(parameters: 0);
+    resul.fold(
+        (failure) => emit(state.copywith(
+            searchState: RequestStateEnum.failed,
+            )), (products) {
+      emit(state.copywith(
+        searchProductsList: products
+            .where((element) =>
+                element.name.toLowerCase().startsWith(input.toLowerCase()))
+            .toList(),
+        searchState: RequestStateEnum.success));
+    });
+  }
+    
+  
 ////////////////////////////////////////////////////////
 //favorites
   static Set<String> favoritesProductsId = {};
@@ -145,6 +167,6 @@ class ProductCubit extends Cubit<ProductState> {
     if (productsInCart.contains(productId)) {
       return AppColors.primaryColor;
     }
-    return  AppColors.inActiveColor;
+    return AppColors.inActiveColor;
   }
 }

@@ -10,6 +10,7 @@ class CategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+      lazy: true,
       create: (context) => CategoriesCubit(dsl(),dsl())..getCategories(),
       child: Directionality(textDirection: TextDirection.rtl,
         child: Scaffold(

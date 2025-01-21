@@ -1,10 +1,15 @@
+import 'package:ecommerce_application/core/helper_functions/get_responsive_font_size.dart';
 import 'package:ecommerce_application/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 abstract class TextStyles {
-  static const TextStyle textStyle34 =
-      TextStyle(fontSize: 34, fontWeight: FontWeight.bold);
+  static TextStyle textStyle34({required BuildContext context}) {
+    return TextStyle(
+        fontSize: getResponsiveFontSize(context: context, fontSize: 34),
+        fontWeight: FontWeight.bold);
+  }
+
   static const TextStyle textStyle20Boldgreen =
       TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green);
   static const TextStyle textStyle18BoldWhite =
