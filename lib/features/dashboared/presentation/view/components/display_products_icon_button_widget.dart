@@ -7,12 +7,11 @@ class DisplayPrductsIconButtonWidget extends StatelessWidget {
     super.key,
   });
 
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
-                final ProductCubit controller = context.read<ProductCubit>();
+        final ProductCubit controller = context.read<ProductCubit>();
 
         return SliverToBoxAdapter(
           child: Align(

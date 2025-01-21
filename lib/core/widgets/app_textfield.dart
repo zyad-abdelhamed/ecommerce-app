@@ -54,6 +54,7 @@ Widget getAppTextfieldWithVaildator(
         ),
       ),
     );
+
 //input model
 class AppTextFieldInputMdel {
   final String textFieldName;
@@ -64,7 +65,7 @@ class AppTextFieldInputMdel {
   final IconData? icon;
   final VoidCallback? iconFunction;
 
-  AppTextFieldInputMdel( 
+  AppTextFieldInputMdel(
       {required this.textFieldName,
       required this.context,
       required this.controller,

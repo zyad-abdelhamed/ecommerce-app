@@ -12,5 +12,6 @@ class AuthState extends Equatable {
       this.signUpmessage = ''});
 
   @override
-  List<Object?> get props => [signUpState, signUpmessage, logInmessage, logInState];
+  List<Object?> get props =>
+      [signUpState, signUpmessage, logInmessage, logInState];
 }

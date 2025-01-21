@@ -22,6 +22,4 @@ class CategoriesCubit extends Cubit<CategoriesState> {
         (r) => emit(CategoriesState(
             requestStateEnum: RequestStateEnum.success, categories: r)));
   }
-
-  
 }

@@ -14,8 +14,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
       goToLoginPage(context: context);
     }
     pageController.nextPage(
-        duration: const Duration(milliseconds: 1),
-        curve: Easing.legacy);
+        duration: const Duration(milliseconds: 1), curve: Easing.legacy);
     emit(const OnboardingState(
         animateToPageStateEnum: AnimateToPageStateEnum.animateToNextPageDone));
   }

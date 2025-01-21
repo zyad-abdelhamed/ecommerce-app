@@ -25,14 +25,17 @@ class AuthDependencyInjection {
     sl.registerLazySingleton(
       () => SignUpUseCase(sl()),
     );
-    sl.registerLazySingleton<Auth>(() => const Auth(),);
+    sl.registerLazySingleton<Auth>(
+      () => const Auth(),
+    );
 
     //repositories
     sl.registerLazySingleton<BaseAuthRepository>(
-      () => AuthRepository(sl(),sl()),
+      () => AuthRepository(sl(), sl()),
     );
     //data source
-    sl.registerLazySingleton<BaseAuthLocalDataSource>(() =>AuthLocalDataSource());
+    sl.registerLazySingleton<BaseAuthLocalDataSource>(
+        () => AuthLocalDataSource());
     sl.registerLazySingleton(
       () => Dio(),
     );

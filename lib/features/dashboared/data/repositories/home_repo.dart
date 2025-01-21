@@ -15,24 +15,26 @@ class HomeRepo extends BaseHomeRepo {
     try {
       List<Banners> banners = await homeRemoteDataSource.getDataBanner();
       return Right(banners);
-    }  catch (e) {
-  if (e is DioException) {
+    } catch (e) {
+      if (e is DioException) {
         return left(ServerFailure.fromDiorError(e));
       }
       return left(ServerFailure(e.toString()));
-}
+    }
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getproducts({required int? categoryId}) async{
-     try {
-      List<Product> products = await homeRemoteDataSource.getProducts(categoryId: categoryId);
+  Future<Either<Failure, List<Product>>> getproducts(
+      {required int? categoryId}) async {
+    try {
+      List<Product> products =
+          await homeRemoteDataSource.getProducts(categoryId: categoryId);
       return Right(products);
-    }  catch (e) {
-  if (e is DioException) {
+    } catch (e) {
+      if (e is DioException) {
         return left(ServerFailure.fromDiorError(e));
       }
       return left(ServerFailure(e.toString()));
-}
+    }
   }
 }

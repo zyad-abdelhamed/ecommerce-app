@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:ecommerce_application/core/constants/api_constant.dart';
 
 class ApiService {
   final Dio dio;
@@ -8,14 +9,38 @@ class ApiService {
       {required ApiServiceInputModel apiServiceInputModel}) async {
     Response response = await dio.post(apiServiceInputModel.url,
         queryParameters: apiServiceInputModel.body,
-        options: Options(headers: apiServiceInputModel.headers));
+        options: Options(
+            contentType: switch (apiServiceInputModel.apiContentType) {
+              ApiContentTypeEnum.applicationJson => 'application/json',
+              ApiContentTypeEnum.applicationXWwwFormUrlencoded =>
+                'application/x_www_form_urlencoded',
+            },
+            headers: switch (apiServiceInputModel.apiHeaders) {
+              ApiHeadersEnum.backEndHeadersWithoutToken => {},
+              ApiHeadersEnum.backEndHeadersWithToken => {'Authorization': ApiConstant.token},
+              ApiHeadersEnum.paymentHeaders => {
+                  'Authorization': "Bearer ${ApiConstant.stripeSecretKey}"
+                },
+            }));
     return response.data;
   }
 
   Future<Map<String, dynamic>> get(
       {required ApiServiceInputModel apiServiceInputModel}) async {
     Response response = await dio.get(apiServiceInputModel.url,
-        options: Options(headers: apiServiceInputModel.headers));
+        options: Options(
+            contentType: switch (apiServiceInputModel.apiContentType) {
+              ApiContentTypeEnum.applicationJson => 'application/json',
+              ApiContentTypeEnum.applicationXWwwFormUrlencoded =>
+                'application/x_www_form_urlencoded',
+            },
+            headers: switch (apiServiceInputModel.apiHeaders) {
+              ApiHeadersEnum.backEndHeadersWithoutToken => {},
+              ApiHeadersEnum.backEndHeadersWithToken => {'Authorization': ApiConstant.token},
+              ApiHeadersEnum.paymentHeaders => {
+                  'Authorization': "Bearer ${ApiConstant.stripeSecretKey}"
+                },
+            }));
     return response.data;
   }
 }
@@ -24,7 +49,15 @@ class ApiService {
 class ApiServiceInputModel {
   final String url;
   final Map<String, dynamic>? body;
-  final Map<String, dynamic>? headers;
-
-  ApiServiceInputModel({required this.url, this.body, this.headers});
+  final ApiHeadersEnum apiHeaders;
+  final ApiContentTypeEnum apiContentType;
+  ApiServiceInputModel(
+      {this.apiContentType = ApiContentTypeEnum.applicationJson,
+      required this.url,
+      this.body,
+      required this.apiHeaders});
 }
+
+enum ApiHeadersEnum { backEndHeadersWithoutToken, backEndHeadersWithToken, paymentHeaders }
+
+enum ApiContentTypeEnum { applicationJson, applicationXWwwFormUrlencoded }

@@ -21,7 +21,7 @@ class UserState extends Equatable {
       this.logOutState,
       this.logOutMessage,
       //changepassword
-      this.changePasswordState ,
+      this.changePasswordState,
       this.changePasswordMessage = ''});
 
   UserState copyWith({

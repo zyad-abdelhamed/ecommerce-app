@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 
 class ChangePasswordBottomSheet extends StatelessWidget {
   const ChangePasswordBottomSheet({
-    super.key, required this.controller, required this.buttonname,
+    super.key,
+    required this.controller,
+    required this.buttonname,
   });
   final UserCubit controller;
   final String buttonname;
@@ -43,7 +45,7 @@ class ChangePasswordBottomSheet extends StatelessWidget {
           ),
           SizedBoxs.sizedBoxH20,
           Form(
-            key:controller.passwordChangeKey,
+            key: controller.passwordChangeKey,
             child: Column(
               children: [
                 getAppTextfield(
@@ -51,7 +53,7 @@ class ChangePasswordBottomSheet extends StatelessWidget {
                     obscure: true,
                     textFieldName: 'Old Password',
                     context: context,
-                    controller:controller.oldPasswordController,
+                    controller: controller.oldPasswordController,
                   ),
                 ),
                 SizedBoxs.sizedBoxH20,
@@ -60,7 +62,7 @@ class ChangePasswordBottomSheet extends StatelessWidget {
                     obscure: true,
                     textFieldName: 'New Password',
                     context: context,
-                    controller:controller.newPasswordController,
+                    controller: controller.newPasswordController,
                   ),
                 ),
                 SizedBoxs.sizedBoxH20,
@@ -70,7 +72,7 @@ class ChangePasswordBottomSheet extends StatelessWidget {
                     if (controller.repeatPasswordController.text.isEmpty) {
                       return 'this field must not be empty';
                     } else if (controller.repeatPasswordController.text !=
-                       controller.newPasswordController.text) {
+                        controller.newPasswordController.text) {
                       return 'not equal with new password';
                     } else {
                       return null;
@@ -78,23 +80,24 @@ class ChangePasswordBottomSheet extends StatelessWidget {
                   },
                   textFieldName: 'Repeat Password',
                   context: context,
-                  controller:controller.repeatPasswordController,
+                  controller: controller.repeatPasswordController,
                 ),
                 SizedBoxs.sizedBoxH20,
                 appMaterialButton(
-                  buttonFunction: () {
-                    if (controller.passwordChangeKey.currentState!.validate()) {
-                      controller.changePassword(
-                        parameters: ChangePasswordParameters(
-                          currentPassword:controller.oldPasswordController.text,
-                          newPassword:controller.repeatPasswordController.text,
-                        ),
-                      );
-                    }
-                  },
-                   buttonName: buttonname
-                  
-                )
+                    buttonFunction: () {
+                      if (controller.passwordChangeKey.currentState!
+                          .validate()) {
+                        controller.changePassword(
+                          parameters: ChangePasswordParameters(
+                            currentPassword:
+                                controller.oldPasswordController.text,
+                            newPassword:
+                                controller.repeatPasswordController.text,
+                          ),
+                        );
+                      }
+                    },
+                    buttonName: buttonname)
               ],
             ),
           ),

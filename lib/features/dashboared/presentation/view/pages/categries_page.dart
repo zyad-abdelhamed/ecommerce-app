@@ -14,9 +14,9 @@ class CategoryPage extends StatelessWidget {
       create: (context) => CategoriesCubit(dsl(),dsl())..getCategories(),
       child: Directionality(textDirection: TextDirection.rtl,
         child: Scaffold(
-            appBar:AppBar(
+            appBar: AppBar(
               backgroundColor: Colors.white,
-              title:  const Text('categories'),
+              title: const Text('categories'),
             ),
             body: const CategoriesWidgt()),
       ),

@@ -14,10 +14,10 @@ class CategoryProductsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductCubit, ProductState>(
-     // buildWhen: (previous, current) => previous.productsState != current.productsState,
+      // buildWhen: (previous, current) => previous.productsState != current.productsState,
       builder: (context, state) {
         final ProductCubit controller = context.read<ProductCubit>();
-         print('build category products');
+        print('build category products');
         return SliverGrid.builder(
           itemCount: state.products.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -34,29 +34,28 @@ class CategoryProductsBody extends StatelessWidget {
                 productsList: state.products,
                 controller: controller,
                 buttonWidget: appMaterialButton(
-            buttonFunction: () {
-              controller.addOrRemoveCartProducts(
-                  productId: state.products[index].id.toString());
-            },
-            buttonName: controller.getCartButtonName(
-                productId: state.products[index].id.toString()),
-            buttonColor: Colors.black),
-            bottomRightOfStackWidget: InkWell(
-          onTap: () => controller.addAndRemoveFavorites(
-              productId: state.products[index].id.toString()),
-          child: FavoriteIconWidget(
-            scale: dsl
-                .get<FavoriteIconController>()
-                .getFavoritesOrNotFavoritesIconScale(
-                    productId: state.products[index].id.toString()),
-            icon: dsl
-                .get<FavoriteIconController>()
-                .getFavoritesOrNotFavoritesIcon(
-                    productId: state.products[index].id.toString()),
-            productId: state.products[index].id.toString(),
-          ),
-        )
-                );
+                    buttonFunction: () {
+                      controller.addOrRemoveCartProducts(
+                          productId: state.products[index].id.toString());
+                    },
+                    buttonName: controller.getCartButtonName(
+                        productId: state.products[index].id.toString()),
+                    buttonColor: Colors.black),
+                bottomRightOfStackWidget: InkWell(
+                  onTap: () => controller.addAndRemoveFavorites(
+                      productId: state.products[index].id.toString()),
+                  child: FavoriteIconWidget(
+                    scale: dsl
+                        .get<FavoriteIconController>()
+                        .getFavoritesOrNotFavoritesIconScale(
+                            productId: state.products[index].id.toString()),
+                    icon: dsl
+                        .get<FavoriteIconController>()
+                        .getFavoritesOrNotFavoritesIcon(
+                            productId: state.products[index].id.toString()),
+                    productId: state.products[index].id.toString(),
+                  ),
+                ));
           },
         );
       },

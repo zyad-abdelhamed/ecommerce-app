@@ -14,11 +14,11 @@ class CategoriesRepo extends BaseCategoryRepo {
       List<Categories> categories =
           await categoriesRemoteDataSource.getCategories();
       return Right(categories);
-    }  catch (e) {
-  if (e is DioException) {
+    } catch (e) {
+      if (e is DioException) {
         return left(ServerFailure.fromDiorError(e));
       }
       return left(ServerFailure(e.toString()));
-}
+    }
   }
 }

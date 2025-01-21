@@ -14,7 +14,8 @@ class BannerWidgt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DashboardBloc, DashboardState>(
-      buildWhen: (previous, current) => previous.requestStateEnum != current.requestStateEnum,
+      buildWhen: (previous, current) =>
+          previous.requestStateEnum != current.requestStateEnum,
       builder: (context, state) {
         print('build banners');
         switch (state.requestStateEnum) {
@@ -28,14 +29,15 @@ class BannerWidgt extends StatelessWidget {
                   );
                 }).toList(),
                 options: CarouselOptions(
-                  height: context.height * 1/4,
+                  height: context.height * 1 / 4,
                   viewportFraction: 1.0,
                   autoPlay: true,
                   autoPlayInterval: ViewConstants.itervalDuration,
-                  autoPlayAnimationDuration: ViewConstants.cartAndAutoPlayAnimationDuration,
+                  autoPlayAnimationDuration:
+                      ViewConstants.cartAndAutoPlayAnimationDuration,
                   autoPlayCurve: Curves.easeInOut,
                   enableInfiniteScroll: true,
-            
+
                   pauseAutoPlayOnTouch: true,
                   // pauseAutoPlayInFiniteScroll: true
                 ));
@@ -44,7 +46,11 @@ class BannerWidgt extends StatelessWidget {
               child: Text(state.errorMessage),
             );
           case RequestStateEnum.loading:
-            return Padding(padding:EdgeInsets.symmetric(vertical: context.height * 1/8,) ,child: getLoadingWidget());
+            return Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: context.height * 1 / 8,
+                ),
+                child: getLoadingWidget());
         }
       },
     );

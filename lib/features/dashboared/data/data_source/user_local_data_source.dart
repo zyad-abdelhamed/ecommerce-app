@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_application/core/errors/exceptions.dart';
 import 'package:ecommerce_application/core/services/shared.dart';
 import 'package:ecommerce_application/features/dashboared/data/model/user_model.dart';
 
@@ -27,5 +26,5 @@ class UserLocalDataSource implements BaseUserLocalDataSource {
     UserModel jsonToUserModel = UserModel.formJson(data: decodeJsonData);
 
     return Future.value(jsonToUserModel);
-    }
+  }
 }

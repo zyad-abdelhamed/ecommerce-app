@@ -13,8 +13,9 @@ class CategoriesRemoteDataSourceImpl extends CategoriesRemoteDataSource {
   @override
   Future<List<CategoriesModel>> getCategories() async {
     Map<String, dynamic> responseBody = await apiService.get(
-        apiServiceInputModel:
-            ApiServiceInputModel(url: ApiConstant.categoriesEndPoint));
+        apiServiceInputModel: ApiServiceInputModel(
+            url: ApiConstant.categoriesEndPoint,
+            apiHeaders: ApiHeadersEnum.backEndHeadersWithoutToken));
     if (responseBody['status'] == true) {
       return List<CategoriesModel>.from((responseBody['data']['data'])
           .map((e) => CategoriesModel.fromjson(e)));

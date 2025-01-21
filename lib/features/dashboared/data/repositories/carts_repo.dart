@@ -13,12 +13,12 @@ class CartsRepo extends BaseCartRepo {
     try {
       List<Product> result = await cartsRemoteDataSource.getCarts();
       return Right(result);
-    }  catch (e) {
-  if (e is DioException) {
+    } catch (e) {
+      if (e is DioException) {
         return left(ServerFailure.fromDiorError(e));
       }
       return left(ServerFailure(e.toString()));
-}
+    }
   }
 
   @override
@@ -28,11 +28,11 @@ class CartsRepo extends BaseCartRepo {
       var result = await cartsRemoteDataSource.addOrRemoveProductFromCart(
           productId: productId);
       return Right(result);
-    }  catch (e) {
-  if (e is DioException) {
+    } catch (e) {
+      if (e is DioException) {
         return left(ServerFailure.fromDiorError(e));
       }
       return left(ServerFailure(e.toString()));
-}
+    }
   }
 }

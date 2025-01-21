@@ -15,27 +15,30 @@ class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
   ];
   final List<BottomNavigationBarItem> bottomNavigationBarItems = const [
     BottomNavigationBarItem(icon: Icon(CupertinoIcons.home), label: 'home'),
-    BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.list), label: 'Categories'),
+    BottomNavigationBarItem(
+        icon: Icon(FontAwesomeIcons.list), label: 'Categories'),
     BottomNavigationBarItem(
         icon: Icon(FontAwesomeIcons.heart), label: 'Favourite'),
-    BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.cartShopping), label: 'Cart'),
-        BottomNavigationBarItem(icon: Icon(CupertinoIcons.search), label: 'search'),
-
+    BottomNavigationBarItem(
+        icon: Icon(FontAwesomeIcons.cartShopping), label: 'Cart'),
+    BottomNavigationBarItem(icon: Icon(CupertinoIcons.search), label: 'search'),
     BottomNavigationBarItem(
         icon: Icon(FontAwesomeIcons.user), label: 'Profile'),
   ];
   int selectedTapIndex = 0;
   final PageController pageController = PageController();
 
-void onPageChanged(int index) {
-  selectedTapIndex = index; // تحديث المؤشر عند تغيير الصفحة
-  emit(DashBoardChangeItemState()); // تحديث الحالة
-}
-  void onChangeTabIndex(int index) {
-  if (index != selectedTapIndex) {
-    selectedTapIndex = index;
-    pageController.jumpToPage(selectedTapIndex); // الانتقال إلى الصفحة المطلوبة
+  void onPageChanged(int index) {
+    selectedTapIndex = index; // تحديث المؤشر عند تغيير الصفحة
     emit(DashBoardChangeItemState()); // تحديث الحالة
   }
-}
+
+  void onChangeTabIndex(int index) {
+    if (index != selectedTapIndex) {
+      selectedTapIndex = index;
+      pageController
+          .jumpToPage(selectedTapIndex); // الانتقال إلى الصفحة المطلوبة
+      emit(DashBoardChangeItemState()); // تحديث الحالة
+    }
+  }
 }

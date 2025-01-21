@@ -20,7 +20,7 @@ class FavoritesRemoteDataSourceImpl implements FavoritesRemoteDataSource {
         apiServiceInputModel: ApiServiceInputModel(
             body: {'product_id': productId},
             url: ApiConstant.favoritesEndPoint,
-            headers: {"Authorization": ApiConstant.token}));
+            apiHeaders: ApiHeadersEnum.backEndHeadersWithToken));
 
     return responseBody;
   }
@@ -30,7 +30,7 @@ class FavoritesRemoteDataSourceImpl implements FavoritesRemoteDataSource {
     var responseBody = await apiService.get(
         apiServiceInputModel: ApiServiceInputModel(
             url: ApiConstant.favoritesEndPoint,
-            headers: {"Authorization": ApiConstant.token}));
+            apiHeaders: ApiHeadersEnum.backEndHeadersWithToken));
     if (responseBody['status'] == true) {
       return List<ProductModel>.from((responseBody['data']['data'])
           .map((e) => ProductModel.cartandfavouritesnamedconstructor(data: e)));
