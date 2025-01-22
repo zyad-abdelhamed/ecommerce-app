@@ -14,6 +14,7 @@
 //   // runApp(MyApp);
 // }
 import 'package:ecommerce_application/core/constants/api_constant.dart';
+import 'package:ecommerce_application/core/constants/secret_keys.dart';
 import 'package:ecommerce_application/core/services/auth_dependency_injection.dart';
 import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
 import 'package:ecommerce_application/core/services/navigation.dart';
@@ -25,8 +26,7 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Stripe.publishableKey =
-      'pk_test_51QjRIfCmjutEmYkFgqPz1XjtqpOeElO5Gi8sZKn8pddlqU2bZkVvyLDE0NTwQ3QJNzbsaFK189yBjDM2b1dGKVdV00o0NuvAyH';
+  Stripe.publishableKey = SecretKeys.stripePublishKey;
   AuthDependencyInjection.init();
   PaymentDependencyInjection.init();
   DashboardDebendencyInjection.init();
