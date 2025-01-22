@@ -17,7 +17,7 @@ final GoRouter router = GoRouter(
         return sl
                 .get<BaseAuthLocalDataSource>()
                 .haveToken(token: ApiConstant.token)
-            ? const PaymentPage1()
+            ? const DashboardPage()
             : const LogInPage();
       },
     ),

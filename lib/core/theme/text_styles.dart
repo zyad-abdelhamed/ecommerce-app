@@ -10,8 +10,10 @@ abstract class TextStyles {
         fontWeight: FontWeight.bold);
   }
 
-  static const TextStyle textStyle20Boldgreen =
-      TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green);
+  static const TextStyle textStyle20Boldgreen = TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: AppColors.greenDesignColor);
   static const TextStyle textStyle18BoldWhite =
       TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18);
   static const TextStyle textStyle18grey =

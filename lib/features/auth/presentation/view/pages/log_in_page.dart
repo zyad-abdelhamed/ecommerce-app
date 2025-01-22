@@ -17,21 +17,17 @@ class LogInPage extends StatelessWidget {
         create: (context) => AuthCubit(sl(), sl()),
         child:  Scaffold(
           body: SafeArea(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: CustomScrollView(slivers: [
+                SliverToBoxAdapter(
+                    child: Text(
                       ViewConstants.login,
                       style: TextStyles.textStyle34(context: context),
                     ),
-                    const LogInFormComponent()
-                  ],
-                ),
-              ),
+                  ),
+                  const SliverToBoxAdapter(child: LogInFormComponent())])
+                
             ),
           ),
         ));

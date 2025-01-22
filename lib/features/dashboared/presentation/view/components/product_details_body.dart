@@ -37,9 +37,14 @@ class ProductDetailsBody extends StatelessWidget {
                             product.price.toString() + r'$',
                             style: TextStyles.textStyleNewPrice,
                           ),
-                          Text(
-                            product.oldprice.toString() + r'$',
-                            style: TextStyles.textStyleOldPrice,
+                          Visibility(
+                            visible: product.price == product.oldprice
+                                ? false
+                                : true, //check to display old price or not
+                            child: Text(
+                              product.oldprice.toString() + r'$',
+                              style: TextStyles.textStyleOldPrice,
+                            ),
                           ),
                         ],
                       )),
