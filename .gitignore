@@ -15,8 +15,7 @@ migrate_working_dir/
 *.ipr
 *.iws
 .idea/
-lib/core/constants/api_constant.dart
-lib/core/constants/sooliman.dart
+lib/core/constants/secret_keys.dart
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
