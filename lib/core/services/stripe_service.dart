@@ -23,14 +23,14 @@ class StripeService {
 
   Future<void> initPaymentSheet(
       {required String paymentIntentClientSecret}) async {
-    Stripe.instance.initPaymentSheet(
+   await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
             paymentIntentClientSecret: paymentIntentClientSecret,
             merchantDisplayName: 'solimanandziad'));
   }
 
   Future<void> displayPaymentSheet() async {
-    Stripe.instance.presentPaymentSheet();
+   await Stripe.instance.presentPaymentSheet();
   }
 
   Future<void> makePayment(

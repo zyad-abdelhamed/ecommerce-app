@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_application/core/errors/exceptions.dart';
 import 'package:ecommerce_application/core/errors/failures.dart';
 import 'package:ecommerce_application/features/payment_integration/data/datasources/payment_remote_data_source.dart';
 import 'package:ecommerce_application/features/payment_integration/data/models/payment_intent_input_model.dart';
@@ -14,8 +13,8 @@ class Paymentrepo extends BasePaymentRepo {
     try {
       await paymentRemoteDataSource.makePayment(paymentIntentInputModel);
       return const Right(unit);
-    } on ServerException catch (e) {
-      return const Left(ServerFailure('SomeThing Wrong'));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
   }
 }
