@@ -22,11 +22,11 @@ class ProductDetailsWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          maxLines: maxLines,
-          name,
-          style: TextStyles.textStyle34
-              .copyWith(overflow: TextOverflow.ellipsis, fontSize: 18),
-        ),
+            maxLines: maxLines,
+            name,
+            style: TextStyles.textStyle34(context: context)
+            // .copyWith(overflow: TextOverflow.ellipsis, fontSize: 18),
+            ),
         Text(
           maxLines: 1,
           descreption,
@@ -34,10 +34,15 @@ class ProductDetailsWidget extends StatelessWidget {
               .copyWith(overflow: TextOverflow.ellipsis, fontSize: 15),
         ),
         Row(
-          children: [
-            Text(
-              oldPrice,
-              style: TextStyles.textStyleOldPrice,
+          children: <Widget>[
+            Visibility(
+              visible: newPrice == oldPrice
+                  ? false
+                  : true, //check to display old price or not
+              child: Text(
+                oldPrice,
+                style: TextStyles.textStyleOldPrice,
+              ),
             ),
             SizedBoxs.sizedBoxw5,
             Text(

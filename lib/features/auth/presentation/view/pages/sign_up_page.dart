@@ -24,8 +24,8 @@ class SignUpPage extends StatelessWidget {
                   },
                   icon: const Icon(CupertinoIcons.back)),
             ),
-            body: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+            body:  Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment
@@ -33,9 +33,9 @@ class SignUpPage extends StatelessWidget {
                 children: [
                   Text(
                     ViewConstants.signUp,
-                    style: TextStyles.textStyle34,
+                    style: TextStyles.textStyle34(context: context),
                   ),
-                  SignUpFormComponent()
+                  const SignUpFormComponent()
                 ],
               ),
             )));

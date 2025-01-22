@@ -28,6 +28,7 @@ import 'package:ecommerce_application/features/dashboared/presentation/controlle
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/categories_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/favorite_icon_controller.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/search_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/user_cubit.dart';
 import 'package:get_it/get_it.dart';
 import '../../features/dashboared/domain/repositories/base_home_repo.dart';
@@ -47,6 +48,12 @@ class DashboardDebendencyInjection {
     );
     dsl.registerFactory<UserCubit>(
       () => UserCubit(dsl(), dsl(), dsl()),
+    );
+    dsl.registerFactory(
+      () => SearchCubit(dsl()),
+    );
+    dsl.registerLazySingleton(
+      () => const ProductState(),
     );
     //usecases
     dsl.registerLazySingleton(() => AddOrRemoveProductFromCart(dsl()));

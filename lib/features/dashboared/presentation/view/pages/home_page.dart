@@ -17,26 +17,28 @@ class HomePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
+            lazy: true,
             create: (context) => DashboardBloc(dsl())..add(GetBannerdata())),
         BlocProvider(
+            lazy: true,
             create: (context) => ProductCubit(dsl(), dsl(), dsl(), dsl(), dsl())
               ..getHomeProductsData())
       ],
-      child: const CustomScrollView(
+      child:  CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(child: BannerWidgt()),
+          const SliverToBoxAdapter(child: BannerWidgt()),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'products',
-                    style: TextStyles.textStyle34,
+                    style: TextStyles.textStyle34(context: context),
                   ),
                   SizedBoxs.sizedBoxw5,
-                  Text(
+                  const Text(
                     'view all',
                     style: TextStyles.textStyle18black,
                   )
@@ -44,7 +46,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          HomeProducts()
+          const HomeProducts()
         ],
       ),
     );

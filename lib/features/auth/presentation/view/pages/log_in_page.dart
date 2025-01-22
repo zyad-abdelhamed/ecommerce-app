@@ -15,23 +15,19 @@ class LogInPage extends StatelessWidget {
     return BlocProvider(
         lazy: true,
         create: (context) => AuthCubit(sl(), sl()),
-        child: const Scaffold(
+        child:  Scaffold(
           body: SafeArea(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: CustomScrollView(slivers: [
+                SliverToBoxAdapter(
+                    child: Text(
                       ViewConstants.login,
-                      style: TextStyles.textStyle34,
+                      style: TextStyles.textStyle34(context: context),
                     ),
-                    LogInFormComponent()
-                  ],
-                ),
-              ),
+                  ),
+                  const SliverToBoxAdapter(child: LogInFormComponent())])
+                
             ),
           ),
         ));

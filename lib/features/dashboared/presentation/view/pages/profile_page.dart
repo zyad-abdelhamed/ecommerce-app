@@ -12,18 +12,19 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+        lazy: true,
         create: (context) => UserCubit(dsl(), dsl(), dsl())..getUserData(),
-        child: const SingleChildScrollView(
-            padding: EdgeInsets.only(
+        child:  SingleChildScrollView(
+            padding: const EdgeInsets.only(
                 top: 100, left: 16.0, right: 16.0, bottom: 16.0),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
                 'My profile',
-                style: TextStyles.textStyle34,
+                style: TextStyles.textStyle34(context: context),
               ),
               SizedBoxs.sizedBoxH20,
-              ProfileBody()
+              const ProfileBody()
             ])));
   }
 }

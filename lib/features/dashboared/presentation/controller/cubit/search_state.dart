@@ -1,10 +1,10 @@
 part of 'search_cubit.dart';
 
-sealed class SearchState extends Equatable {
-  const SearchState();
+class SearchState extends Equatable {
+  final List<Product> searchProductsList;
+  final RequestStateEnum? searchState;
+  const SearchState({this.searchProductsList = const [], this.searchState});
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [searchProductsList, searchState];
 }
-
-final class SearchInitial extends SearchState {}

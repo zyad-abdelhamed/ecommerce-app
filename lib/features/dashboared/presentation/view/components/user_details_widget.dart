@@ -33,8 +33,14 @@ class UserDetailsWidget extends StatelessWidget {
                         Text(state.userData.name,
                             style: TextStyles.textStyle18black
                                 .copyWith(fontWeight: FontWeight.bold)),
-                        Text(state.userData.email,
-                            style: TextStyles.textStyle16grey),
+                        SizedBox(
+                          height: 20,
+                          child: FittedBox(
+                            //fitted box in order to fix right side over flow by fit in hight of parent(sized box)
+                            child: Text(state.userData.email,
+                                style: TextStyles.textStyle16grey),
+                          ),
+                        ),
                       ],
                     )
                   ],
