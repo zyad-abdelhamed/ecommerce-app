@@ -10,7 +10,11 @@ class ApiConstant {
   static const String getUserDataEndpoint = '${baseUrl}profile';
   static const String logOutEndpoint = '${baseUrl}logout';
   static const String changePasswordEndpoint = '${baseUrl}change-password';
-  static const String paymentIntentEndPoint = 'https://api.stripe.com/v1/payment_intents';
+  static const String addAddressEndpoint = '${baseUrl}addresses';
+  static const String getAddressEndpoint = '${baseUrl}addresses';
+
+  static const String paymentIntentEndPoint =
+      'https://api.stripe.com/v1/payment_intents';
 
   static String token = '';
 }
