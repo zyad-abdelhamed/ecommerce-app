@@ -1,4 +1,5 @@
-import 'package:ecommerce_application/core/services/auth_dependency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/auth_dependency_injection.dart';
+import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
 import 'package:ecommerce_application/features/auth/presentation/view/components/log_in_form_component.dart';
 import 'package:flutter/material.dart';
@@ -15,20 +16,22 @@ class LogInPage extends StatelessWidget {
     return BlocProvider(
         lazy: true,
         create: (context) => AuthCubit(sl(), sl()),
-        child:  Scaffold(
+        child: Scaffold(
           body: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: CustomScrollView(slivers: [
-                SliverToBoxAdapter(
-                    child: Text(
-                      ViewConstants.login,
-                      style: TextStyles.textStyle34(context: context),
-                    ),
-                  ),
-                  const SliverToBoxAdapter(child: LogInFormComponent())])
-                
-            ),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Expanded(child: SizedBoxs.sizedBoxH10),
+                      Text(
+                        ViewConstants.login,
+                        style: TextStyles.textStyle34(context: context),
+                      ),
+                      const Expanded(child: SizedBoxs.sizedBoxH10),
+                      const LogInFormComponent(),
+                      const Expanded(child: SizedBoxs.sizedBoxH10)
+                    ])),
           ),
         ));
   }

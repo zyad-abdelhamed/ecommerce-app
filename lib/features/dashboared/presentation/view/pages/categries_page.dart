@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/dashboard_debendency_injection.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/categories_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/categories_widgt.dart';
 import 'package:flutter/material.dart';

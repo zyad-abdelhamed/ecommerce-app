@@ -1,4 +1,6 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
+import 'package:ecommerce_application/core/theme/app_colors.dart';
+import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:flutter/material.dart';
 
 Widget getAppTextfield(
@@ -19,10 +21,9 @@ Widget getAppTextfield(
           contentPadding:
               const EdgeInsets.symmetric(vertical: 18, horizontal: 15),
           filled: true,
-          fillColor: Colors.white,
+          fillColor: AppColors.whiteDesignColor,
           labelText: appTextFieldInputMdel.textFieldName,
-          labelStyle:
-              const TextStyle(color: Color.fromARGB(255, 209, 207, 207)),
+          labelStyle: TextStyles.textStyle16grey,
           border: InputBorder.none,
         ),
       ),

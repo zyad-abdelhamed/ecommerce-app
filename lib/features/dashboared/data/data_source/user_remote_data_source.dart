@@ -80,11 +80,9 @@ class UserRemoteDataSource extends BaseUserRemoteDataSource {
         apiServiceInputModel: ApiServiceInputModel(
             url: ApiConstant.getAddressEndpoint,
             apiHeaders: ApiHeadersEnum.backEndHeadersWithToken));
-    if (responseBody['status'] == true) {
+    
       return List<AddressModel>.from(
           (responseBody['data']['data']).map((e) => AddressModel.fromjson(e)));
-    } else {
-      throw ServerException(message: responseBody['message']);
-    }
+    
   }
 }

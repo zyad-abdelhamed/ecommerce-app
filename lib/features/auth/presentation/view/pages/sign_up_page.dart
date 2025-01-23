@@ -1,6 +1,7 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
-import 'package:ecommerce_application/core/services/auth_dependency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/auth_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
+import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
 import 'package:ecommerce_application/features/auth/presentation/view/components/sign_up_form_component.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,7 +17,7 @@ class SignUpPage extends StatelessWidget {
         lazy: true,
         create: (context) => AuthCubit(sl(), sl()),
         child: Scaffold(
-            resizeToAvoidBottomInset: false,
+           resizeToAvoidBottomInset: false,
             appBar: AppBar(
               leading: IconButton(
                   onPressed: () {
@@ -24,10 +25,9 @@ class SignUpPage extends StatelessWidget {
                   },
                   icon: const Icon(CupertinoIcons.back)),
             ),
-            body:  Padding(
+            body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment
                     .stretch, //in order to stretch width of app material button
                 children: [
@@ -35,7 +35,9 @@ class SignUpPage extends StatelessWidget {
                     ViewConstants.signUp,
                     style: TextStyles.textStyle34(context: context),
                   ),
-                  const SignUpFormComponent()
+                  const Expanded(child: SizedBoxs.sizedBoxH10),
+                  const SignUpFormComponent(),
+                  const Expanded(child: SizedBoxs.sizedBoxH10),
                 ],
               ),
             )));

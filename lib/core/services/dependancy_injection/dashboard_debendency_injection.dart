@@ -9,15 +9,17 @@ import 'package:ecommerce_application/features/dashboared/data/repositories/home
 import 'package:ecommerce_application/features/dashboared/data/repositories/user_repo.dart';
 import 'package:ecommerce_application/features/dashboared/domain/repositories/base_cart_repo.dart';
 import 'package:ecommerce_application/features/dashboared/domain/repositories/base_category_repo.dart';
-import 'package:ecommerce_application/core/services/auth_dependency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/auth_dependency_injection.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/favorites_remote_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/repositories/favorites_repo.dart';
 import 'package:ecommerce_application/features/dashboared/domain/repositories/base_favorites_repo.dart';
 import 'package:ecommerce_application/features/dashboared/domain/repositories/base_user_repo.dart';
+import 'package:ecommerce_application/features/dashboared/domain/usecases/add_address_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/add_and_remove_favorites_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/add_or_remove_product_from_cart.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/banner_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/change_password_use_case.dart';
+import 'package:ecommerce_application/features/dashboared/domain/usecases/get_address_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_carts_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_categories_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_favorites_use_case.dart';
@@ -25,13 +27,14 @@ import 'package:ecommerce_application/features/dashboared/domain/usecases/get_pr
 import 'package:ecommerce_application/features/dashboared/domain/usecases/get_user_data_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/logout_use_case.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/bloc/dashboard_bloc.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/address_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/categories_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/favorite_icon_controller.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/search_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/user_cubit.dart';
 import 'package:get_it/get_it.dart';
-import '../../features/dashboared/domain/repositories/base_home_repo.dart';
+import '../../../features/dashboared/domain/repositories/base_home_repo.dart';
 
 GetIt dsl = GetIt.instance;
 
@@ -55,6 +58,7 @@ class DashboardDebendencyInjection {
     dsl.registerLazySingleton(
       () => const ProductState(),
     );
+    dsl.registerFactory<AddressCubit>(() => AddressCubit(dsl(), dsl()),);
     //usecases
     dsl.registerLazySingleton(() => AddOrRemoveProductFromCart(dsl()));
     dsl.registerLazySingleton(() => GetCartsUseCase(dsl()));
@@ -77,6 +81,8 @@ class DashboardDebendencyInjection {
       () => LogoutUseCase(dsl()),
     );
     dsl.registerLazySingleton(() => ChangePasswordUseCase(dsl()));
+    dsl.registerLazySingleton<GetAddressUseCase>(() => GetAddressUseCase(dsl()),);
+    dsl.registerLazySingleton<AddAddressUseCase>(() => AddAddressUseCase(dsl()),);
     //repositories
     dsl.registerLazySingleton<BaseCartRepo>(() => CartsRepo(dsl()));
     dsl.registerLazySingleton<BaseCategoryRepo>(() => CategoriesRepo(dsl()));

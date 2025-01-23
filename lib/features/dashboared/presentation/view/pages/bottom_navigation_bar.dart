@@ -35,20 +35,17 @@ class DashboardPage extends StatelessWidget {
                 ProfilePage()
               ],
             ),
-            bottomNavigationBar: SizedBox(
-              height: 100,
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(15),
-                    topLeft: Radius.circular(15)),
-                child: BottomNavigationBar(
-                  iconSize: 40.0,
-                  currentIndex: controller.selectedTapIndex,
-                  onTap: (index) {
-                    controller.onChangeTabIndex(index);
-                  },
-                  items: controller.bottomNavigationBarItems,
-                ),
+            bottomNavigationBar: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(15),
+                  topLeft: Radius.circular(15)),
+              child: BottomNavigationBar(
+                iconSize: 40.0,
+                currentIndex: controller.selectedTapIndex,
+                onTap: (index) {
+                  controller.onChangeTabIndex(index);
+                },
+                items: controller.bottomNavigationBarItems,
               ),
             ),
           );

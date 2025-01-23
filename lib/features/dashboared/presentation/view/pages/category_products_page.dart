@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/dashboard_debendency_injection.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/category_products_body.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/display_products_icon_button_widget.dart';

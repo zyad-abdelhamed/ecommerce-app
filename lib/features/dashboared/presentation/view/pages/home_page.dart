@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/dashboard_debendency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/bloc/dashboard_bloc.dart';

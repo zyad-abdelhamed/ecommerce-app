@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/dashboard_debendency_injection.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/user_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/change_password_bottom_sheet.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 import 'package:ecommerce_application/core/constants/api_constant.dart';
 import 'package:ecommerce_application/core/constants/view_constants.dart';
-import 'package:ecommerce_application/core/services/auth_dependency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/auth_dependency_injection.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/features/auth/data/datasources/auth_local_data_source.dart';
 import 'package:ecommerce_application/features/auth/domain/use_cases/log_in.dart';

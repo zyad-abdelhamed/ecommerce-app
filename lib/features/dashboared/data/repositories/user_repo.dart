@@ -73,8 +73,11 @@ class UserRepo implements BaseUserRepo {
     try {
       List<AddressEntity> result = await baseUserRemoteDataSource.getAddress();
       return Right(result);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
     }
   }
 }

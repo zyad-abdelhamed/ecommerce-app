@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/dashboard_debendency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/widgets/app_material_button.dart';
 import 'package:ecommerce_application/core/widgets/app_textfield.dart';
