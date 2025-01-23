@@ -65,7 +65,9 @@ class UserRemoteDataSource extends BaseUserRemoteDataSource {
           'name': addAddressParameters.name,
           'city': addAddressParameters.city,
           'region': addAddressParameters.region,
-          'details': addAddressParameters.details
+          'details': addAddressParameters.details,
+          'latitude' : 30.0616863,
+          'longitude' : 31.3260088
         }));
     if (responseBody['status'] == false) {
       throw ServerException(message: responseBody['message']);
