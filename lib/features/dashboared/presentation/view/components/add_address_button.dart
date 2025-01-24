@@ -9,14 +9,11 @@ class AddAddressButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: () => context.push('/AddAddressPage') ,
-      child: const CircleAvatar(
-        backgroundColor: AppColors.blackDesignColor,
-        child: Icon(
-          Icons.add,
-          color: AppColors.whiteDesignColor,
-          size: 30,
-        ),
+    return FloatingActionButton(
+      onPressed: () => context.push('/AddAddressPage'),
+      child: const Icon(
+        Icons.add,
+        color: AppColors.whiteDesignColor,
       ),
     );
   }

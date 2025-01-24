@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dependancy_injection/dashboard_debendency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/favorite_icon_controller.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
@@ -23,11 +23,11 @@ class AddAndRemoveFavoritsButton extends StatelessWidget {
       onTap: () => controller.addAndRemoveFavorites(
           productId: productsList[index].id.toString()),
       child: FavoriteIconWidget(
-        scale: dsl
+        scale: sl
             .get<FavoriteIconController>()
             .getFavoritesOrNotFavoritesIconScale(
                 productId: productsList[index].id.toString()),
-        icon: dsl.get<FavoriteIconController>().getFavoritesOrNotFavoritesIcon(
+        icon: sl.get<FavoriteIconController>().getFavoritesOrNotFavoritesIcon(
             productId: productsList[index].id.toString()),
         productId: productsList[index].id.toString(),
       ),

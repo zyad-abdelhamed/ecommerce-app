@@ -16,7 +16,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'product_state.dart';
 
 class ProductCubit extends Cubit<ProductState> {
-
   //use cases
   final GetProductsUseCase getProductsUseCase;
   final AddAndRemoveFavoritesUseCase addAndRemoveFavoritesUseCase;
@@ -36,7 +35,6 @@ class ProductCubit extends Cubit<ProductState> {
     await getFavorites();
     await getcarts();
     getProducts(categoryId: 0);
-    
   }
 
 ///////////////////////////////////////////////////////////
@@ -66,25 +64,25 @@ class ProductCubit extends Cubit<ProductState> {
           productsState: RequestStateEnum.success, products: products));
     });
   }
-    final TextEditingController searchController = TextEditingController();
 
-void search({required String input}) async{
-  Either<Failure, List<Product>> resul =
+  final TextEditingController searchController = TextEditingController();
+
+  void search({required String input}) async {
+    Either<Failure, List<Product>> resul =
         await getProductsUseCase(parameters: 0);
     resul.fold(
         (failure) => emit(state.copywith(
-            searchState: RequestStateEnum.failed,
+              searchState: RequestStateEnum.failed,
             )), (products) {
       emit(state.copywith(
-        searchProductsList: products
-            .where((element) =>
-                element.name.toLowerCase().startsWith(input.toLowerCase()))
-            .toList(),
-        searchState: RequestStateEnum.success));
+          searchProductsList: products
+              .where((element) =>
+                  element.name.toLowerCase().startsWith(input.toLowerCase()))
+              .toList(),
+          searchState: RequestStateEnum.success));
     });
   }
-    
-  
+
 ////////////////////////////////////////////////////////
 //favorites
   static Set<String> favoritesProductsId = {};
@@ -107,7 +105,6 @@ void search({required String input}) async{
   }
 
   Future<void> getFavorites() async {
-    // state.favoritesProducts.clear();
     Either<Failure, List<Product>> result = await getFavoritesUseCase();
     result.fold(
         (failure) => emit(state.copywith(
@@ -123,7 +120,7 @@ void search({required String input}) async{
   ////////////////////////////////////////////////////////////
   //cart
   static Set<String> productsInCart = {};
-
+  int totalPrice = 0;
   getcarts() async {
     var result = await getCartsUseCase();
     result.fold((l) {
@@ -132,6 +129,9 @@ void search({required String input}) async{
           cartProductsState: RequestStateEnum.failed));
     }, (r) {
       productsInCart = r.map((item) => item.id.toString()).toSet();
+      for (int i = 0; i < r.length; i++) {
+        totalPrice += r[i].price;
+      }
       emit(state.copywith(
           cartProducts: r, cartProductsState: RequestStateEnum.success));
     });

@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dependancy_injection/auth_dependency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/services/stripe_service.dart';
 import 'package:ecommerce_application/features/payment_integration/data/datasources/payment_remote_data_source.dart';
 import 'package:ecommerce_application/features/payment_integration/data/repos/paymentrepo.dart';

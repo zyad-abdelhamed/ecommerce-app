@@ -1,12 +1,10 @@
-import 'package:ecommerce_application/core/services/dependancy_injection/dashboard_debendency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/widgets/app_textfield.dart';
 import 'package:ecommerce_application/core/widgets/second_app_text_field.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
-import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/search_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/add_and_remove_favorites_button.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/horizontal_product_widget.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchPage extends StatelessWidget {
@@ -18,7 +16,7 @@ class SearchPage extends StatelessWidget {
       providers: [
         
         BlocProvider(
-          create: (context) => ProductCubit(dsl(),dsl(),dsl(),dsl(),dsl()),
+          create: (context) => ProductCubit(sl(),sl(),sl(),sl(),sl()),
         ),
       ],
       child: SafeArea(

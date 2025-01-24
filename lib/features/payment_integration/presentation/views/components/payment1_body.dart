@@ -13,8 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Payment1Body extends StatelessWidget {
-  const Payment1Body({super.key});
-
+  const Payment1Body({super.key, required this.totalPrice});
+final String totalPrice;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,7 +41,7 @@ class Payment1Body extends StatelessWidget {
           Column(
             spacing: 10,
             children: [
-              customRowforPayment(text: 'Order:', price: '112\$'),
+              customRowforPayment(text: 'Order:', price: '$totalPrice\$'),
               customRowforPayment(text: 'Delivery:', price: '15\$'),
               customRowforPayment(text: 'Summary:', price: '127\$'),
               BlocConsumer<StripeCubit, StripeState>(

@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dependancy_injection/dashboard_debendency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/categories_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/categories_widgt.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +11,10 @@ class CategoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       lazy: true,
-      create: (context) => CategoriesCubit(dsl(),dsl())..getCategories(),
+      create: (context) => CategoriesCubit(sl(),sl())..getCategories(),
       child: Directionality(textDirection: TextDirection.rtl,
         child: Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.white,
               title: const Text('categories'),
             ),
             body: const CategoriesWidgt()),

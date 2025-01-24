@@ -56,24 +56,19 @@ class UserRemoteDataSource extends BaseUserRemoteDataSource {
 
   @override
   Future<Unit> addAddress(AddAddressParameters addAddressParameters) async {
-    Map<String, dynamic> responseBody = await apiService.post(
+    await apiService.post(
         apiServiceInputModel: ApiServiceInputModel(
             url: ApiConstant.addAddressEndpoint,
             apiHeaders: ApiHeadersEnum.backEndHeadersWithToken,
             body: {
-          'id': addAddressParameters.id,
           'name': addAddressParameters.name,
           'city': addAddressParameters.city,
           'region': addAddressParameters.region,
           'details': addAddressParameters.details,
-          'latitude' : 30.0616863,
-          'longitude' : 31.3260088
+          'latitude': 30.0616863,
+          'longitude': 31.3260088
         }));
-    if (responseBody['status'] == false) {
-      throw ServerException(message: responseBody['message']);
-    } else {
-      return unit;
-    }
+    return unit;
   }
 
   @override
@@ -82,9 +77,8 @@ class UserRemoteDataSource extends BaseUserRemoteDataSource {
         apiServiceInputModel: ApiServiceInputModel(
             url: ApiConstant.getAddressEndpoint,
             apiHeaders: ApiHeadersEnum.backEndHeadersWithToken));
-    
-      return List<AddressModel>.from(
-          (responseBody['data']['data']).map((e) => AddressModel.fromjson(e)));
-    
+
+    return List<AddressModel>.from((responseBody['data']['data'])
+        .map((jsonAddress) => AddressModel.fromjson(jsonAddress)));
   }
 }

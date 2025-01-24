@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dependancy_injection/dashboard_debendency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/favorite_icon_controller.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
@@ -22,11 +22,10 @@ class ProductDetailsBottomSheet extends StatelessWidget {
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
             builder: (context) {
-              print('bottom sheet builder');
               return BlocProvider(
                 lazy: true,
                 create: (context) =>
-                    ProductCubit(dsl(), dsl(), dsl(), dsl(), dsl()),
+                    ProductCubit(sl(), sl(), sl(), sl(), sl()),
                 child: SizedBox(
                   height: double.infinity,
                   width: double.infinity,
@@ -91,11 +90,11 @@ class ProductDetailsBottomSheet extends StatelessWidget {
                                         controller.addAndRemoveFavorites(
                                             productId: product.id.toString()),
                                     child: FavoriteIconWidget(
-                                      scale: dsl
+                                      scale: sl
                                           .get<FavoriteIconController>()
                                           .getFavoritesOrNotFavoritesIconScale(
                                               productId: product.id.toString()),
-                                      icon: dsl
+                                      icon: sl
                                           .get<FavoriteIconController>()
                                           .getFavoritesOrNotFavoritesIcon(
                                               productId: product.id.toString()),

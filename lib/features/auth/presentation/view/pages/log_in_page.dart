@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dependancy_injection/auth_dependency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
 import 'package:ecommerce_application/features/auth/presentation/view/components/log_in_form_component.dart';

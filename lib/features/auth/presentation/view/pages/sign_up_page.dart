@@ -1,5 +1,5 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
-import 'package:ecommerce_application/core/services/dependancy_injection/auth_dependency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';

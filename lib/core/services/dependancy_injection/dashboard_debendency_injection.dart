@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/carts_remote_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/categories_remote_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/home_remote_data_source.dart';
@@ -9,7 +10,6 @@ import 'package:ecommerce_application/features/dashboared/data/repositories/home
 import 'package:ecommerce_application/features/dashboared/data/repositories/user_repo.dart';
 import 'package:ecommerce_application/features/dashboared/domain/repositories/base_cart_repo.dart';
 import 'package:ecommerce_application/features/dashboared/domain/repositories/base_category_repo.dart';
-import 'package:ecommerce_application/core/services/dependancy_injection/auth_dependency_injection.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/favorites_remote_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/repositories/favorites_repo.dart';
 import 'package:ecommerce_application/features/dashboared/domain/repositories/base_favorites_repo.dart';
@@ -33,84 +33,87 @@ import 'package:ecommerce_application/features/dashboared/presentation/controlle
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/search_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/user_cubit.dart';
-import 'package:get_it/get_it.dart';
 import '../../../features/dashboared/domain/repositories/base_home_repo.dart';
-
-GetIt dsl = GetIt.instance;
 
 class DashboardDebendencyInjection {
   static void init() {
     //bloc
-    dsl.registerFactory(() => CategoriesCubit(dsl(), dsl()));
-    dsl.registerFactory(() => DashboardBloc(dsl()));
-    dsl.registerFactory<ProductCubit>(
-      () => ProductCubit(dsl(), dsl(), dsl(), dsl(), dsl()),
+    sl.registerFactory(() => CategoriesCubit(sl(), sl()));
+    sl.registerFactory(() => DashboardBloc(sl()));
+    sl.registerFactory<ProductCubit>(
+      () => ProductCubit(sl(), sl(), sl(), sl(), sl()),
     );
-    dsl.registerLazySingleton<FavoriteIconController>(
+    sl.registerLazySingleton<FavoriteIconController>(
       () => FavoriteIconController(),
     );
-    dsl.registerFactory<UserCubit>(
-      () => UserCubit(dsl(), dsl(), dsl()),
+    sl.registerFactory<UserCubit>(
+      () => UserCubit(sl(), sl(), sl()),
     );
-    dsl.registerFactory(
-      () => SearchCubit(dsl()),
+    sl.registerFactory(
+      () => SearchCubit(sl()),
     );
-    dsl.registerLazySingleton(
+    sl.registerLazySingleton(
       () => const ProductState(),
     );
-    dsl.registerFactory<AddressCubit>(() => AddressCubit(dsl(), dsl()),);
-    //usecases
-    dsl.registerLazySingleton(() => AddOrRemoveProductFromCart(dsl()));
-    dsl.registerLazySingleton(() => GetCartsUseCase(dsl()));
-    dsl.registerLazySingleton(() => GetCategoriesUseCase(dsl()));
-    dsl.registerLazySingleton(
-      () => GetFavoritesUseCase(dsl()),
+    sl.registerFactory<AddressCubit>(
+      () => AddressCubit(sl(), sl()),
     );
     //usecases
-    dsl.registerLazySingleton<AddAndRemoveFavoritesUseCase>(
-      () => AddAndRemoveFavoritesUseCase(dsl()),
+    sl.registerLazySingleton(() => AddOrRemoveProductFromCart(sl()));
+    sl.registerLazySingleton(() => GetCartsUseCase(sl()));
+    sl.registerLazySingleton(() => GetCategoriesUseCase(sl()));
+    sl.registerLazySingleton(
+      () => GetFavoritesUseCase(sl()),
     );
-    dsl.registerLazySingleton(() => BannerUseCase(dsl()));
-    dsl.registerLazySingleton(
-      () => GetProductsUseCase(dsl()),
+    //usecases
+    sl.registerLazySingleton<AddAndRemoveFavoritesUseCase>(
+      () => AddAndRemoveFavoritesUseCase(sl()),
     );
-    dsl.registerLazySingleton<GetUserDataUseCase>(
-      () => GetUserDataUseCase(dsl()),
+    sl.registerLazySingleton(() => BannerUseCase(sl()));
+    sl.registerLazySingleton(
+      () => GetProductsUseCase(sl()),
     );
-    dsl.registerLazySingleton(
-      () => LogoutUseCase(dsl()),
+    sl.registerLazySingleton<GetUserDataUseCase>(
+      () => GetUserDataUseCase(sl()),
     );
-    dsl.registerLazySingleton(() => ChangePasswordUseCase(dsl()));
-    dsl.registerLazySingleton<GetAddressUseCase>(() => GetAddressUseCase(dsl()),);
-    dsl.registerLazySingleton<AddAddressUseCase>(() => AddAddressUseCase(dsl()),);
+    sl.registerLazySingleton(
+      () => LogoutUseCase(sl()),
+    );
+    sl.registerLazySingleton(() => ChangePasswordUseCase(sl()));
+    sl.registerLazySingleton<GetAddressUseCase>(
+      () => GetAddressUseCase(sl()),
+    );
+    sl.registerLazySingleton<AddAddressUseCase>(
+      () => AddAddressUseCase(sl()),
+    );
     //repositories
-    dsl.registerLazySingleton<BaseCartRepo>(() => CartsRepo(dsl()));
-    dsl.registerLazySingleton<BaseCategoryRepo>(() => CategoriesRepo(dsl()));
-    dsl.registerLazySingleton<BaseHomeRepo>(() => HomeRepo(dsl()));
-    dsl.registerLazySingleton<BaseUserRepo>(
-      () => UserRepo(dsl(), dsl()),
+    sl.registerLazySingleton<BaseCartRepo>(() => CartsRepo(sl()));
+    sl.registerLazySingleton<BaseCategoryRepo>(() => CategoriesRepo(sl()));
+    sl.registerLazySingleton<BaseHomeRepo>(() => HomeRepo(sl()));
+    sl.registerLazySingleton<BaseUserRepo>(
+      () => UserRepo(sl(), sl()),
     );
     //datasource
-    dsl.registerLazySingleton<CategoriesRemoteDataSource>(
-        () => CategoriesRemoteDataSourceImpl(dsl()));
-    dsl.registerLazySingleton<BaseFavoritesRepo>(
-      () => FavoritesRepo(dsl()),
+    sl.registerLazySingleton<CategoriesRemoteDataSource>(
+        () => CategoriesRemoteDataSourceImpl(sl()));
+    sl.registerLazySingleton<BaseFavoritesRepo>(
+      () => FavoritesRepo(sl()),
     );
 
     ///datasource
     //remote
-    dsl.registerLazySingleton<CartsRemoteDataSource>(
-        () => CartsRemoteDataSourceImpl(dsl()));
-    dsl.registerLazySingleton<FavoritesRemoteDataSource>(
+    sl.registerLazySingleton<CartsRemoteDataSource>(
+        () => CartsRemoteDataSourceImpl(sl()));
+    sl.registerLazySingleton<FavoritesRemoteDataSource>(
       () => FavoritesRemoteDataSourceImpl(sl()),
     );
-    dsl.registerLazySingleton<HomeRemoteDataSource>(
-        () => HomeRemoteDataSourceImpl(dsl()));
-    dsl.registerLazySingleton<BaseUserRemoteDataSource>(
+    sl.registerLazySingleton<HomeRemoteDataSource>(
+        () => HomeRemoteDataSourceImpl(sl()));
+    sl.registerLazySingleton<BaseUserRemoteDataSource>(
       () => UserRemoteDataSource(sl()),
     );
     //local
-    dsl.registerLazySingleton<BaseUserLocalDataSource>(
+    sl.registerLazySingleton<BaseUserLocalDataSource>(
       () => UserLocalDataSource(),
     );
   }

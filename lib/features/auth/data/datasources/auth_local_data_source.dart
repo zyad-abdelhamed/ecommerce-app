@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/core/constants/api_constant.dart';
+import 'package:ecommerce_application/core/constants/cache_constants.dart';
 import 'package:ecommerce_application/core/services/shared.dart';
 
 abstract class BaseAuthLocalDataSource {
@@ -10,7 +11,7 @@ abstract class BaseAuthLocalDataSource {
 class AuthLocalDataSource extends BaseAuthLocalDataSource {
   @override
   Future<void> getTokenFromCache() async {
-    ApiConstant.token = Cache.getcache(key: 'token');
+    ApiConstant.token = Cache.getcache(key: CacheConstants.tokenKey) ?? '';
   }
 
   @override

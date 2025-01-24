@@ -1,4 +1,6 @@
 import 'package:ecommerce_application/core/utils/enums.dart';
+import 'package:ecommerce_application/core/widgets/get_app_empty_list_widget.dart';
+import 'package:ecommerce_application/core/widgets/get_app_failure_widget.dart';
 import 'package:ecommerce_application/core/widgets/loading_widget.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/horizontal_product_widget.dart';
@@ -19,9 +21,7 @@ class CartsWidgt extends StatelessWidget {
         switch (state.cartProductsState) {
           case RequestStateEnum.success:
             return state.cartProducts.isEmpty
-                ? const Center(
-                    child: Text('Cart is empty'),
-                  )
+                ? getAppEmptyListWidget(message: 'Cart is empty')
                 : ListView.builder(
                     itemCount: state.cartProducts.length,
                     itemBuilder: (context, index) {
@@ -38,13 +38,9 @@ class CartsWidgt extends StatelessWidget {
                     },
                   );
           case RequestStateEnum.failed:
-            return Center(
-              child: Text(state.cartProductsMessage),
-            );
+            return getAppFailureWidget(message: state.cartProductsMessage);
           case RequestStateEnum.loading:
-            return Center(
-              child: getLoadingWidget(),
-            );
+            return getLoadingWidget();
         }
       },
     );

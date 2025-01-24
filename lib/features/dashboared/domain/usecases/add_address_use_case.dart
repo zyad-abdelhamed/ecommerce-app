@@ -15,15 +15,13 @@ class AddAddressUseCase
 }
 
 class AddAddressParameters extends Equatable {
-  final int id;
   final String name;
   final String city;
   final String region;
   final String details;
 
   const AddAddressParameters(
-      {required this.id,
-      required this.name,
+      {required this.name,
       required this.city,
       required this.region,
       required this.details});

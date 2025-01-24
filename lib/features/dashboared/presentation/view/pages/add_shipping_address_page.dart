@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dependancy_injection/dashboard_debendency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/address_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/address_form.dart';
@@ -11,8 +11,9 @@ class AddShippingAddressPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddressCubit(dsl(),dsl()),
+      create: (context) => AddressCubit(sl(),sl()),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text(
             'Adding Shipping Address',
