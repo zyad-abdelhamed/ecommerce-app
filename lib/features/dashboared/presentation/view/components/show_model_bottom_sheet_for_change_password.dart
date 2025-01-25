@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/user_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/change_password_bottom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ void showChangePasswordBottomSheet({
         borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
     builder: (context) {
       return BlocProvider(
-        create: (context) => UserCubit(dsl(), dsl(), dsl()),
+        create: (context) => UserCubit(sl(), sl(), sl()),
         child: BlocConsumer<UserCubit, UserState>(
           listener: (context, state) async {
             print(state);

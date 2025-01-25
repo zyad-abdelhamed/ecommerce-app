@@ -21,7 +21,7 @@ class UserLocalDataSource implements BaseUserLocalDataSource {
 
   @override
   Future<UserModel> getCachedUserData() {
-    final jsonString = Cache.getcache(key: "CACHED_user_data");
+    final jsonString = Cache.getcache(key: "CACHED_user_data") ?? '';
     Map<String, dynamic> decodeJsonData = json.decode(jsonString);
     UserModel jsonToUserModel = UserModel.formJson(data: decodeJsonData);
 

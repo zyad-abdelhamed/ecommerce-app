@@ -13,11 +13,20 @@ class Cache {
     return await sharedPreferences.setString(key, value);
   }
 
-  static String getcache({required String key}) {
-    return sharedPreferences.getString(key) ?? "";
+  static String? getcache({required String key}) {
+    return sharedPreferences.getString(key);
   }
 
   static Future<bool> deletecache({required String key}) async {
     return await sharedPreferences.remove(key);
+  }
+
+  static Future<bool> insertIntTocache(
+      {required String key, required int value}) async {
+    return await sharedPreferences.setInt(key, value);
+  }
+
+  static int? getIntFromcache({required String key}) {
+    return sharedPreferences.getInt(key);
   }
 }

@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/user_cubit.dart';
@@ -13,7 +13,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         lazy: true,
-        create: (context) => UserCubit(dsl(), dsl(), dsl())..getUserData(),
+        create: (context) => UserCubit(sl(), sl(), sl())..getUserData(),
         child:  SingleChildScrollView(
             padding: const EdgeInsets.only(
                 top: 100, left: 16.0, right: 16.0, bottom: 16.0),

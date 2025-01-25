@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 abstract class TextStyles {
   static TextStyle textStyle34({required BuildContext context}) {
     return TextStyle(
+      color: AppColors.blackDesignColor,
         fontSize: getResponsiveFontSize(context: context, fontSize: 34),
         fontWeight: FontWeight.bold);
   }
@@ -32,7 +33,7 @@ abstract class TextStyles {
     color: Color.fromARGB(255, 222, 73, 43),
   );
   static TextStyle textStyle16grey =
-      TextStyle(fontSize: 16, color: Colors.grey[600]);
+      const TextStyle(fontSize: 16, color: AppColors.greyDesignColor);
   static TextStyle textStyle16primarycolorwithopacity =
       TextStyle(fontSize: 16, color: AppColors.inActivePrimaryColor);
   static TextStyle textStyle20Bold =

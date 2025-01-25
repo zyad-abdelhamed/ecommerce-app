@@ -19,12 +19,17 @@ class UserRepo implements BaseUserRepo {
   @override
   Future<Either<Failure, User>> getUserData() async {
     try {
+      if (await baseUserLocalDataSource.getCachedUserData() == 
+          const UserModel(
+              name: '', email: '', phone: '', token: '', image: '')) {
+        UserModel remoteUserData = await baseUserRemoteDataSource.getUserData();
+        await baseUserLocalDataSource.cacheUserData(remoteUserData);
+
+        return right(remoteUserData);
+      }
+
       User localUserData = await baseUserLocalDataSource.getCachedUserData();
       return right(localUserData);
-      UserModel remoteUserData = await baseUserRemoteDataSource.getUserData();
-      await baseUserLocalDataSource.cacheUserData(remoteUserData);
-
-      return right(remoteUserData);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDiorError(e));
@@ -63,8 +68,11 @@ class UserRepo implements BaseUserRepo {
     try {
       await baseUserRemoteDataSource.addAddress(addAddressParameters);
       return const Right(unit);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
     }
   }
 
@@ -73,8 +81,11 @@ class UserRepo implements BaseUserRepo {
     try {
       List<AddressEntity> result = await baseUserRemoteDataSource.getAddress();
       return Right(result);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
     }
   }
 }

@@ -7,11 +7,14 @@ ThemeData appTheme = ThemeData(
     colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
     primaryColor: AppColors.primaryColor,
     textTheme: GoogleFonts.montserratTextTheme(ThemeData.light().textTheme),
-    appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.transparent, centerTitle: true),
+    appBarTheme:
+        const AppBarTheme(backgroundColor: Colors.white, centerTitle: true),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: AppColors.primaryColor,
-      unselectedItemColor: AppColors.inActiveColor,
+      unselectedItemColor: AppColors.greyDesignColor,
+      backgroundColor: AppColors.whiteDesignColor,
       showUnselectedLabels: true,
       enableFeedback: true,
-    ));
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: AppColors.blackDesignColor,shape: CircleBorder(),iconSize: 30,)
+    );

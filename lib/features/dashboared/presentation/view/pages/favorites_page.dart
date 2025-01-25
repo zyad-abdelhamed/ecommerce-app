@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/display_products_icon_button_widget.dart';
@@ -14,7 +14,7 @@ class FavoritesPage extends StatelessWidget {
     return BlocProvider(
       lazy: true,
       create: (context) =>
-          ProductCubit(dsl(), dsl(), dsl(), dsl(), dsl())..getFavorites(),
+          ProductCubit(sl(), sl(), sl(), sl(), sl())..getFavorites(),
       child:  CustomScrollView(slivers: [
         SliverToBoxAdapter(
           child: Padding(

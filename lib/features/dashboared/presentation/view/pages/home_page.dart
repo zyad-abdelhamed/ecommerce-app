@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/services/dashboard_debendency_injection.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/bloc/dashboard_bloc.dart';
@@ -18,10 +18,10 @@ class HomePage extends StatelessWidget {
       providers: [
         BlocProvider(
             lazy: true,
-            create: (context) => DashboardBloc(dsl())..add(GetBannerdata())),
+            create: (context) => DashboardBloc(sl())..add(GetBannerdata())),
         BlocProvider(
             lazy: true,
-            create: (context) => ProductCubit(dsl(), dsl(), dsl(), dsl(), dsl())
+            create: (context) => ProductCubit(sl(), sl(), sl(), sl(), sl())
               ..getHomeProductsData())
       ],
       child:  CustomScrollView(

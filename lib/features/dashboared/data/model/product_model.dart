@@ -1,15 +1,15 @@
 import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
 
 class ProductModel extends Product {
-  const ProductModel(
-      {required super.name,
-      required super.price,
-      required super.id,
-      required super.description,
-      required super.oldprice,
-      required super.image,
-      required super.discount});
-
+  const ProductModel({
+    required super.name,
+    required super.price,
+    required super.id,
+    required super.description,
+    required super.oldprice,
+    required super.image,
+    required super.discount,
+  });
   factory ProductModel.fromjson({required Map<String, dynamic> data}) {
     return ProductModel(
         name: data['name'].toString(),
