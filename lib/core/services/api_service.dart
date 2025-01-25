@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ecommerce_application/core/constants/api_constant.dart';
+import 'package:ecommerce_application/core/constants/secret_keys.dart';
 // import 'package:ecommerce_application/core/constants/secret_keys.dart';
 
 class ApiService {
@@ -20,7 +21,7 @@ class ApiService {
               ApiHeadersEnum.backEndHeadersWithoutToken => {},
               ApiHeadersEnum.backEndHeadersWithToken => {'Authorization': ApiConstant.token},
               ApiHeadersEnum.paymentHeaders => {
-                //  'Authorization': "Bearer ${SecretKeys.stripeSecretKey}"
+                 'Authorization': "Bearer ${SecretKeys.stripeSecretKey}"
                 },
             }));
     return response.data;

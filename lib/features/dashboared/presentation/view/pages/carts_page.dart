@@ -4,7 +4,6 @@ import 'package:ecommerce_application/core/widgets/app_material_button.dart';
 import 'package:ecommerce_application/core/widgets/app_textfield.dart';
 import 'package:ecommerce_application/core/widgets/second_app_text_field.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
-import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/address_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/carts_widgt.dart';
 import 'package:ecommerce_application/features/payment_integration/presentation/views/pages/payment_page1.dart';
@@ -52,7 +51,8 @@ class CartsPage extends StatelessWidget {
                   ),
                   BlocBuilder<ProductCubit, ProductState>(
                     builder: (context, state) {
-                              final ProductCubit controller = context.read<ProductCubit>();
+                      final ProductCubit controller =
+                          context.read<ProductCubit>();
 
                       return Text(
                         '${controller.totalPrice.toString()}\$',
@@ -63,17 +63,22 @@ class CartsPage extends StatelessWidget {
                 ],
               ),
               SizedBoxs.sizedBoxH20,
-              appMaterialButton(
-                  buttonFunction: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PaymentPage1(
-                            totalPrice: sl<ProductCubit>().totalPrice,
-                          ),
-                        ));
-                  },
-                  buttonName: 'Check Out')
+              BlocBuilder<ProductCubit, ProductState>(
+                builder: (context, state) {
+                  ProductCubit cubit = context.read<ProductCubit>();
+                  return appMaterialButton(
+                      buttonFunction: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PaymentPage1(
+                                totalPrice: cubit.totalPrice,
+                              ),
+                            ));
+                      },
+                      buttonName: 'Check Out');
+                },
+              )
             ],
           ),
         ));

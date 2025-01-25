@@ -1,7 +1,6 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
-import 'package:ecommerce_application/features/dashboared/domain/entity/address.dart';
 import 'package:ecommerce_application/features/payment_integration/presentation/controller/cubit/stripe_cubit.dart';
 import 'package:ecommerce_application/features/payment_integration/presentation/views/components/payment1_body.dart';
 import 'package:flutter/material.dart';

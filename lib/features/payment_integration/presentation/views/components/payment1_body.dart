@@ -9,12 +9,14 @@ import 'package:ecommerce_application/features/payment_integration/presentation/
 import 'package:ecommerce_application/features/payment_integration/presentation/views/components/container_of_address.dart';
 import 'package:ecommerce_application/features/payment_integration/presentation/views/components/custom_row_for_payment.dart';
 import 'package:ecommerce_application/features/payment_integration/presentation/views/components/row_of_payment_buttons.dart';
+import 'package:ecommerce_application/features/payment_integration/presentation/views/pages/thank_you_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Payment1Body extends StatelessWidget {
   const Payment1Body({super.key, required this.totalPrice});
-final String totalPrice;
+  final String totalPrice;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,8 +44,8 @@ final String totalPrice;
             spacing: 10,
             children: [
               customRowforPayment(text: 'Order:', price: '$totalPrice\$'),
-              customRowforPayment(text: 'Delivery:', price: '15\$'),
-              customRowforPayment(text: 'Summary:', price: '127\$'),
+              customRowforPayment(text: 'Delivery:', price: '0\$'),
+              customRowforPayment(text: 'Summary:', price: '$totalPrice\$'),
               BlocConsumer<StripeCubit, StripeState>(
                 listener: (context, state) {
                   if (state.stripeRequestStateEnum == RequestStateEnum.failed) {
@@ -53,6 +55,9 @@ final String totalPrice;
                         isError: true);
                   } else if (state.stripeRequestStateEnum ==
                       RequestStateEnum.success) {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ThankYouPage(),
+                    ));
                     appSneakBar(
                         context: context,
                         message: 'Payment Submitted Successfully',
@@ -65,7 +70,7 @@ final String totalPrice;
                       buttonFunction: () {
                         cubit.makePayment(
                             paymentIntentInputModel: PaymentIntentInputModel(
-                                amount: '127', currency: 'USD'));
+                                amount: totalPrice, currency: 'USD'));
                       },
                       buttonName: state.stripeRequestStateEnum ==
                               RequestStateEnum.loading

@@ -31,7 +31,7 @@ class ProductCubit extends Cubit<ProductState> {
       this.addOrRemoveProductFromCart)
       : super(const ProductState());
   //get home products data(home products, products in favurites, products in cart)
-  void getHomeProductsData() async {
+  Future<void> getHomeProductsData() async {
     await getFavorites();
     await getcarts();
     getProducts(categoryId: 0);
@@ -53,7 +53,7 @@ class ProductCubit extends Cubit<ProductState> {
     }
   }
 
-  void getProducts({required int categoryId, String? categoryName}) async {
+  Future<void> getProducts({required int categoryId, String? categoryName}) async {
     Either<Failure, List<Product>> result =
         await getProductsUseCase(parameters: categoryId);
     result.fold(
@@ -121,7 +121,7 @@ class ProductCubit extends Cubit<ProductState> {
   //cart
   static Set<String> productsInCart = {};
   int totalPrice = 0;
-  getcarts() async {
+ Future<void> getcarts() async {
     var result = await getCartsUseCase();
     result.fold((l) {
       emit(state.copywith(
@@ -129,6 +129,7 @@ class ProductCubit extends Cubit<ProductState> {
           cartProductsState: RequestStateEnum.failed));
     }, (r) {
       productsInCart = r.map((item) => item.id.toString()).toSet();
+      totalPrice = 0;
       for (int i = 0; i < r.length; i++) {
         totalPrice += r[i].price;
       }
@@ -169,4 +170,6 @@ class ProductCubit extends Cubit<ProductState> {
     }
     return AppColors.inActiveColor;
   }
+  
+ 
 }

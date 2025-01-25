@@ -21,4 +21,12 @@ class StripeCubit extends Cubit<StripeState> {
         (r) => emit(const StripeState(
             stripeRequestStateEnum: RequestStateEnum.success)));
   }
+
+  void updateActiveButton() {
+    if (state.activeButton == 1) {
+      emit(const StripeState(activeButton: 2));
+    } else {
+      emit(const StripeState(activeButton: 1));
+    }
+  }
 }
