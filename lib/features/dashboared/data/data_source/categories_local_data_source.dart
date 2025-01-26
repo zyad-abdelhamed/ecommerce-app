@@ -29,10 +29,10 @@ class CategoriesLocalDataSourceImplBySharedPreferences
     if (categoriesDataCachedString == null) {
       return null;
     }
-    List<Map<String, dynamic>> jsonCategoriesData =
+    List<dynamic> jsonCategoriesData =
         json.decode(categoriesDataCachedString);
     List<Category> cachedCategories = jsonCategoriesData
-        .map<CategoryModel>(
+        .map<Category>(
           (e) => CategoryModel.fromjson(e),
         )
         .toList();
