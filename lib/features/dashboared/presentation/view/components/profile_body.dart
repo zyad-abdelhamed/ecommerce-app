@@ -22,8 +22,7 @@ class ProfileBody extends StatelessWidget {
         ),
         ProfileListTile(
           title: 'Shipping addresses',
-          subtitle:
-              '3 addresses',
+          subtitle: '3 addresses',
           function: () => context.push('/ShippingAddressesPage'),
         ),
         ProfileListTile(

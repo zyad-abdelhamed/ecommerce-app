@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:ecommerce_application/core/constants/cache_constants.dart';
 import 'package:ecommerce_application/core/errors/exceptions.dart';
 import 'package:ecommerce_application/core/errors/failures.dart';
+import 'package:ecommerce_application/core/services/shared.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/user_local_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/user_remote_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/model/user_model.dart';
@@ -19,9 +21,7 @@ class UserRepo implements BaseUserRepo {
   @override
   Future<Either<Failure, User>> getUserData() async {
     try {
-      if (await baseUserLocalDataSource.getCachedUserData() == 
-          const UserModel(
-              name: '', email: '', phone: '', token: '', image: '')) {
+      if (Cache.getcache(key: CacheConstants.userDataKey) == null) {
         UserModel remoteUserData = await baseUserRemoteDataSource.getUserData();
         await baseUserLocalDataSource.cacheUserData(remoteUserData);
 

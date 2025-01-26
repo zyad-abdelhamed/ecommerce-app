@@ -11,8 +11,9 @@ class CategoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       lazy: true,
-      create: (context) => CategoriesCubit(sl(),sl())..getCategories(),
-      child: Directionality(textDirection: TextDirection.rtl,
+      create: (context) => CategoriesCubit(sl(), sl())..getCategories(),
+      child: Directionality(
+        textDirection: TextDirection.rtl,
         child: Scaffold(
             appBar: AppBar(
               title: const Text('categories'),

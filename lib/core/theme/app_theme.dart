@@ -16,5 +16,8 @@ ThemeData appTheme = ThemeData(
       showUnselectedLabels: true,
       enableFeedback: true,
     ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: AppColors.blackDesignColor,shape: CircleBorder(),iconSize: 30,)
-    );
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: AppColors.blackDesignColor,
+      shape: CircleBorder(),
+      iconSize: 30,
+    ));

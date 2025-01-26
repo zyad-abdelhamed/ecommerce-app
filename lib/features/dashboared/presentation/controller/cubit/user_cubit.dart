@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:ecommerce_application/core/constants/cache_constants.dart';
 import 'package:ecommerce_application/core/errors/failures.dart';
+import 'package:ecommerce_application/core/services/shared.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/user.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/change_password_use_case.dart';
@@ -41,8 +43,11 @@ class UserCubit extends Cubit<UserState> {
     result.fold(
         (failure) => emit(UserState(
             logOutState: RequestStateEnum.failed,
-            logOutMessage: failure.message)),
-        (success) => context.pushReplacement('/login'));
+            logOutMessage: failure.message)), (success) {
+      context.pushReplacement('/login');
+      Cache.deletecache(key: CacheConstants.userDataKey);
+      Cache.deletecache(key: CacheConstants.tokenKey);
+    });
   }
 
   void changePassword({required ChangePasswordParameters parameters}) async {

@@ -53,7 +53,8 @@ class ProductCubit extends Cubit<ProductState> {
     }
   }
 
-  Future<void> getProducts({required int categoryId, String? categoryName}) async {
+  Future<void> getProducts(
+      {required int categoryId, String? categoryName}) async {
     Either<Failure, List<Product>> result =
         await getProductsUseCase(parameters: categoryId);
     result.fold(
@@ -121,7 +122,7 @@ class ProductCubit extends Cubit<ProductState> {
   //cart
   static Set<String> productsInCart = {};
   int totalPrice = 0;
- Future<void> getcarts() async {
+  Future<void> getcarts() async {
     var result = await getCartsUseCase();
     result.fold((l) {
       emit(state.copywith(
@@ -170,6 +171,4 @@ class ProductCubit extends Cubit<ProductState> {
     }
     return AppColors.inActiveColor;
   }
-  
- 
 }

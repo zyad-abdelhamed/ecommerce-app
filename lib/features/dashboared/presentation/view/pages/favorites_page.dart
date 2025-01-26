@@ -15,11 +15,11 @@ class FavoritesPage extends StatelessWidget {
       lazy: true,
       create: (context) =>
           ProductCubit(sl(), sl(), sl(), sl(), sl())..getFavorites(),
-      child:  CustomScrollView(slivers: [
+      child: CustomScrollView(slivers: [
         SliverToBoxAdapter(
           child: Padding(
-            padding:
-                const EdgeInsets.only(top: 100, left: 16.0, right: 16.0, bottom: 16.0),
+            padding: const EdgeInsets.only(
+                top: 100, left: 16.0, right: 16.0, bottom: 16.0),
             child: Text(
               'favorites',
               style: TextStyles.textStyle34(context: context),

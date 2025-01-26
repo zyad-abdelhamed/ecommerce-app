@@ -4,12 +4,11 @@ import 'package:ecommerce_application/features/dashboared/presentation/controlle
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/address_container.dart';
 import 'package:flutter/material.dart';
 
-
-
 class AddressesListView extends StatelessWidget {
   const AddressesListView({
     super.key,
-    required this.controller, required this.state,
+    required this.controller,
+    required this.state,
   });
 
   final AddressCubit controller;
@@ -26,9 +25,12 @@ class AddressesListView extends StatelessWidget {
               boxShadow: ViewConstants.appShadow,
               color: AppColors.whiteDesignColor,
             ),
-            child: AddressContainer(state: state, controller: controller, index: index,),
+            child: AddressContainer(
+              state: state,
+              controller: controller,
+              index: index,
+            ),
           );
         });
   }
 }
-

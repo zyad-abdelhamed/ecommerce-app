@@ -15,12 +15,15 @@ class ShippingAddressBodyBlocBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AddressCubit, AddressState>(builder: (context, state) {
-              final AddressCubit controller = context.read<AddressCubit>();
+      final AddressCubit controller = context.read<AddressCubit>();
       switch (state.getAddressesState) {
         case RequestStateEnum.success:
           return state.addresses.isEmpty
               ? getAppEmptyListWidget(message: 'No Addresses')
-              : AddressesListView(controller: controller,state: state,);
+              : AddressesListView(
+                  controller: controller,
+                  state: state,
+                );
         case RequestStateEnum.failed:
           return getAppFailureWidget(message: state.getAddressesErrorMessage);
         case RequestStateEnum.loading:

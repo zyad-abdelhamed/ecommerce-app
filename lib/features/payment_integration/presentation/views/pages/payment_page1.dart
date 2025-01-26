@@ -25,7 +25,9 @@ class PaymentPage1 extends StatelessWidget {
             centerTitle: true,
             leading: const Icon(FontAwesomeIcons.arrowLeft),
           ),
-          body:  Payment1Body(totalPrice: totalPrice.toString(),)),
+          body: Payment1Body(
+            totalPrice: totalPrice.toString(),
+          )),
     );
   }
 }

@@ -7,7 +7,7 @@ Widget buildCustomContainerPayment({
   required Color color,
 }) {
   return AnimatedContainer(
-    duration:const Duration(milliseconds: 500),
+    duration: const Duration(milliseconds: 500),
     width: 100,
     height: 70,
     decoration: BoxDecoration(

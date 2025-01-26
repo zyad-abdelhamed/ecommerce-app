@@ -37,8 +37,7 @@ class DashboardPage extends StatelessWidget {
             ),
             bottomNavigationBar: ClipRRect(
               borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(15),
-                  topLeft: Radius.circular(15)),
+                  topRight: Radius.circular(15), topLeft: Radius.circular(15)),
               child: BottomNavigationBar(
                 iconSize: 40.0,
                 currentIndex: controller.selectedTapIndex,

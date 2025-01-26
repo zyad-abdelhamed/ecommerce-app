@@ -14,9 +14,8 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        
         BlocProvider(
-          create: (context) => ProductCubit(sl(),sl(),sl(),sl(),sl()),
+          create: (context) => ProductCubit(sl(), sl(), sl(), sl(), sl()),
         ),
       ],
       child: SafeArea(
@@ -31,7 +30,8 @@ class SearchPage extends StatelessWidget {
                 children: [
                   getSecondAppTextfield(
                       appTextFieldInputMdel: AppTextFieldInputMdel(
-                        onChangedFunction: (value) => controller.search(input: controller.searchController.text),
+                          onChangedFunction: (value) => controller.search(
+                              input: controller.searchController.text),
                           textFieldName: ' Enter Product Name',
                           context: context,
                           controller: controller.searchController,

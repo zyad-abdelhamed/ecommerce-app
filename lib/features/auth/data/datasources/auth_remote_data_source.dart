@@ -37,10 +37,13 @@ class AuthRemteDataSource extends BaseAuthRemteDataSource {
   @override
   Future<AuthModel> login(LogInParameters logInParameters) async {
     Map<String, dynamic> responseBody = await apiService.post(
-        apiServiceInputModel: ApiServiceInputModel(body: {
-      "email": logInParameters.email,
-      'password': logInParameters.password
-    }, url: ApiConstant.loginEndPoint, apiHeaders: ApiHeadersEnum.backEndHeadersWithoutToken));
+        apiServiceInputModel: ApiServiceInputModel(
+            body: {
+          "email": logInParameters.email,
+          'password': logInParameters.password
+        },
+            url: ApiConstant.loginEndPoint,
+            apiHeaders: ApiHeadersEnum.backEndHeadersWithoutToken));
     if (responseBody['status'] == false) {
       throw ServerException(message: responseBody['message']);
     } else {

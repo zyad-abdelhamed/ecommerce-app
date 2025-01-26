@@ -3,7 +3,7 @@ part of 'product_cubit.dart';
 class ProductState extends Equatable {
   //home products
   final List<Product> products;
-final List<Product> searchProductsList;
+  final List<Product> searchProductsList;
   final RequestStateEnum? searchState;
   final RequestStateEnum productsState;
   final String productsMessage;
@@ -30,7 +30,7 @@ final List<Product> searchProductsList;
       {
       //home products
       this.searchState,
-      this.searchProductsList=const [],
+      this.searchProductsList = const [],
       this.products = const [],
       this.productsState = RequestStateEnum.loading,
       this.productsMessage = '',
@@ -97,8 +97,7 @@ final List<Product> searchProductsList;
         crossAxisCount: crossAxisCount ?? this.crossAxisCount,
         displayProductsIcon: displayProductsIcon ?? this.displayProductsIcon,
         searchProductsList: searchProductsList ?? this.searchProductsList,
-        searchState: searchState ?? this.searchState
-        );
+        searchState: searchState ?? this.searchState);
   }
 
   @override

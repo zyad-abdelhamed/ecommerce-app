@@ -55,6 +55,7 @@ dependencies:
   google_fonts: ^6.2.1
   flutter_stripe: ^11.4.0
   device_preview: ^1.2.0
+  flutter_paypal_payment: ^1.0.8
 
 dev_dependencies:
   flutter_test:

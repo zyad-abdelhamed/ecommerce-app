@@ -17,7 +17,7 @@ class SignUpPage extends StatelessWidget {
         lazy: true,
         create: (context) => AuthCubit(sl(), sl()),
         child: Scaffold(
-           resizeToAvoidBottomInset: false,
+            resizeToAvoidBottomInset: false,
             appBar: AppBar(
               leading: IconButton(
                   onPressed: () {

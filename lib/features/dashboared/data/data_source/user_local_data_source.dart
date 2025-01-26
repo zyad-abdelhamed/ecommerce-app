@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
+import 'package:ecommerce_application/core/constants/cache_constants.dart';
 import 'package:ecommerce_application/core/services/shared.dart';
 import 'package:ecommerce_application/features/dashboared/data/model/user_model.dart';
 
@@ -15,13 +16,14 @@ class UserLocalDataSource implements BaseUserLocalDataSource {
     var userModelToJson = userModel.toJson();
 
     Cache.insertcache(
-        key: "CACHED_user_data", value: json.encode(userModelToJson));
+        key: CacheConstants.userDataKey, value: json.encode(userModelToJson));
     return Future.value(unit);
   }
 
   @override
   Future<UserModel> getCachedUserData() {
-    final jsonString = Cache.getcache(key: "CACHED_user_data") ?? '';
+    final jsonString =
+        Cache.getcache(key: CacheConstants.selectedAddressKey) ?? '';
     Map<String, dynamic> decodeJsonData = json.decode(jsonString);
     UserModel jsonToUserModel = UserModel.formJson(data: decodeJsonData);
 

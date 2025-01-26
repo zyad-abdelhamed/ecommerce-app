@@ -11,7 +11,7 @@ class AddShippingAddressPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddressCubit(sl(),sl()),
+      create: (context) => AddressCubit(sl(), sl()),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -28,4 +28,3 @@ class AddShippingAddressPage extends StatelessWidget {
     );
   }
 }
-

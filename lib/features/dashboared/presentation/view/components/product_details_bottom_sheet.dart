@@ -24,8 +24,7 @@ class ProductDetailsBottomSheet extends StatelessWidget {
             builder: (context) {
               return BlocProvider(
                 lazy: true,
-                create: (context) =>
-                    ProductCubit(sl(), sl(), sl(), sl(), sl()),
+                create: (context) => ProductCubit(sl(), sl(), sl(), sl(), sl()),
                 child: SizedBox(
                   height: double.infinity,
                   width: double.infinity,

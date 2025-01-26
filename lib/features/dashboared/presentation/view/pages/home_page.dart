@@ -24,12 +24,13 @@ class HomePage extends StatelessWidget {
             create: (context) => ProductCubit(sl(), sl(), sl(), sl(), sl())
               ..getHomeProductsData())
       ],
-      child:  CustomScrollView(
+      child: CustomScrollView(
         slivers: [
           const SliverToBoxAdapter(child: BannerWidgt()),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

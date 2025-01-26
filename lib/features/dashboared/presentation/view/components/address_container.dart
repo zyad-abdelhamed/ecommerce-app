@@ -7,7 +7,8 @@ class AddressContainer extends StatelessWidget {
   const AddressContainer({
     super.key,
     required this.state,
-    required this.controller, required this.index,
+    required this.controller,
+    required this.index,
   });
 
   final AddressState state;
@@ -17,38 +18,39 @@ class AddressContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-    Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: 10.0,
       children: [
-        Text(
-        state.addresses[index].name,
-        style: TextStyles.textStyle18black,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: 10.0,
+          children: [
+            Text(
+              state.addresses[index].name,
+              style: TextStyles.textStyle18black,
+            ),
+            Text(
+              '${state.addresses[index].city} \n${state.addresses[index].region}',
+            ),
+            Row(
+              children: [
+                Checkbox(
+                  side: const BorderSide(color: AppColors.greyDesignColor),
+                  value: controller.selectedCheckBox == index,
+                  activeColor: AppColors.blackDesignColor,
+                  onChanged: (value) =>
+                      controller.changeSelectedCheckBox(index: index),
+                ),
+                const Text('Use as the shipping address'),
+              ],
+            )
+          ],
         ),
-        Text(
-        '${state.addresses[index].city} \n${state.addresses[index].region}',
-        ),
-        Row(
-        children: [
-          Checkbox(
-            side: const BorderSide(color: AppColors.greyDesignColor),
-            value: controller.selectedCheckBox == index,
-            activeColor: AppColors.blackDesignColor,
-            onChanged: (value) => controller.changeSelectedCheckBox(index: index),
-          ),
-          const Text('Use as the shipping address'),
-        ],
+        const Text(
+          'Edit',
+          style: TextStyles.textStyleNewPrice,
         )
       ],
-    ),
-    const Text(
-      'Edit',
-      style: TextStyles.textStyleNewPrice,
-    )
-              ],
-            );
+    );
   }
 }

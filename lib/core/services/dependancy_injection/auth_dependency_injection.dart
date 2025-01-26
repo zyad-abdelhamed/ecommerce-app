@@ -8,7 +8,6 @@ import 'package:ecommerce_application/features/auth/domain/use_cases/log_in.dart
 import 'package:ecommerce_application/features/auth/domain/use_cases/sign_up.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
 
-
 class AuthDependencyInjection {
   static void init() {
     //bloc
@@ -33,7 +32,7 @@ class AuthDependencyInjection {
     //data source
     sl.registerLazySingleton<BaseAuthLocalDataSource>(
         () => AuthLocalDataSource());
-   
+
     sl.registerLazySingleton<BaseAuthRemteDataSource>(
       () => AuthRemteDataSource(sl()),
     );

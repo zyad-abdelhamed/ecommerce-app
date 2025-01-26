@@ -19,9 +19,11 @@ class ApiService {
             },
             headers: switch (apiServiceInputModel.apiHeaders) {
               ApiHeadersEnum.backEndHeadersWithoutToken => {},
-              ApiHeadersEnum.backEndHeadersWithToken => {'Authorization': ApiConstant.token},
+              ApiHeadersEnum.backEndHeadersWithToken => {
+                  'Authorization': ApiConstant.token
+                },
               ApiHeadersEnum.paymentHeaders => {
-                 'Authorization': "Bearer ${SecretKeys.stripeSecretKey}"
+                  'Authorization': "Bearer ${SecretKeys.stripeSecretKey}"
                 },
             }));
     return response.data;
@@ -38,9 +40,11 @@ class ApiService {
             },
             headers: switch (apiServiceInputModel.apiHeaders) {
               ApiHeadersEnum.backEndHeadersWithoutToken => {},
-              ApiHeadersEnum.backEndHeadersWithToken => {'Authorization': ApiConstant.token},
+              ApiHeadersEnum.backEndHeadersWithToken => {
+                  'Authorization': ApiConstant.token
+                },
               ApiHeadersEnum.paymentHeaders => {
-                 // 'Authorization': "Bearer ${SecretKeys.stripeSecretKey}"
+                  // 'Authorization': "Bearer ${SecretKeys.stripeSecretKey}"
                 },
             }));
     return response.data;
@@ -60,6 +64,10 @@ class ApiServiceInputModel {
       required this.apiHeaders});
 }
 
-enum ApiHeadersEnum { backEndHeadersWithoutToken, backEndHeadersWithToken, paymentHeaders }
+enum ApiHeadersEnum {
+  backEndHeadersWithoutToken,
+  backEndHeadersWithToken,
+  paymentHeaders
+}
 
 enum ApiContentTypeEnum { applicationJson, applicationXWwwFormUrlencoded }
