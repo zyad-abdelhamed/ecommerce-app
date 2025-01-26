@@ -15,7 +15,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   CategoriesCubit(this.getCategoriesUseCase, this.getProductsUseCase)
       : super(const CategoriesState());
   getCategories() async {
-    Either<Failure, List<Categories>> result = await getCategoriesUseCase();
+    Either<Failure, List<Category>> result = await getCategoriesUseCase();
     result.fold(
         (l) => emit(CategoriesState(
             message: l.message, requestStateEnum: RequestStateEnum.failed)),

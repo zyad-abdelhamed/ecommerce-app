@@ -2,7 +2,7 @@ part of 'categories_cubit.dart';
 
 class CategoriesState extends Equatable {
   final String message;
-  final List<Categories> categories;
+  final List<Category> categories;
   final RequestStateEnum requestStateEnum;
 
   const CategoriesState(

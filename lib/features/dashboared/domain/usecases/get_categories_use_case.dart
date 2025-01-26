@@ -5,11 +5,11 @@ import 'package:ecommerce_application/features/dashboared/domain/entity/category
 import 'package:ecommerce_application/features/dashboared/domain/repositories/base_category_repo.dart';
 
 class GetCategoriesUseCase
-    extends BaseUseCaseWithoutParameters<List<Categories>> {
+    extends BaseUseCaseWithoutParameters<List<Category>> {
   BaseCategoryRepo baseCategoryRepo;
   GetCategoriesUseCase(this.baseCategoryRepo);
   @override
-  Future<Either<Failure, List<Categories>>> call() async {
+  Future<Either<Failure, List<Category>>> call() async {
     return await baseCategoryRepo.getCategories();
   }
 }

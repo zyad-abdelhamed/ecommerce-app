@@ -1,5 +1,6 @@
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/carts_remote_data_source.dart';
+import 'package:ecommerce_application/features/dashboared/data/data_source/categories_local_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/categories_remote_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/home_remote_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/user_local_data_source.dart';
@@ -88,7 +89,8 @@ class DashboardDebendencyInjection {
     );
     //repositories
     sl.registerLazySingleton<BaseCartRepo>(() => CartsRepo(sl()));
-    sl.registerLazySingleton<BaseCategoryRepo>(() => CategoriesRepo(sl()));
+    sl.registerLazySingleton<BaseCategoryRepo>(
+        () => CategoriesRepo(sl(), sl()));
     sl.registerLazySingleton<BaseHomeRepo>(() => HomeRepo(sl()));
     sl.registerLazySingleton<BaseUserRepo>(
       () => UserRepo(sl(), sl()),
@@ -115,6 +117,9 @@ class DashboardDebendencyInjection {
     //local
     sl.registerLazySingleton<BaseUserLocalDataSource>(
       () => UserLocalDataSource(),
+    );
+    sl.registerLazySingleton<BaseCategoriesLocalDataSource>(
+      () => CategoriesLocalDataSourceImplBySharedPreferences(),
     );
   }
 }
