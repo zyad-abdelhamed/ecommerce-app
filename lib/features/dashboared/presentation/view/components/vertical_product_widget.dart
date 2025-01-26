@@ -49,8 +49,8 @@ class VerticalProductWidget extends StatelessWidget {
                   Positioned(
                       top: 10.0,
                       left: 10.0,
-                      child: productsList[index].discount.toString() !=
-                              '0' //check discount = 0 or not
+                      child: productsList[index].discount !=
+                              0 //check discount = 0 or not
                           ? Container(
                               decoration: BoxDecoration(
                                   color: const Color.fromARGB(255, 222, 73, 43),
@@ -76,10 +76,7 @@ class VerticalProductWidget extends StatelessWidget {
                 child: ProductDetailsWidget(
                   maxLines: 2,
                   buttonWidget: buttonWidget,
-                  name: productsList[index].name,
-                  descreption: productsList[index].description,
-                  oldPrice: productsList[index].oldprice.toString(),
-                  newPrice: productsList[index].price.toString(),
+                  product: productsList[index],
                 ),
               ),
             )

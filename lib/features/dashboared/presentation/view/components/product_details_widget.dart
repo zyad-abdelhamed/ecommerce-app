@@ -1,18 +1,16 @@
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
+import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailsWidget extends StatelessWidget {
   final int maxLines;
-  final String name, descreption, oldPrice, newPrice;
+  final Product product;
   final Widget buttonWidget;
   const ProductDetailsWidget({
     super.key,
     required this.maxLines,
-    required this.name,
-    required this.descreption,
-    required this.oldPrice,
-    required this.newPrice,
+    required this.product,
     required this.buttonWidget,
   });
 
@@ -23,30 +21,30 @@ class ProductDetailsWidget extends StatelessWidget {
       children: [
         Text(
             maxLines: maxLines,
-            name,
+            product.name,
             style: TextStyles.textStyle34(context: context)
             // .copyWith(overflow: TextOverflow.ellipsis, fontSize: 18),
             ),
         Text(
           maxLines: 1,
-          descreption,
+          product.description,
           style: TextStyles.textStyle18grey
               .copyWith(overflow: TextOverflow.ellipsis, fontSize: 15),
         ),
         Row(
           children: <Widget>[
             Visibility(
-              visible: newPrice == oldPrice
+              visible: product.price == product.oldprice
                   ? false
                   : true, //check to display old price or not
               child: Text(
-                oldPrice,
+                product.oldprice.toString(),
                 style: TextStyles.textStyleOldPrice,
               ),
             ),
             SizedBoxs.sizedBoxw5,
             Text(
-              newPrice,
+              product.price.toString(),
               style: TextStyles.textStyleNewPrice,
             )
           ],
