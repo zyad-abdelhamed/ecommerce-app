@@ -3,6 +3,8 @@ import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/features/auth/data/datasources/auth_local_data_source.dart';
+import 'package:ecommerce_application/features/auth/data/models/sign_in_input_model.dart';
+import 'package:ecommerce_application/features/auth/data/models/sign_up_model.dart';
 import 'package:ecommerce_application/features/auth/domain/use_cases/log_in.dart';
 import 'package:ecommerce_application/features/auth/domain/use_cases/sign_up.dart';
 import 'package:equatable/equatable.dart';
@@ -38,7 +40,7 @@ class AuthCubit extends Cubit<AuthState> {
     if (formkey.currentState!.validate()) {
       emit(const AuthState(signUpState: RequestStateEnum.loading));
       final result = await signUpUseCase(
-          parameters: SignUpParameters(
+          parameters: SignUpModel(
               email: emailController.text,
               userName: usernameController.text,
               password: passwordController.text,
@@ -58,7 +60,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(const AuthState(logInState: RequestStateEnum.loading));
 
       final result = await logInUseCase(
-          parameters: LogInParameters(
+          parameters: LogInInputModel(
               email: logInEmailController.text,
               password: logInPasswordController.text));
       result.fold(
