@@ -17,7 +17,7 @@ class AuthRemteDataSource extends BaseAuthRemteDataSource {
   AuthRemteDataSource(this.apiService);
   @override
   Future<Unit> signUp(SignUpParameters signUpParameters) async {
-    Map<String, dynamic> responseBody = await apiService.post(
+    await apiService.post(
         apiServiceInputModel: ApiServiceInputModel(
             body: {
           'name': signUpParameters.userName,
@@ -25,13 +25,10 @@ class AuthRemteDataSource extends BaseAuthRemteDataSource {
           'phone': signUpParameters.phoneNumber,
           'password': signUpParameters.password,
         },
-            url: "https://student.valuxapps.com/api/register",
+            url: ApiConstant.registerEndPoint,
             apiHeaders: ApiHeadersEnum.backEndHeadersWithoutToken));
-    if (responseBody['status'] == false) {
-      throw ServerException(message: responseBody['message']);
-    } else {
-      return unit;
-    }
+
+    return unit;
   }
 
   @override
@@ -44,10 +41,7 @@ class AuthRemteDataSource extends BaseAuthRemteDataSource {
         },
             url: ApiConstant.loginEndPoint,
             apiHeaders: ApiHeadersEnum.backEndHeadersWithoutToken));
-    if (responseBody['status'] == false) {
-      throw ServerException(message: responseBody['message']);
-    } else {
-      return AuthModel.fromjson(jsondata: responseBody);
-    }
+
+    return AuthModel.fromjson(jsondata: responseBody);
   }
 }

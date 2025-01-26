@@ -1,12 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:ecommerce_application/core/constants/cache_constants.dart';
 import 'package:ecommerce_application/core/errors/exceptions.dart';
 import 'package:ecommerce_application/core/errors/failures.dart';
-import 'package:ecommerce_application/core/services/shared.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/user_local_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/user_remote_data_source.dart';
-import 'package:ecommerce_application/features/dashboared/data/model/user_model.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/address.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/user.dart';
 import 'package:ecommerce_application/features/dashboared/domain/repositories/base_user_repo.dart';
@@ -20,16 +17,17 @@ class UserRepo implements BaseUserRepo {
   UserRepo(this.baseUserRemoteDataSource, this.baseUserLocalDataSource);
   @override
   Future<Either<Failure, User>> getUserData() async {
+    User userData;
     try {
-      if (Cache.getcache(key: CacheConstants.userDataKey) == null) {
-        UserModel remoteUserData = await baseUserRemoteDataSource.getUserData();
-        await baseUserLocalDataSource.cacheUserData(remoteUserData);
+      if (await baseUserLocalDataSource.getCachedUserData() == null) {
+        userData = await baseUserRemoteDataSource.getUserData();
+        await baseUserLocalDataSource.cacheUserData(userData);//cache user data
 
-        return right(remoteUserData);
+        return right(userData);//return remote user data
       }
 
-      User localUserData = await baseUserLocalDataSource.getCachedUserData();
-      return right(localUserData);
+      userData = await baseUserLocalDataSource.getCachedUserData()!;
+      return right(userData);//return cache user data
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDiorError(e));
