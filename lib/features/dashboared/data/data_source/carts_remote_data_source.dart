@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_application/core/constants/api_constant.dart';
-import 'package:ecommerce_application/core/errors/exceptions.dart';
 import 'package:ecommerce_application/core/services/api_service.dart';
 import 'package:ecommerce_application/features/dashboared/data/model/product_model.dart';
 
@@ -18,24 +17,19 @@ class CartsRemoteDataSourceImpl extends CartsRemoteDataSource {
         apiServiceInputModel: ApiServiceInputModel(
             url: ApiConstant.cartsEndPoint,
             apiHeaders: ApiHeadersEnum.backEndHeadersWithToken));
-    if (responseBody['status'] == true) {
-      return List<ProductModel>.from((responseBody['data']['cart_items'])
-          .map((e) => ProductModel.cartandfavouritesnamedconstructor(data: e)));
-    } else {
-      throw const ServerException(message: 'NoData');
-    }
+
+    return List<ProductModel>.from((responseBody['data']['cart_items'])
+        .map((e) => ProductModel.cartandfavouritesnamedconstructor(data: e)));
   }
 
   @override
   Future<Unit> addOrRemoveProductFromCart({required String productId}) async {
-    Map<String, dynamic> responseBody = await apiService.post(
+    await apiService.post(
         apiServiceInputModel: ApiServiceInputModel(
             body: {'product_id': productId},
             url: ApiConstant.cartsEndPoint,
             apiHeaders: ApiHeadersEnum.backEndHeadersWithToken));
-    if (responseBody['status'] == false) {
-      throw ServerException(message: responseBody['message']);
-    }
+
     return unit;
   }
 }

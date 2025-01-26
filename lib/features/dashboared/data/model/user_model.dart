@@ -17,13 +17,5 @@ class UserModel extends User {
         image: data['image']);
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'email': email,
-      'phone': phone,
-      'token': token,
-      'image': image,
-    };
-  }
+ 
 }

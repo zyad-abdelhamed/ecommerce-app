@@ -1,5 +1,4 @@
 import 'package:ecommerce_application/core/constants/api_constant.dart';
-import 'package:ecommerce_application/core/errors/exceptions.dart';
 import 'package:ecommerce_application/core/services/api_service.dart';
 import 'package:ecommerce_application/features/dashboared/data/model/banner_model.dart';
 import 'package:ecommerce_application/features/dashboared/data/model/product_model.dart';
@@ -19,12 +18,9 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         apiServiceInputModel: ApiServiceInputModel(
             url: ApiConstant.getBannerEndPoint,
             apiHeaders: ApiHeadersEnum.backEndHeadersWithoutToken));
-    if (responseBody['status'] == true) {
-      return List<BannerModel>.from(
-          (responseBody['data'] as List).map((e) => BannerModel.fromJson(e)));
-    } else {
-      throw const ServerException(message: 'NO Data');
-    }
+
+    return List<BannerModel>.from(
+        (responseBody['data'] as List).map((e) => BannerModel.fromJson(e)));
   }
 
   @override

@@ -31,7 +31,7 @@ lib/core/constants/secret_keys.dart
 .pub-cache/
 .pub/
 /build/
-
+lib/core/constants/secret_keys.dart
 # Symbolication related
 app.*.symbols
 

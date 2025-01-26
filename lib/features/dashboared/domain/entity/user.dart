@@ -11,6 +11,16 @@ class User extends Equatable {
       required this.token,
       required this.image});
 
+     Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'email': email,
+      'phone': phone,
+      'token': token,
+      'image': image,
+    };
+  }
+
   @override
   List<Object?> get props => [name, email, phone, token, image];
 }
