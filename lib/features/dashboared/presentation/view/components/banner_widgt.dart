@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
+import 'package:ecommerce_application/core/widgets/get_app_failure_widget.dart';
 import 'package:ecommerce_application/core/widgets/loading_widget.dart';
 import 'package:ecommerce_application/core/utils/responsive_extention.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/bloc/dashboard_bloc.dart';
@@ -17,16 +18,14 @@ class BannerWidgt extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.requestStateEnum != current.requestStateEnum,
       builder: (context, state) {
-        print('build banners');
         switch (state.requestStateEnum) {
           case RequestStateEnum.success:
             return CarouselSlider(
                 items: state.banners.reversed.map((item) {
-                  return SizedBox(
-                    width: double.infinity,
-                    child: CachedNetworkImage(
-                        fit: BoxFit.fill, imageUrl: item.image),
-                  );
+                  return CachedNetworkImage(
+                      width: double.infinity,
+                      fit: BoxFit.fill,
+                      imageUrl: item.image);
                 }).toList(),
                 options: CarouselOptions(
                   height: context.height * 1 / 4,
@@ -42,15 +41,9 @@ class BannerWidgt extends StatelessWidget {
                   // pauseAutoPlayInFiniteScroll: true
                 ));
           case RequestStateEnum.failed:
-            return Center(
-              child: Text(state.errorMessage),
-            );
+            return getAppFailureWidget(message: state.errorMessage);
           case RequestStateEnum.loading:
-            return Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: context.height * 1 / 8,
-                ),
-                child: getLoadingWidget());
+            return getLoadingWidget();
         }
       },
     );

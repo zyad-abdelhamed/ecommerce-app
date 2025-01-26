@@ -13,16 +13,15 @@ class CategoriesRepo extends BaseCategoryRepo {
       this.categoriesRemoteDataSource, this.baseCategoriesLocalDataSource);
   @override
   Future<Either<Failure, List<Category>>> getCategories() async {
-    List<Category> categories;
-    try {
-      if (baseCategoriesLocalDataSource.getCacheCategoriesData() != null) {
-        categories = baseCategoriesLocalDataSource.getCacheCategoriesData()!;
-        return right(categories);
-      }
-      categories = await categoriesRemoteDataSource.getCategories();
+    try{
+    List<Category> cachedcategories = baseCategoriesLocalDataSource.getCacheCategoriesData();
+    if(cachedcategories.isNotEmpty){
+return right(cachedcategories);//return cached data
+    }
+     List<Category> remotecategories = await categoriesRemoteDataSource.getCategories();
       await baseCategoriesLocalDataSource.cacheCategoriesData(
-          categories: categories);
-      return Right(categories);
+          categories: remotecategories);
+      return Right(remotecategories);//return remote data
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDiorError(e));
