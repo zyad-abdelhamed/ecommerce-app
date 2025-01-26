@@ -19,15 +19,17 @@ class UserRepo implements BaseUserRepo {
   Future<Either<Failure, User>> getUserData() async {
     User userData;
     try {
-      if (await baseUserLocalDataSource.getCachedUserData() == null) {
-        userData = await baseUserRemoteDataSource.getUserData();
-        await baseUserLocalDataSource.cacheUserData(userData);//cache user data
-
-        return right(userData);//return remote user data
+      if (baseUserLocalDataSource.getCachedUserData() != null) {
+        userData = baseUserLocalDataSource.getCachedUserData()!;
+        print('return cache user data=====================');
+        return right(userData); //return cache user data
       }
 
-      userData = await baseUserLocalDataSource.getCachedUserData()!;
-      return right(userData);//return cache user data
+      userData = await baseUserRemoteDataSource.getUserData();
+      await baseUserLocalDataSource.cacheUserData(userData); //cache user data
+      print('return remote user data=====================');
+
+      return right(userData); //return remote user data
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDiorError(e));

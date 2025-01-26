@@ -60,12 +60,14 @@ class SignUpFormComponent extends StatelessWidget {
                       controller: context.authController.passwordController,
                       context: context)),
               SizedBoxs.sizedBoxH20,
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(ViewConstants.alreadyHaveANAccount),
-                  Icon(Icons.arrow_right_alt)
-                ],
+              GestureDetector(
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(ViewConstants.alreadyHaveANAccount),
+                    Icon(Icons.arrow_right_alt)
+                  ],
+                ),
               ),
               SizedBoxs.sizedBoxH30,
               appMaterialButton(

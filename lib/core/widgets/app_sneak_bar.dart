@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/helper_functions/get_responsive_font_size.dart';
 import 'package:flutter/material.dart';
 
 appSneakBar(
@@ -9,6 +10,12 @@ appSneakBar(
       content: Center(
           child: Text(
         message,
-        style: TextStyle(color: isError ? Colors.red : Colors.white),
+        style: TextStyle(
+            color: isError ? Colors.red : Colors.white,
+            fontSize: getResponsiveFontSize(
+              context: context,
+              fontSize: 20,
+            ),
+            fontWeight: FontWeight.bold),
       )),
     ));

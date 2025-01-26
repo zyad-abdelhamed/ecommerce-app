@@ -20,18 +20,20 @@ class LogInPage extends StatelessWidget {
           body: SafeArea(
             child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Expanded(child: SizedBoxs.sizedBoxH10),
-                      Text(
-                        ViewConstants.login,
-                        style: TextStyles.textStyle34(context: context),
-                      ),
-                      const Expanded(child: SizedBoxs.sizedBoxH10),
-                      const LogInFormComponent(),
-                      const Expanded(child: SizedBoxs.sizedBoxH10)
-                    ])),
+                child: Flexible(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Expanded(child: SizedBoxs.sizedBoxH10),
+                        Text(
+                          ViewConstants.login,
+                          style: TextStyles.textStyle34(context: context),
+                        ),
+                        const Expanded(child: SizedBoxs.sizedBoxH10),
+                        const LogInFormComponent(),
+                        const Expanded(child: SizedBoxs.sizedBoxH10)
+                      ]),
+                )),
           ),
         ));
   }

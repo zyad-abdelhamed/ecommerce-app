@@ -1,30 +1,33 @@
 import 'dart:convert';
 
-import 'package:dartz/dartz.dart';
+import 'package:ecommerce_application/core/constants/cache_constants.dart';
 import 'package:ecommerce_application/core/services/shared.dart';
 import 'package:ecommerce_application/features/dashboared/data/model/user_model.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/user.dart';
 
 abstract class BaseUserLocalDataSource {
-  Future<User>? getCachedUserData();
-  Future<Unit> cacheUserData(User post);
+  User? getCachedUserData();
+  Future<void> cacheUserData(User post);
 }
 
 class UserLocalDataSource implements BaseUserLocalDataSource {
   @override
-  Future<Unit> cacheUserData(User user) {
-    Map<String,dynamic> userToJson = user.toJson();
+  Future<void> cacheUserData(User user) async {
+    Map<String, dynamic> userToJson = user.toJson();
 
-    Cache.insertcache(
-        key: "CACHED_user_data", value: json.encode(userToJson));
-    return Future.value(unit);
+    await Cache.insertcache(
+        key: CacheConstants.userDataKey, value: json.encode(userToJson));
   }
 
   @override
-  Future<User>? getCachedUserData() {
-    final jsonString = Cache.getcache(key: "CACHED_user_data") ?? '';
+  User? getCachedUserData() {
+    final String? jsonString = Cache.getcache(key: CacheConstants.userDataKey);
+    if (jsonString == null) {
+      return null;
+    }
+
     User jsonToUser = UserModel.formJson(data: json.decode(jsonString));
 
-    return Future.value(jsonToUser);
+    return jsonToUser;
   }
 }
