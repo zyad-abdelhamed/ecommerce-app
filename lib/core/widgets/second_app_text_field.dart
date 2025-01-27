@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/widgets/app_textfield.dart';
+import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:flutter/material.dart';
 
 Widget getSecondAppTextfield(

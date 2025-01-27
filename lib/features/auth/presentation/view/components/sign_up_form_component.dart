@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
+import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:ecommerce_application/core/widgets/app_sneak_bar.dart';
 import 'package:ecommerce_application/core/widgets/app_material_button.dart';
 import 'package:ecommerce_application/core/widgets/app_textfield.dart';
@@ -26,11 +27,9 @@ class SignUpFormComponent extends StatelessWidget {
             context: context, message: state.signUpmessage, isError: true);
       }
     },
-        // buildWhen: (previous, current) =>
-        //     previous.signUpState != current.signUpState,
+        
         builder: (context, state) {
-      print('///////////////////////////////////');
-      print(state);
+     
       return Form(
           key: context.authController.formkey,
           child: Column(

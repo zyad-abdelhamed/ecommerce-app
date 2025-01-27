@@ -1,7 +1,7 @@
+import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/widgets/app_material_button.dart';
-import 'package:ecommerce_application/core/widgets/app_textfield.dart';
 import 'package:ecommerce_application/core/widgets/second_app_text_field.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';

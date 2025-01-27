@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:ecommerce_application/core/constants/api_constant.dart';
 import 'package:ecommerce_application/core/constants/secret_keys.dart';
-// import 'package:ecommerce_application/core/constants/secret_keys.dart';
+import 'package:ecommerce_application/core/localization/localization_proxy.dart';
+import 'package:ecommerce_application/core/models/api_service_input_model.dart';
 
 class ApiService {
   final Dio dio;
@@ -39,35 +40,17 @@ class ApiService {
                 'application/x_www_form_urlencoded',
             },
             headers: switch (apiServiceInputModel.apiHeaders) {
-              ApiHeadersEnum.backEndHeadersWithoutToken => {},
+              ApiHeadersEnum.backEndHeadersWithoutToken => {
+                  'language': LocalizationProxyImpl.language
+                },
               ApiHeadersEnum.backEndHeadersWithToken => {
+                  'language': LocalizationProxyImpl.language,
                   'Authorization': ApiConstant.token
                 },
               ApiHeadersEnum.paymentHeaders => {
-                  // 'Authorization': "Bearer ${SecretKeys.stripeSecretKey}"
+                  'Authorization': "Bearer ${SecretKeys.stripeSecretKey}"
                 },
             }));
     return response.data;
   }
 }
-
-//input model for all api service methodes
-class ApiServiceInputModel {
-  final String url;
-  final Map<String, dynamic>? body;
-  final ApiHeadersEnum apiHeaders;
-  final ApiContentTypeEnum apiContentType;
-  ApiServiceInputModel(
-      {this.apiContentType = ApiContentTypeEnum.applicationJson,
-      required this.url,
-      this.body,
-      required this.apiHeaders});
-}
-
-enum ApiHeadersEnum {
-  backEndHeadersWithoutToken,
-  backEndHeadersWithToken,
-  paymentHeaders
-}
-
-enum ApiContentTypeEnum { applicationJson, applicationXWwwFormUrlencoded }

@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
+import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:ecommerce_application/core/theme/app_colors.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -56,22 +57,3 @@ Widget getAppTextfieldWithVaildator(
       ),
     );
 
-//input model
-class AppTextFieldInputMdel {
-  final String textFieldName;
-  final BuildContext context;
-  final TextEditingController controller;
-  final bool obscure;
-  final ValueChanged<String>? onChangedFunction;
-  final IconData? icon;
-  final VoidCallback? iconFunction;
-
-  AppTextFieldInputMdel(
-      {required this.textFieldName,
-      required this.context,
-      required this.controller,
-      this.onChangedFunction,
-      this.icon,
-      this.iconFunction,
-      this.obscure = false});
-}

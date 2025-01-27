@@ -1,5 +1,5 @@
+import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
-import 'package:ecommerce_application/core/widgets/app_textfield.dart';
 import 'package:ecommerce_application/core/widgets/second_app_text_field.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/add_and_remove_favorites_button.dart';
@@ -23,7 +23,6 @@ class SearchPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: BlocBuilder<ProductCubit, ProductState>(
             builder: (context, state) {
-              print(state.searchProductsList);
               final ProductCubit controller = context.read<ProductCubit>();
 
               return Column(

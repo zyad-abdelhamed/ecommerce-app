@@ -1,6 +1,7 @@
 import 'package:ecommerce_application/core/constants/api_constant.dart';
 import 'package:ecommerce_application/core/constants/cache_constants.dart';
-import 'package:ecommerce_application/core/services/shared.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
+import 'package:ecommerce_application/core/services/cache_service.dart';
 
 abstract class BaseAuthLocalDataSource {
   Future<void> insertTokenToCache({required String token});
@@ -11,7 +12,7 @@ abstract class BaseAuthLocalDataSource {
 class AuthLocalDataSource extends BaseAuthLocalDataSource {
   @override
   Future<void> getTokenFromCache() async {
-    ApiConstant.token = Cache.getcache(key: CacheConstants.tokenKey) ?? '';
+    ApiConstant.token = sl<CacheProxy>().getStringFromCache(key: CacheConstants.tokenKey) ?? '';
   }
 
   @override
@@ -24,6 +25,6 @@ class AuthLocalDataSource extends BaseAuthLocalDataSource {
 
   @override
   Future<void> insertTokenToCache({required String token}) async {
-    await Cache.insertcache(key: 'token', value: token);
+    await sl<CacheProxy>().insertStringToCache(key: 'token', value: token);
   }
 }
