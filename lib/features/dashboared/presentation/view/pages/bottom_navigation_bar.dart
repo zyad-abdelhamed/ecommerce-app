@@ -1,5 +1,5 @@
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/bottom_navigation_bar_cubit.dart';
-import 'package:ecommerce_application/features/dashboared/presentation/view/pages/carts_page.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/view/pages/cart_page.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/categries_page.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/favorites_page.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/home_page.dart';

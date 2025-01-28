@@ -4,6 +4,7 @@ import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/widgets/app_material_button.dart';
 import 'package:ecommerce_application/core/widgets/second_app_text_field.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/address_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/carts_widgt.dart';
 import 'package:ecommerce_application/features/payment_integration/presentation/views/pages/payment_page1.dart';
@@ -16,10 +17,17 @@ class CartsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        lazy: true,
-        create: (context) =>
-            ProductCubit(sl(), sl(), sl(), sl(), sl())..getcarts(),
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(
+              create: (context) =>
+                  ProductCubit(sl(), sl(), sl(), sl(), sl())..getcarts()),
+          BlocProvider(
+              create: (context) => AddressCubit(
+                    sl(),
+                    sl(),
+                  )..getAddresses())
+        ],
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -66,6 +74,7 @@ class CartsPage extends StatelessWidget {
               BlocBuilder<ProductCubit, ProductState>(
                 builder: (context, state) {
                   ProductCubit cubit = context.read<ProductCubit>();
+                  AddressCubit addressCubit = context.read<AddressCubit>();
                   return appMaterialButton(
                       buttonFunction: () {
                         Navigator.push(
@@ -73,6 +82,7 @@ class CartsPage extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => PaymentPage1(
                                 totalPrice: cubit.totalPrice,
+                                address: addressCubit.getSelectedAddress,
                               ),
                             ));
                       },
