@@ -2,7 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_application/core/constants/cache_constants.dart';
 import 'package:ecommerce_application/core/errors/failures.dart';
-import 'package:ecommerce_application/core/services/shared.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
+import 'package:ecommerce_application/core/services/cache_service.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/user.dart';
 import 'package:ecommerce_application/features/dashboared/domain/usecases/change_password_use_case.dart';
@@ -45,8 +46,8 @@ class UserCubit extends Cubit<UserState> {
             logOutState: RequestStateEnum.failed,
             logOutMessage: failure.message)), (success) async{
       context.pushReplacement('/login');
-     await Cache.deletecache(key: CacheConstants.userDataKey);
-     await Cache.deletecache(key: CacheConstants.tokenKey);
+     await sl<CacheProxy>().deletecache(key: CacheConstants.userDataKey);
+     await sl<CacheProxy>().deletecache(key: CacheConstants.tokenKey);
     });
   }
 

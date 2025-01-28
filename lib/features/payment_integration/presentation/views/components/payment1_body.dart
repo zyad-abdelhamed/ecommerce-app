@@ -5,6 +5,7 @@ import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/core/widgets/app_material_button.dart';
 import 'package:ecommerce_application/core/widgets/app_sneak_bar.dart';
 import 'package:ecommerce_application/features/payment_integration/data/models/payment_intent_input_model.dart';
+import 'package:ecommerce_application/features/dashboared/domain/entity/address.dart';
 import 'package:ecommerce_application/features/payment_integration/data/models/paypal_model/amount.dart';
 import 'package:ecommerce_application/features/payment_integration/data/models/paypal_model/item.dart';
 import 'package:ecommerce_application/features/payment_integration/data/models/paypal_model/item_list.dart';
@@ -21,9 +22,9 @@ import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import '../../../data/models/paypal_model/details.dart';
 
 class Payment1Body extends StatelessWidget {
-  const Payment1Body({super.key, required this.totalPrice});
+  const Payment1Body({super.key, required this.totalPrice, required this.addressEntity});
   final String totalPrice;
-
+  final AddressEntity addressEntity;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -37,8 +38,8 @@ class Payment1Body extends StatelessWidget {
             style: TextStyles.textStyle18black,
           ),
           containerOfAddress(
-            name: 'Soliman Esam',
-            address: 'zewir ,shebinelkom , menofia , egypt',
+            name: addressEntity.name,
+            address: addressEntity.details,
             function: () {},
           ),
           const Text(

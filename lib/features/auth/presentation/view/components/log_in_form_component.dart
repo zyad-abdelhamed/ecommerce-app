@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/constants/api_constant.dart';
+import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:ecommerce_application/core/widgets/app_material_button.dart';
 import 'package:ecommerce_application/core/widgets/app_sneak_bar.dart';
 import 'package:ecommerce_application/core/widgets/app_textfield.dart';
@@ -25,11 +25,9 @@ class LogInFormComponent extends StatelessWidget {
             context: context, message: state.logInmessage, isError: true);
       }
     },
-        // buildWhen: (previous, current) =>
-        //     previous.logInState != current.logInState,
+       
         builder: (context, state) {
-      print(state);
-      print("${ApiConstant.token}==========================");
+      
       return Form(
           key: context.authController.logInFormkey,
           child: Column(

@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:ecommerce_application/core/constants/cache_constants.dart';
-import 'package:ecommerce_application/core/services/shared.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
+import 'package:ecommerce_application/core/services/cache_service.dart';
 import 'package:ecommerce_application/features/dashboared/data/model/category_model.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/category.dart';
 
@@ -17,7 +18,7 @@ class CategoriesLocalDataSourceImplBySharedPreferences
     List<Map<String, dynamic>> categoriesDataToJson = categories
         .map<Map<String, dynamic>>((remoteCategory) => remoteCategory.toJson())
         .toList();
-    await Cache.insertcache(
+    await sl<CacheProxy>().insertStringToCache(
         key: CacheConstants.categoriesDataKey,
         value: json.encode(categoriesDataToJson));
   }
@@ -25,7 +26,7 @@ class CategoriesLocalDataSourceImplBySharedPreferences
   @override
   List<Category> getCacheCategoriesData() {
     final String categoriesDataCachedString =
-        Cache.getcache(key: CacheConstants.categoriesDataKey) ?? '';
+        sl<CacheProxy>().getStringFromCache(key: CacheConstants.categoriesDataKey) ?? '';
 
     List<dynamic> jsonCategoriesData = json.decode(categoriesDataCachedString);
     List<Category> cachedCategories = jsonCategoriesData
