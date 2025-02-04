@@ -2,6 +2,7 @@ import 'package:ecommerce_application/core/services/dependancy_injection/global_
 import 'package:ecommerce_application/features/dashboared/data/data_source/carts_remote_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/categories_local_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/categories_remote_data_source.dart';
+import 'package:ecommerce_application/features/dashboared/data/data_source/home_local_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/home_remote_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/user_local_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/user_remote_data_source.dart';
@@ -91,7 +92,7 @@ class DashboardDebendencyInjection {
     sl.registerLazySingleton<BaseCartRepo>(() => CartsRepo(sl()));
     sl.registerLazySingleton<BaseCategoryRepo>(
         () => CategoriesRepo(sl(), sl()));
-    sl.registerLazySingleton<BaseHomeRepo>(() => HomeRepo(sl()));
+    sl.registerLazySingleton<BaseHomeRepo>(() => HomeRepo(sl(), sl()));
     sl.registerLazySingleton<BaseUserRepo>(
       () => UserRepo(sl(), sl()),
     );
@@ -115,6 +116,8 @@ class DashboardDebendencyInjection {
       () => UserRemoteDataSource(sl()),
     );
     //local
+    sl.registerLazySingleton<BaseHomeLocalDataSource>(
+        () => HomeLocalDataSourceImpl());
     sl.registerLazySingleton<BaseUserLocalDataSource>(
       () => UserLocalDataSource(),
     );

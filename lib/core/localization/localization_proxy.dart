@@ -11,7 +11,7 @@ abstract class LocalizationProxy {
 }
 
 class LocalizationProxyImpl extends LocalizationProxy {
-  static String language = 'ar';
+  static String language = 'en';
 
   Map<String, dynamic> localization = {};
   @override
