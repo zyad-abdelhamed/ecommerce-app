@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
+import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/change_password_button.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,21 @@ class SettingsBody extends StatelessWidget {
           const TextField(),
           const TextField(),
           const ChangePasswordButton(),
-          const TextField()
+          const TextField(),
+          SizedBoxs.sizedBoxH10,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Language : En',
+                style: TextStyles.textStyle18black,
+              ),
+              TextButton(
+                  onPressed: () {},
+                  child:
+                      const Text('Change', style: TextStyles.textStyle18grey))
+            ],
+          )
         ],
       ),
     );
