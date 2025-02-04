@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/localization/localization_proxy.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/carts_remote_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/categories_local_data_source.dart';
@@ -33,6 +34,7 @@ import 'package:ecommerce_application/features/dashboared/presentation/controlle
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/favorite_icon_controller.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/search_cubit.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/settings_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/user_cubit.dart';
 import '../../../features/dashboared/domain/repositories/base_home_repo.dart';
 
@@ -58,6 +60,9 @@ class DashboardDebendencyInjection {
     );
     sl.registerFactory<AddressCubit>(
       () => AddressCubit(sl(), sl()),
+    );
+    sl.registerFactory(
+      () => SettingsCubit(sl<BaseLocalizationProxy>()),
     );
     //usecases
     sl.registerLazySingleton(() => AddOrRemoveProductFromCart(sl()));

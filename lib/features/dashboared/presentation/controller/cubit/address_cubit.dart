@@ -52,7 +52,8 @@ class AddressCubit extends Cubit<AddressState> {
 
   //change selected checkbox
   int selectedCheckBox =
-      sl<CacheProxy>().getIntFromCache(key: CacheConstants.selectedAddressKey) ?? 0;
+      sl<BaseCache>().getIntFromCache(key: CacheConstants.selectedAddressKey) ??
+          0;
 
   void changeSelectedCheckBox({required int index}) {
     selectedCheckBox = index;
@@ -60,8 +61,8 @@ class AddressCubit extends Cubit<AddressState> {
         selectedCheckBox: index,
         changeSelectedCheckBoxStateEnum:
             ChangeSelectedCheckBoxStateEnum.changeSelectedCheckBoxDone));
-    sl<CacheProxy>().insertIntToCache(
-        key: CacheConstants.selectedAddressKey, value: index);
+    sl<BaseCache>()
+        .insertIntToCache(key: CacheConstants.selectedAddressKey, value: index);
   }
 
   AddressEntity get getSelectedAddress => state.addresses[selectedCheckBox];

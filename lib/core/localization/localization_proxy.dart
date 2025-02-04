@@ -1,45 +1,53 @@
 import 'dart:convert';
 
-import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
+import 'package:ecommerce_application/core/constants/cache_constants.dart';
 import 'package:ecommerce_application/core/services/cache_service.dart';
 import 'package:flutter/services.dart';
 
-abstract class LocalizationProxy {
+abstract class BaseLocalizationProxy {
   Future<void> loadlang();
   Future<void> convertToArabic();
   Future<void> convertToEnglish();
+  Future<void> getLanguage();
 }
 
-class LocalizationProxyImpl extends LocalizationProxy {
+class LocalizationProxyImpl extends BaseLocalizationProxy {
+  final BaseCache baseCache;
   static String language = 'ar';
 
   Map<String, dynamic> localization = {};
+
+  LocalizationProxyImpl(this.baseCache);
   @override
   Future<void> loadlang() async {
-    await sl<CacheProxy>().insertStringToCache(key: 'lang', value: language);
+    await baseCache.insertStringToCache(
+        key: CacheConstants.languageKey, value: language);
     String root = await rootBundle.loadString("assets/lang/$language.json");
     localization = json.decode(root);
   }
 
   @override
   Future<void> convertToArabic() async {
-    if (language == 'en') {
-      language = 'ar';
+    language = 'ar';
 
-      await loadlang();
-    }
+    await loadlang();
   }
 
   @override
   Future<void> convertToEnglish() async {
-    if (language == 'ar') {
-      language = 'en';
+    language = 'en';
 
-      await loadlang();
-    }
+    await loadlang();
   }
 
   bool isarabic() {
     return language == 'ar';
+  }
+
+  @override
+  Future<void> getLanguage() async {
+    language =
+        baseCache.getStringFromCache(key: CacheConstants.languageKey) ?? "ar";
+    await loadlang();
   }
 }

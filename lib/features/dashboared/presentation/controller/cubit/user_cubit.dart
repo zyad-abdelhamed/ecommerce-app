@@ -46,8 +46,8 @@ class UserCubit extends Cubit<UserState> {
             logOutState: RequestStateEnum.failed,
             logOutMessage: failure.message)), (success) async{
       context.pushReplacement('/login');
-     await sl<CacheProxy>().deletecache(key: CacheConstants.userDataKey);
-     await sl<CacheProxy>().deletecache(key: CacheConstants.tokenKey);
+     await sl<BaseCache>().deletecache(key: CacheConstants.userDataKey);
+     await sl<BaseCache>().deletecache(key: CacheConstants.tokenKey);
     });
   }
 
