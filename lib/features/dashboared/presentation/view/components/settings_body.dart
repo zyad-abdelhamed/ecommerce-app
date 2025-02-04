@@ -39,8 +39,13 @@ class SettingsBody extends StatelessWidget {
               ),
               TextButton(
                   onPressed: () {},
-                  child:
-                      const Text('Change', style: TextStyles.textStyle18grey))
+                  child:const Row(
+                    children: [
+                      Text('Change', style: TextStyles.textStyle18grey),
+                      Icon(Icons.change_circle_outlined, color: Colors.grey,)
+                    ],
+                  )
+                      )
             ],
           )
         ],
