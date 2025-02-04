@@ -25,13 +25,13 @@ class SignUpPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment
                     .stretch, //in order to stretch width of app material button
                 children: [
-                                    Expanded(child: Flexible(child: SizedBoxs.sizedBoxH10,)),
+                                    const Expanded(child: Flexible(child: SizedBoxs.sizedBoxH10,)),
 
                   Text(
                     ViewConstants.signUp,
                     style: TextStyles.textStyle34(context: context),
                   ),
-                  Expanded(child: Flexible(child: SizedBoxs.sizedBoxH10,)),
+                  const Expanded(child: Flexible(child: SizedBoxs.sizedBoxH10,)),
                   const SignUpFormComponent(),
                   const Expanded(child: SizedBoxs.sizedBoxH10),
                 ],

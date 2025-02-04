@@ -5,4 +5,5 @@ abstract class CacheConstants {
   static const String categoriesDataKey = 'CACHED_categories_data';
   static const String onBoardingKey = 'CACHED_onboarding_bool';
   static const String languageKey = 'lang';
+  static const String bannerDataKey = 'CACHED_banner';
 }
