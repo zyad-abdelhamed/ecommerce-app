@@ -14,11 +14,11 @@ class GlobalDependencyInjection {
     sl.registerLazySingleton<ApiService>(
       () => ApiService(sl()),
     );
-    sl.registerLazySingleton<LocalizationProxy>(
-      () => LocalizationProxyImpl(),
+    sl.registerLazySingleton<BaseLocalizationProxy>(
+      () => LocalizationProxyImpl(sl<BaseCache>()),
     );
-    sl.registerSingleton<CacheProxy>(
-      CacheProxyImplBySharedPreferences(),
+    sl.registerSingleton<BaseCache>(
+      CacheImplBySharedPreferences(),
     );
   }
 }

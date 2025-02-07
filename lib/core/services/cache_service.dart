@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class CacheProxy {
+abstract class BaseCache {
   Future<void> cacheintIalization();
   Future<bool> insertStringToCache(
       {required String key, required String value});
@@ -17,7 +17,7 @@ abstract class CacheProxy {
   Future<bool> deletecache({required String key});
 }
 
-class CacheProxyImplBySharedPreferences extends CacheProxy {
+class CacheImplBySharedPreferences extends BaseCache {
   late SharedPreferences sharedPreferences;
   //ialization
   @override

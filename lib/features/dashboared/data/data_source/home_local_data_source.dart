@@ -15,7 +15,7 @@ class HomeLocalDataSourceImpl implements BaseHomeLocalDataSource {
   @override
   List<BannerModel>? getCachedBanners() {
     var json =
-        sl<CacheProxy>().getStringFromCache(key: CacheConstants.bannerDataKey);
+        sl<BaseCache>().getStringFromCache(key: CacheConstants.bannerDataKey);
     if (json == null) {
       return null;
     }
@@ -28,7 +28,7 @@ class HomeLocalDataSourceImpl implements BaseHomeLocalDataSource {
   Future<void> setCachedBanners(List<Banners> banners) async {
     List<Map<String, dynamic>> bannerJson =
         banners.map((e) => e.toJson()).toList();
-    await sl<CacheProxy>().insertStringToCache(
+    await sl<BaseCache>().insertStringToCache(
         key: CacheConstants.bannerDataKey, value: json.encode(bannerJson));
   }
 }

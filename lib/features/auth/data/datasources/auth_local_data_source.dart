@@ -12,7 +12,7 @@ abstract class BaseAuthLocalDataSource {
 class AuthLocalDataSource extends BaseAuthLocalDataSource {
   @override
   Future<void> getTokenFromCache() async {
-    ApiConstant.token = sl<CacheProxy>().getStringFromCache(key: CacheConstants.tokenKey) ?? '';
+    ApiConstant.token = sl<BaseCache>().getStringFromCache(key: CacheConstants.tokenKey) ?? '';
   }
 
   @override
@@ -25,6 +25,6 @@ class AuthLocalDataSource extends BaseAuthLocalDataSource {
 
   @override
   Future<void> insertTokenToCache({required String token}) async {
-    await sl<CacheProxy>().insertStringToCache(key: 'token', value: token);
+    await sl<BaseCache>().insertStringToCache(key: 'token', value: token);
   }
 }

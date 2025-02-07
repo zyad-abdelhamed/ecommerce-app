@@ -18,7 +18,7 @@ class CategoriesLocalDataSourceImplBySharedPreferences
     List<Map<String, dynamic>> categoriesDataToJson = categories
         .map<Map<String, dynamic>>((remoteCategory) => remoteCategory.toJson())
         .toList();
-    await sl<CacheProxy>().insertStringToCache(
+    await sl<BaseCache>().insertStringToCache(
         key: CacheConstants.categoriesDataKey,
         value: json.encode(categoriesDataToJson));
   }
@@ -26,7 +26,7 @@ class CategoriesLocalDataSourceImplBySharedPreferences
   @override
   List<Category> getCacheCategoriesData() {
     final String categoriesDataCachedString =
-        sl<CacheProxy>().getStringFromCache(key: CacheConstants.categoriesDataKey) ?? '';
+        sl<BaseCache>().getStringFromCache(key: CacheConstants.categoriesDataKey) ?? '';
 
     List<dynamic> jsonCategoriesData = json.decode(categoriesDataCachedString);
     List<Category> cachedCategories = jsonCategoriesData

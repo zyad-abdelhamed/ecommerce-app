@@ -15,7 +15,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   void animateToNextPage({required BuildContext context}) {
     if (pageController.page!.round() == 2) {
       goToLoginPage(context: context);
-      sl<CacheProxy>()
+      sl<BaseCache>()
           .insertBoolToCache(key: CacheConstants.onBoardingKey, value: false);
     }
     pageController.nextPage(

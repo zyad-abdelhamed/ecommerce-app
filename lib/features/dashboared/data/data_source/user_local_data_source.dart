@@ -16,13 +16,13 @@ class UserLocalDataSource implements BaseUserLocalDataSource {
   Future<void> cacheUserData(User user) async {
     Map<String, dynamic> userToJson = user.toJson();
 
-    await sl<CacheProxy>().insertStringToCache(
+    await sl<BaseCache>().insertStringToCache(
         key: CacheConstants.userDataKey, value: json.encode(userToJson));
   }
 
   @override
   User? getCachedUserData() {
-    final String? jsonString = sl<CacheProxy>().getStringFromCache(key: CacheConstants.userDataKey);
+    final String? jsonString = sl<BaseCache>().getStringFromCache(key: CacheConstants.userDataKey);
     if (jsonString == null) {
       return null;
     }
