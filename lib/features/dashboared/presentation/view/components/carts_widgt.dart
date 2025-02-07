@@ -8,13 +8,12 @@ import 'package:ecommerce_application/features/dashboared/presentation/view/comp
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CartsWidgt extends StatelessWidget {
-  const CartsWidgt({super.key});
+class CartsWidget extends StatelessWidget {
+  const CartsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductCubit, ProductState>(
-      //  buildWhen: (previous, current) => previous.carts != current.carts,
       builder: (context, state) {
         final ProductCubit controller = context.read<ProductCubit>();
 
@@ -23,22 +22,26 @@ class CartsWidgt extends StatelessWidget {
             return state.cartProducts.isEmpty
                 ? getAppEmptyListWidget(message: 'Cart is empty')
                 : ListView.builder(
-                    itemCount: state.cartProducts.length,
-                    itemBuilder: (context, index) {
-                      return HorizontalProductWidget(
-                        buttonWidget: RemoveButtonWidget(
-                          removeButtonFunction: () =>
-                              controller.addOrRemoveCartProducts(
-                                  productId:
-                                      state.cartProducts[index].id.toString()),
-                        ),
-                        productsList: state.cartProducts,
-                        index: index,
-                      );
-                    },
-                  );
+                  itemCount: state.cartProducts.length,
+                  itemBuilder: (context, index) {
+                    return HorizontalProductWidget(
+                      isLoading:  (state.load) == index ,
+                      buttonWidget: RemoveButtonWidget(
+                        removeButtonFunction: () =>
+                            controller.addOrRemoveCartProducts(
+                              index: index,
+                                productId:
+                                    state.cartProducts[index].id.toString()),
+                      ),
+                      productsList: state.cartProducts,
+                      index: index,
+                    );
+                  },
+                );
+
           case RequestStateEnum.failed:
             return getAppFailureWidget(message: state.cartProductsMessage);
+
           case RequestStateEnum.loading:
             return getLoadingWidget();
         }

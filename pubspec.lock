@@ -47,7 +47,7 @@ packages:
     source: hosted
     version: "2.11.0"
   bloc:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: bloc
       sha256: "52c10575f4445c61dd9e0cafcc6356fdd827c4c64dd7945ef3c4105f6b6ac189"
@@ -523,7 +523,7 @@ packages:
     source: hosted
     version: "2.0.1"
   http:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: http
       sha256: fe7ab022b76f3034adc518fb6ea04a82387620e19977665ea18d30a1cf43442f
@@ -874,6 +874,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  skeletonizer:
+    dependency: "direct main"
+    description:
+      name: skeletonizer
+      sha256: "0dcacc51c144af4edaf37672072156f49e47036becbc394d7c51850c5c1e884b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.3"
   sky_engine:
     dependency: transitive
     description: flutter

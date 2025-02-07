@@ -1,6 +1,7 @@
 part of 'product_cubit.dart';
 
 class ProductState extends Equatable {
+  final int? load;
   //home products
   final List<Product> products;
   final List<Product> searchProductsList;
@@ -28,6 +29,7 @@ class ProductState extends Equatable {
 
   const ProductState(
       {
+        this.load,
       //home products
       this.searchState,
       this.searchProductsList = const [],
@@ -55,6 +57,7 @@ class ProductState extends Equatable {
 
   ProductState copywith(
       {List<Product>? products,
+      int? load,
       RequestStateEnum? productsState,
       List<Product>? searchProductsList,
       RequestStateEnum? searchState,
@@ -73,6 +76,7 @@ class ProductState extends Equatable {
       int? crossAxisCount,
       Icon? displayProductsIcon}) {
     return ProductState(
+      load: load ?? this.load,
         products: products ?? this.products,
         productsState: productsState ?? this.productsState,
         productsMessage: productsMessage ?? this.productsMessage,
@@ -119,6 +123,7 @@ class ProductState extends Equatable {
         crossAxisCount,
         displayProductsIcon,
         searchProductsList,
-        searchState
+        searchState,
+        load
       ];
 }

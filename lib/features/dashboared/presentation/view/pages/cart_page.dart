@@ -42,53 +42,62 @@ class CartsPage extends StatelessWidget {
                   style: TextStyles.textStyle34(context: context),
                 ),
               ),
-              const Expanded(child: CartsWidgt()), //cart products bloc builder
-              getSecondAppTextfield(
-                  appTextFieldInputMdel: AppTextFieldInputMdel(
-                      icon: CupertinoIcons.arrow_right,
-                      textFieldName: 'Enter Promo Code',
-                      context: context,
-                      controller: TextEditingController())),
-              SizedBoxs.sizedBoxH20,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Total amount:',
-                    style: TextStyles.textStyle16grey,
-                  ),
-                  BlocBuilder<ProductCubit, ProductState>(
-                    builder: (context, state) {
-                      final ProductCubit controller =
-                          context.read<ProductCubit>();
+              const Expanded(child: CartsWidget()), //cart products bloc builder
 
-                      return Text(
-                        '${controller.totalPrice.toString()}\$',
-                        style: TextStyles.textStyle20Bold,
-                      );
-                    },
-                  )
-                ],
-              ),
-              SizedBoxs.sizedBoxH20,
               BlocBuilder<ProductCubit, ProductState>(
                 builder: (context, state) {
-                  ProductCubit cubit = context.read<ProductCubit>();
-                  AddressCubit addressCubit = context.read<AddressCubit>();
-                  return appMaterialButton(
-                      buttonFunction: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PaymentPage1(
-                                totalPrice: cubit.totalPrice,
-                                address: addressCubit.getSelectedAddress,
-                              ),
-                            ));
-                      },
-                      buttonName: 'Check Out');
+                  final ProductCubit controller = context.read<ProductCubit>();
+                  if (controller.totalPrice != 0) {
+                    return Column(
+                      children: [
+                        getSecondAppTextfield(
+                            appTextFieldInputMdel: AppTextFieldInputMdel(
+                                icon: CupertinoIcons.arrow_right,
+                                textFieldName: 'Enter Promo Code',
+                                context: context,
+                                controller: TextEditingController())),
+                        SizedBoxs.sizedBoxH20,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Total amount:',
+                              style: TextStyles.textStyle16grey,
+                            ),
+                            Text(
+                              '${controller.totalPrice.toString()}\$',
+                              style: TextStyles.textStyle20Bold,
+                            )
+                          ],
+                        ),
+                        SizedBoxs.sizedBoxH20,
+                        BlocBuilder<ProductCubit, ProductState>(
+                          builder: (context, state) {
+                            ProductCubit cubit = context.read<ProductCubit>();
+                            AddressCubit addressCubit =
+                                context.read<AddressCubit>();
+                            return appMaterialButton(
+                                buttonFunction: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PaymentPage1(
+                                          totalPrice: cubit.totalPrice,
+                                          address:
+                                              addressCubit.getSelectedAddress,
+                                        ),
+                                      ));
+                                },
+                                buttonName: 'Check Out');
+                          },
+                        )
+                      ],
+                    );
+                  } else {
+                    return const SizedBox();
+                  }
                 },
-              )
+              ),
             ],
           ),
         ));

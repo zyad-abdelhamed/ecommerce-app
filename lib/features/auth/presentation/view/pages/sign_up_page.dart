@@ -18,20 +18,24 @@ class SignUpPage extends StatelessWidget {
         create: (context) => AuthCubit(sl(), sl()),
         child: Scaffold(
             resizeToAvoidBottomInset: false,
-            
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment
                     .stretch, //in order to stretch width of app material button
                 children: [
-                                    const Expanded(child: Flexible(child: SizedBoxs.sizedBoxH10,)),
-
+                  const Expanded(
+                      child: Flexible(
+                    child: SizedBoxs.sizedBoxH10,
+                  )),
                   Text(
                     ViewConstants.signUp,
                     style: TextStyles.textStyle34(context: context),
                   ),
-                  const Expanded(child: Flexible(child: SizedBoxs.sizedBoxH10,)),
+                  const Expanded(
+                      child: Flexible(
+                    child: SizedBoxs.sizedBoxH10,
+                  )),
                   const SignUpFormComponent(),
                   const Expanded(child: SizedBoxs.sizedBoxH10),
                 ],

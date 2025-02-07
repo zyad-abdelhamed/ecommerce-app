@@ -31,6 +31,7 @@ class ProductCubit extends Cubit<ProductState> {
       this.addOrRemoveProductFromCart)
       : super(const ProductState());
   //get home products data(home products, products in favurites, products in cart)
+
   Future<void> getHomeProductsData() async {
     await getFavorites();
     await getcarts();
@@ -139,14 +140,18 @@ class ProductCubit extends Cubit<ProductState> {
     });
   }
 
-  addOrRemoveCartProducts({required String productId}) async {
+  addOrRemoveCartProducts({required String productId ,required  int index}) async {
+        
+
+    emit(state.copywith(addOrRemoveFromCartsrequestStateEnum: RequestStateEnum.loading,load: index));
     Either<Failure, Unit> result =
         await addOrRemoveProductFromCart(parameters: productId);
     result.fold((l) {
       emit(state.copywith(
           addOrRemoveFromCartsMessage: l.message,
-          addOrRemoveFromCartsrequestStateEnum: RequestStateEnum.failed));
+          addOrRemoveFromCartsrequestStateEnum: RequestStateEnum.failed,load: -1));// العنصر-1 غير موجود دائما 
     }, (r) async {
+      
       if (productsInCart.contains(productId)) {
         productsInCart.remove(productId);
       } else {
@@ -154,7 +159,7 @@ class ProductCubit extends Cubit<ProductState> {
       }
       await getcarts();
       emit(state.copywith(
-          addOrRemoveFromCartsrequestStateEnum: RequestStateEnum.success));
+          addOrRemoveFromCartsrequestStateEnum: RequestStateEnum.success,load: -1));// العنصر-1 غير موجود دائما 
     });
   }
 
