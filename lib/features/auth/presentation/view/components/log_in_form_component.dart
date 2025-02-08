@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:ecommerce_application/core/widgets/app_material_button.dart';
 import 'package:ecommerce_application/core/widgets/app_sneak_bar.dart';
@@ -35,14 +36,14 @@ class LogInFormComponent extends StatelessWidget {
             children: [
               getAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
-                      textFieldLabel: 'email',
+                      textFieldLabel: 'email'.localization,
                       controller: context.authController.logInEmailController,
                       context: context)),
               SizedBoxs.sizedBoxH10,
               getAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
                       obscure: true,
-                      textFieldLabel: 'password',
+                      textFieldLabel: 'password'.localization,
                       controller:
                           context.authController.logInPasswordController,
                       context: context)),
@@ -54,7 +55,7 @@ class LogInFormComponent extends StatelessWidget {
                       onPressed: () {
                         AuthCubit.goToSignUpPage(context);
                       },
-                      child: const Text('Do not have any account?Signup'))
+                      child:  Text('Do not have any account?Signup'.localization)),
                 ],
               ),
               SizedBoxs.sizedBoxH30,
@@ -63,8 +64,8 @@ class LogInFormComponent extends StatelessWidget {
                     context.authController.login();
                   },
                   buttonName: state.logInState == RequestStateEnum.loading
-                      ? 'loading...'
-                      : 'login')
+                      ? 'loading'.localization
+                      : "log_in".localization)
             ],
           ));
     });

@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/constants/view_constants.dart';
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:ecommerce_application/core/widgets/app_sneak_bar.dart';
 import 'package:ecommerce_application/core/widgets/app_material_button.dart';
@@ -37,34 +37,34 @@ class SignUpFormComponent extends StatelessWidget {
             children: [
               getAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
-                      textFieldLabel: 'username',
+                      textFieldLabel: 'name'.localization,
                       controller: context.authController.usernameController,
                       context: context)),
               SizedBoxs.sizedBoxH10,
               getAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
-                      textFieldLabel: 'phonenumber',
+                      textFieldLabel: 'phonenumber'.localization,
                       controller: context.authController.phoneNumerController,
                       context: context)),
               SizedBoxs.sizedBoxH10,
               getAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
-                      textFieldLabel: 'email',
+                      textFieldLabel: 'email'.localization,
                       controller: context.authController.emailController,
                       context: context)),
               SizedBoxs.sizedBoxH10,
               getAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
-                      textFieldLabel: 'password',
+                      textFieldLabel: 'password'.localization,
                       controller: context.authController.passwordController,
                       context: context)),
               SizedBoxs.sizedBoxH20,
               GestureDetector(
-                child: const Row(
+                child:  Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(ViewConstants.alreadyHaveANAccount),
-                    Icon(Icons.arrow_right_alt)
+                    Text("already_have_an_account".localization),
+                   const Icon(Icons.arrow_right_alt)
                   ],
                 ),
               ),
@@ -74,8 +74,8 @@ class SignUpFormComponent extends StatelessWidget {
                     context.authController.signUp();
                   },
                   buttonName: state.logInState == RequestStateEnum.loading
-                      ? 'loading...'
-                      : 'sign up')
+                      ? 'loading'.localization
+                      : 'sign_up'.localization),
             ],
           ));
     });

@@ -8,7 +8,7 @@ import 'package:ecommerce_application/features/dashboared/domain/entity/category
 
 abstract class BaseCategoriesLocalDataSource {
   Future<void> cacheCategoriesData({required List<Category> categories});
-  List<Category> getCacheCategoriesData();
+  List<CategoryModel>? getCacheCategoriesData();
 }
 
 class CategoriesLocalDataSourceImplBySharedPreferences
@@ -24,16 +24,14 @@ class CategoriesLocalDataSourceImplBySharedPreferences
   }
 
   @override
-  List<Category> getCacheCategoriesData() {
-    final String categoriesDataCachedString =
-        sl<BaseCache>().getStringFromCache(key: CacheConstants.categoriesDataKey) ?? '';
-
-    List<dynamic> jsonCategoriesData = json.decode(categoriesDataCachedString);
-    List<Category> cachedCategories = jsonCategoriesData
-        .map<Category>(
-          (e) => CategoryModel.fromjson(e),
-        )
-        .toList();
-    return cachedCategories;
+  List<CategoryModel>? getCacheCategoriesData() {
+     var json =
+        sl<BaseCache>().getStringFromCache(key:  CacheConstants.categoriesDataKey);
+    if (json == null) {
+      return null;
+    }
+    var jsonDecoded = jsonDecode(json);
+    return List<CategoryModel>.from(
+        jsonDecoded.map((e) => CategoryModel.fromjson(e)));
   }
 }

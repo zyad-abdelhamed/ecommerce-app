@@ -1,10 +1,9 @@
-import 'package:ecommerce_application/core/constants/view_constants.dart';
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
 import 'package:ecommerce_application/features/auth/presentation/view/components/sign_up_form_component.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,7 +28,7 @@ class SignUpPage extends StatelessWidget {
                     child: SizedBoxs.sizedBoxH10,
                   )),
                   Text(
-                    ViewConstants.signUp,
+                    "sign_up".localization,
                     style: TextStyles.textStyle34(context: context),
                   ),
                   const Expanded(

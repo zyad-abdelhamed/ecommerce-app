@@ -15,10 +15,11 @@ class CategoriesRepo extends BaseCategoryRepo {
   Future<Either<Failure, List<Category>>> getCategories() async {
     List<Category> categories;
     try {
-      categories = baseCategoriesLocalDataSource.getCacheCategoriesData();
-      if (categories.isNotEmpty) {
-        return right(categories); //return cached data
+      if(baseCategoriesLocalDataSource.getCacheCategoriesData() != null){ 
+        categories = baseCategoriesLocalDataSource.getCacheCategoriesData()!;
+        return right(categories);
       }
+      
       categories = await categoriesRemoteDataSource.getCategories();
       await baseCategoriesLocalDataSource.cacheCategoriesData(
           categories: categories);
