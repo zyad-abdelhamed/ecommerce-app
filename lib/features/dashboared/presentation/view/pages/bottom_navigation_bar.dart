@@ -25,7 +25,7 @@ class DashboardPage extends StatelessWidget {
               onPageChanged: (index) {
                 controller.onPageChanged(index);
               },
-              children: const [
+              children: const <Widget>[
                 HomePage(),
                 CategoryPage(),
                 FavoritesPage(),
@@ -43,6 +43,7 @@ class DashboardPage extends StatelessWidget {
                 onTap: (index) {
                   controller.onChangeTabIndex(index);
                 },
+
                 type: BottomNavigationBarType.fixed,
                 items: controller.bottomNavigationBarItems,
               ),

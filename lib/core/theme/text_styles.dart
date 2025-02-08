@@ -24,6 +24,7 @@ abstract class TextStyles {
       TextStyle(fontSize: 18, color: Colors.black);
 
   static const TextStyle textStyleOldPrice = TextStyle(
+      fontStyle: FontStyle.italic,
       fontSize: 15,
       color: Colors.blueGrey,
       decoration: TextDecoration.lineThrough);

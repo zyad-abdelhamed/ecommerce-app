@@ -22,7 +22,7 @@ void main() async {
   GlobalDependencyInjection.init();
     await sl<BaseCache>().cacheintIalization();
 
-    await sl<BaseLocalization>().loadlang();
+    await sl<BaseLocalization>().getLanguage();
     ApiConstant.token =
       sl<BaseCache>().getStringFromCache(key: CacheConstants.tokenKey) ?? '';
 
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       builder: (context, child) {
         return Directionality(
-          textDirection: sl<BaseLocalization>().language == 'ar' ? TextDirection.rtl : TextDirection.ltr, // جعل النصوص من اليمين إلى اليسار
+          textDirection: sl<BaseLocalization>().getDirectionality(),
           child: child!,
         );
       },

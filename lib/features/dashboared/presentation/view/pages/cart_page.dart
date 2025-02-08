@@ -50,11 +50,11 @@ class CartsPage extends StatelessWidget {
                   final ProductCubit controller = context.read<ProductCubit>();
                   if (controller.totalPrice != 0) {
                     return Column(
-                      children: [
+                      children: <Widget>[
                         getSecondAppTextfield(
                             appTextFieldInputMdel: AppTextFieldInputMdel(
                                 icon: CupertinoIcons.arrow_right,
-                                textFieldLabel: 'Enter Promo Code',
+                                textFieldLabel: "Enter Promo Code".localization,
                                 context: context,
                                 controller: TextEditingController())),
                         SizedBoxs.sizedBoxH20,
@@ -62,7 +62,7 @@ class CartsPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Total amount:',
+                              "Total amount:".localization,
                               style: TextStyles.textStyle16grey,
                             ),
                             Text(
@@ -89,7 +89,7 @@ class CartsPage extends StatelessWidget {
                                         ),
                                       ));
                                 },
-                                buttonName: 'Check Out');
+                                buttonName: "Check Out".localization);
                           },
                         )
                       ],
