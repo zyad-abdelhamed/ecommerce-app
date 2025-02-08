@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 abstract class BaseLocalization {
   String language = 'en';
+  TextDirection getDirectionality();
   Map<String, dynamic> localization = {};
   Future<void> loadlang();
   Future<void> convertToArabic();
@@ -30,14 +31,14 @@ class LocalizationImpl extends BaseLocalization {
   @override
   Future<void> convertToArabic() async {
     language = 'ar';
-
+    getDirectionality();
     await loadlang();
   }
 
   @override
   Future<void> convertToEnglish() async {
     language = 'en';
-
+    getDirectionality();
     await loadlang();
   }
 
@@ -56,5 +57,10 @@ class LocalizationImpl extends BaseLocalization {
   String getCurrentLanguage() {
     return baseCache.getStringFromCache(key: CacheConstants.languageKey) ??
         "ar";
+  }
+
+  @override
+  TextDirection getDirectionality() {
+    return isarabic() ? TextDirection.rtl : TextDirection.ltr;
   }
 }

@@ -9,13 +9,16 @@ class SettingsCubit extends Cubit<SettingsState> {
   final BaseLocalization baseLocalizationProxy;
   SettingsCubit(this.baseLocalizationProxy) : super(const SettingsState());
 
-   convertLanguageToArabic() async{
-   await baseLocalizationProxy.convertToArabic();
+ Future<void> convertLanguageToArabic() async {
+    await baseLocalizationProxy.convertToArabic();
     emit(const SettingsState(requestStateEnum: RequestStateEnum.success));
   }
 
-   convertLanguageToEnglish() async{
-  await  baseLocalizationProxy.convertToEnglish();
+ Future<void> convertLanguageToEnglish() async {
+    await baseLocalizationProxy.convertToEnglish();
+
     emit(const SettingsState(requestStateEnum: RequestStateEnum.failed));
   }
+
+ 
 }

@@ -7,21 +7,17 @@ import 'package:ecommerce_application/features/dashboared/presentation/controlle
 
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/settings_textfields_bloc_builder.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/theme/text_styles.dart';
 
 class SettingsBody extends StatelessWidget {
-  const SettingsBody({super.key});
-
+  const SettingsBody({super.key, required this.controller});
+final SettingsCubit controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: BlocBuilder<SettingsCubit, SettingsState>(
-        builder: (context, state) {
-          final SettingsCubit controller = context.read<SettingsCubit>();
-          return SingleChildScrollView(
+      child: SingleChildScrollView(physics:const BouncingScrollPhysics(),
             child: Column(
               spacing: 10.0,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,11 +43,11 @@ class SettingsBody extends StatelessWidget {
                 languageRow(
                     language: 'العربية',
                     currnetLanguage: 'ar',
-                    onTap: controller.convertLanguageToArabic)
+                    onTap: controller.convertLanguageToArabic),
+                    SizedBoxs.sizedBoxH30
               ],
             ),
-          );
-        },
+         
       ),
     );
   }
