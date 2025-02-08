@@ -30,18 +30,24 @@ class SettingsBody extends StatelessWidget {
                   "settings".localization,
                   style: TextStyles.textStyle34(context: context),
                 ),
-                 Text(
+                Text(
                   "personal_info".localization,
                   style: TextStyles.textStyle18black,
                 ),
                 const SettingsTextFieldsBlocBuilder(),
                 SizedBoxs.sizedBoxH30,
-                 Text(
+                Text(
                   "language".localization,
                   style: TextStyles.textStyle18black,
                 ),
-                languageRow(language: 'English', currnetLanguage: 'en',onTap: controller.convertLanguageToEnglish),
-                languageRow(language: 'العربية', currnetLanguage: 'ar',onTap: controller.convertLanguageToArabic)
+                languageRow(
+                    language: 'English',
+                    currnetLanguage: 'en',
+                    onTap: controller.convertLanguageToEnglish),
+                languageRow(
+                    language: 'العربية',
+                    currnetLanguage: 'ar',
+                    onTap: controller.convertLanguageToArabic)
               ],
             ),
           );
@@ -51,12 +57,12 @@ class SettingsBody extends StatelessWidget {
   }
 }
 
-GestureDetector languageRow(
+InkWell languageRow(
     {required String language,
     required String currnetLanguage,
-    required Function onTap}) {
-  return GestureDetector(
-    onTap: () => onTap,
+    required VoidCallback onTap}) {
+  return InkWell(
+    onTap:  onTap,
     child: Row(
       children: [
         Text(
@@ -64,8 +70,8 @@ GestureDetector languageRow(
           style: TextStyles.textStyle18grey,
         ),
         Visibility(
-            visible: currnetLanguage ==
-                sl<BaseLocalization>().getCurrentLanguage(),
+            visible:
+                currnetLanguage == sl<BaseLocalization>().language,
             child: const Icon(
               Icons.done,
               color: AppColors.greenDesignColor,

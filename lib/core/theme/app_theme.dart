@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData appTheme = ThemeData(
-    scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
+  brightness: Brightness.dark,
+   // scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
     // colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
     // primaryColor: AppColors.primaryColor,
     textTheme: GoogleFonts.montserratTextTheme(ThemeData.light().textTheme),

@@ -24,7 +24,7 @@ class ProfileBody extends StatelessWidget {
         ProfileListTile(
           title: "shipping_addresses".localization,
           subtitle: '3 addresses',
-          function: () => context.push('/ShippingAddressesPage'),
+          function: () => Navigator.pushNamed(context, 'ShippingAddresses')
         ),
         // ProfileListTile(
         //   title: 'Payment methods',
@@ -45,7 +45,7 @@ class ProfileBody extends StatelessWidget {
           title: "settings".localization,
           subtitle: "settings_subtitle".localization,
           function: () {
-            context.pushReplacement('/settings');
+            Navigator.pushNamed(context, 'Settings');
           },
         ),
       ],

@@ -41,6 +41,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) {
+        return Directionality(
+          textDirection: sl<BaseLocalization>().language == 'ar' ? TextDirection.rtl : TextDirection.ltr, // جعل النصوص من اليمين إلى اليسار
+          child: child!,
+        );
+      },
       debugShowCheckedModeBanner: false,
       theme: appTheme,
       initialRoute: getInitRoute,

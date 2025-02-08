@@ -43,6 +43,7 @@ class DashboardPage extends StatelessWidget {
                 onTap: (index) {
                   controller.onChangeTabIndex(index);
                 },
+                type: BottomNavigationBarType.fixed,
                 items: controller.bottomNavigationBarItems,
               ),
             ),
