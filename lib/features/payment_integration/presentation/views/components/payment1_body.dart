@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/constants/view_constants.dart';
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
@@ -33,8 +33,8 @@ class Payment1Body extends StatelessWidget {
         spacing: 20,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            ViewConstants.shippingAddress,
+           Text(
+            "shipping_address".localization,
             style: TextStyles.textStyle18black,
           ),
           containerOfAddress(
@@ -42,8 +42,8 @@ class Payment1Body extends StatelessWidget {
             address: addressEntity.details,
             function: () {},
           ),
-          const Text(
-            ViewConstants.deliveryMethod,
+           Text(
+            "delivery_method".localization,
             style: TextStyles.textStyle18black,
           ),
           const RowOfPaymentButtons(),
@@ -51,9 +51,9 @@ class Payment1Body extends StatelessWidget {
           Column(
             spacing: 10,
             children: [
-              customRowforPayment(text: 'Order:', price: '$totalPrice\$'),
-              customRowforPayment(text: 'Delivery:', price: '0\$'),
-              customRowforPayment(text: 'Summary:', price: '$totalPrice\$'),
+              customRowforPayment(text: "Order:".localization, price: '$totalPrice\$'),
+              customRowforPayment(text: "Delivery:".localization, price: '0\$'),
+              customRowforPayment(text: "Summary:".localization, price: '$totalPrice\$'),
               BlocConsumer<StripeCubit, StripeState>(
                 listener: (context, state) {
                   if (state.stripeRequestStateEnum == RequestStateEnum.failed) {

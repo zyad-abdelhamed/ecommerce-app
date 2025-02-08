@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
@@ -22,7 +23,7 @@ class ProfilePage extends StatelessWidget {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               const SignOutButtonBlocBuilder(),
               Text(
-                'My profile',
+                "My profile".localization,
                 style: TextStyles.textStyle34(context: context),
               ),
               SizedBoxs.sizedBoxH20,

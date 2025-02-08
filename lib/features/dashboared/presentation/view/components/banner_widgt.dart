@@ -4,7 +4,7 @@ import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/widgets/get_app_failure_widget.dart';
 import 'package:ecommerce_application/core/widgets/loading_widget.dart';
-import 'package:ecommerce_application/core/utils/responsive_extention.dart';
+import 'package:ecommerce_application/core/extentions/responsive_extention.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/bloc/dashboard_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

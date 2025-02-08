@@ -5,7 +5,6 @@ import 'package:ecommerce_application/core/services/dependancy_injection/global_
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 part 'onboarding_state.dart';
 
@@ -25,7 +24,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   }
 
   static void goToLoginPage({required BuildContext context}) {
-    context.pushReplacement('/dashboard');
+    Navigator.pushNamedAndRemoveUntil(context, 'login', (route) => false);
   }
 
   @override

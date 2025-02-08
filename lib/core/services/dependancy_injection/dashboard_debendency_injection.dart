@@ -63,7 +63,7 @@ class DashboardDebendencyInjection {
       () => AddressCubit(sl(), sl()),
     );
     sl.registerFactory(
-      () => SettingsCubit(sl<BaseLocalizationProxy>()),
+      () => SettingsCubit(sl<BaseLocalization>()),
     );
     //usecases
     sl.registerLazySingleton(() => AddOrRemoveProductFromCart(sl()));

@@ -10,17 +10,10 @@ Widget getSecondAppTextfield(
           child: TextFormField(
             onChanged: appTextFieldInputMdel.onChangedFunction,
             controller: appTextFieldInputMdel.controller,
-            validator: (value) {
-              if (appTextFieldInputMdel.controller.text.isEmpty) {
-                return '${appTextFieldInputMdel.textFieldName} must not be empty';
-              } else {
-                return null;
-              }
-            },
             decoration: InputDecoration(
               filled: true,
               fillColor: Colors.white,
-              hintText: appTextFieldInputMdel.textFieldName,
+              hintText: appTextFieldInputMdel.textFieldLabel,
               hintStyle:
                   const TextStyle(color: Color.fromARGB(255, 209, 207, 207)),
               border: InputBorder.none,

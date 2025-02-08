@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -6,24 +7,23 @@ part 'bottom_navigation_bar_state.dart';
 
 class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
   BottomNavigationBarCubit() : super(BottmNavigationBarInitial());
-  final List<String> titles = const [
-    'Home',
-    'Categories',
-    'Favourite',
-    'Cart',
-    'Profile'
-  ];
-  final List<BottomNavigationBarItem> bottomNavigationBarItems = const [
-    BottomNavigationBarItem(icon: Icon(CupertinoIcons.home), label: 'home'),
+
+  final List<BottomNavigationBarItem> bottomNavigationBarItems = [
     BottomNavigationBarItem(
-        icon: Icon(FontAwesomeIcons.list), label: 'Categories'),
+        icon: const Icon(CupertinoIcons.home), label: "home".localization),
     BottomNavigationBarItem(
-        icon: Icon(FontAwesomeIcons.heart), label: 'Favourite'),
+        icon: const Icon(FontAwesomeIcons.list),
+        label: "categories".localization),
     BottomNavigationBarItem(
-        icon: Icon(FontAwesomeIcons.cartShopping), label: 'Cart'),
-    BottomNavigationBarItem(icon: Icon(CupertinoIcons.search), label: 'search'),
+        icon: const Icon(FontAwesomeIcons.heart),
+        label: "Favourite".localization),
     BottomNavigationBarItem(
-        icon: Icon(FontAwesomeIcons.user), label: 'Profile'),
+        icon: const Icon(FontAwesomeIcons.cartShopping),
+        label: "Cart".localization),
+    BottomNavigationBarItem(
+        icon: const Icon(CupertinoIcons.search), label: "search".localization),
+    BottomNavigationBarItem(
+        icon: const Icon(FontAwesomeIcons.user), label: "Profile".localization),
   ];
   int selectedTapIndex = 0;
   final PageController pageController = PageController();

@@ -55,12 +55,23 @@
     "promocodes_subtitle": "You have special promocodes",
     "my_reviews": "My reviews",
     "my_reviews_subtitle": "Reviews for 4 ProfileListTiles",
-    "settings_subtitle": "Notifications, password",
+    "settings_subtitle": "personal Information, password, Language",
     "remove": "remove",
     "No Addresses": "No Addresses",
     "password_changed_success": "Password changed successfully",
     "password_change_failed": "Failed to change password",
     "loading": "LOADING...",
-    "save_password": "SAVE PASSWORD"
-
+    "save_password": "SAVE PASSWORD",
+    "language": "Language",
+    "home": "home",
+    "Favourite": "Favourite",
+    "Cart": "Cart",
+    "search": "search",
+    "Profile": "Profile",
+    "Order:": "Order:",
+    "Delivery:": "Delivery:",
+    "Summary:": "Summary:",
+    "Thank_you_page_text": "Your order will be delivered soon.\nThank you for choosing our app!",
+    "CONTINUE_SHOPPING": "CONTINUE SHOPPING",
+    "Success!": "Success!"
 }

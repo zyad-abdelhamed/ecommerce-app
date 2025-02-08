@@ -1,7 +1,7 @@
 // first step: calculate scale factor
 // second step: calculate Responsive Font Size
 // third step: calculate a lower and upper limit where font size dose not exceed them
-import 'package:ecommerce_application/core/utils/responsive_extention.dart';
+import 'package:ecommerce_application/core/extentions/responsive_extention.dart';
 import 'package:flutter/cupertino.dart';
 
 double getResponsiveFontSize(

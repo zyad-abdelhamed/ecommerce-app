@@ -1,6 +1,7 @@
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
-import 'package:ecommerce_application/core/widgets/second_app_text_field.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/view/components/second_app_text_field.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/add_and_remove_favorites_button.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/horizontal_product_widget.dart';
@@ -31,7 +32,7 @@ class SearchPage extends StatelessWidget {
                       appTextFieldInputMdel: AppTextFieldInputMdel(
                           onChangedFunction: (value) => controller.search(
                               input: controller.searchController.text),
-                          textFieldName: ' Enter Product Name',
+                          textFieldLabel: "Enter_Product_Name".localization,
                           context: context,
                           controller: controller.searchController,
                           icon: CupertinoIcons.xmark)),

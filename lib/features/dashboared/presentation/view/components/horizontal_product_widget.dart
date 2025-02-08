@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_application/core/constants/view_constants.dart';
-import 'package:ecommerce_application/core/utils/responsive_extention.dart';
+import 'package:ecommerce_application/core/extentions/responsive_extention.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/product_details_widget.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/product_details_page.dart';

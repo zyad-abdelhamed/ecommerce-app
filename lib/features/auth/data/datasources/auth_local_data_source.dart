@@ -25,6 +25,6 @@ class AuthLocalDataSource extends BaseAuthLocalDataSource {
 
   @override
   Future<void> insertTokenToCache({required String token}) async {
-    await sl<BaseCache>().insertStringToCache(key: 'token', value: token);
+    await sl<BaseCache>().insertStringToCache(key: CacheConstants.tokenKey, value: token);
   }
 }

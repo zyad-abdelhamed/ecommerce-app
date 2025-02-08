@@ -2,7 +2,7 @@ import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:ecommerce_application/core/widgets/app_material_button.dart';
 import 'package:ecommerce_application/core/widgets/app_sneak_bar.dart';
 import 'package:ecommerce_application/core/widgets/app_textfield.dart';
-import 'package:ecommerce_application/core/utils/controllers_extention.dart';
+import 'package:ecommerce_application/core/extentions/controllers_extention.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
@@ -35,14 +35,14 @@ class LogInFormComponent extends StatelessWidget {
             children: [
               getAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
-                      textFieldName: 'email',
+                      textFieldLabel: 'email',
                       controller: context.authController.logInEmailController,
                       context: context)),
               SizedBoxs.sizedBoxH10,
               getAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
                       obscure: true,
-                      textFieldName: 'password',
+                      textFieldLabel: 'password',
                       controller:
                           context.authController.logInPasswordController,
                       context: context)),

@@ -1,4 +1,6 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
+import 'package:ecommerce_application/core/helper_functions/change_password_validator.dart';
 import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
@@ -52,7 +54,7 @@ class ChangePasswordBottomSheet extends StatelessWidget {
                 getAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
                     obscure: true,
-                    textFieldName: 'Old Password',
+                    textFieldLabel: "old_password".localization,
                     context: context,
                     controller: controller.oldPasswordController,
                   ),
@@ -61,28 +63,21 @@ class ChangePasswordBottomSheet extends StatelessWidget {
                 getAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
                     obscure: true,
-                    textFieldName: 'New Password',
+                    textFieldLabel: "new_password".localization,
                     context: context,
                     controller: controller.newPasswordController,
                   ),
                 ),
                 SizedBoxs.sizedBoxH20,
-                getAppTextfieldWithVaildator(
+                getAppTextfield(
+                    appTextFieldInputMdel: AppTextFieldInputMdel(
                   obscure: true,
-                  function: (value) {
-                    if (controller.repeatPasswordController.text.isEmpty) {
-                      return 'this field must not be empty';
-                    } else if (controller.repeatPasswordController.text !=
-                        controller.newPasswordController.text) {
-                      return 'not equal with new password';
-                    } else {
-                      return null;
-                    }
-                  },
-                  textFieldName: 'Repeat Password',
+                  validator: (value) =>
+                      changePasswordValidator(controller: controller),
+                  textFieldLabel: "repeat_password".localization,
                   context: context,
                   controller: controller.repeatPasswordController,
-                ),
+                )),
                 SizedBoxs.sizedBoxH20,
                 appMaterialButton(
                     buttonFunction: () {

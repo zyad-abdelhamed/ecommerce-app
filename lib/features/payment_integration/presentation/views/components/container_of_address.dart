@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +28,8 @@ Widget containerOfAddress(
               ),
               TextButton(
                 onPressed: function,
-                child: const Text(
-                  'Change',
+                child: Text(
+                  "change".localization,
                   style: TextStyles.textStyleNewPrice,
                 ),
               )

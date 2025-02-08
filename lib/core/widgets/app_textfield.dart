@@ -9,51 +9,20 @@ Widget getAppTextfield(
     DecoratedBox(
       decoration: BoxDecoration(boxShadow: ViewConstants.appShadow),
       child: TextFormField(
+        readOnly: appTextFieldInputMdel.readOnly,
         obscureText: appTextFieldInputMdel.obscure,
         controller: appTextFieldInputMdel.controller,
-        validator: (value) {
-          if (appTextFieldInputMdel.controller.text.isEmpty) {
-            return '${appTextFieldInputMdel.textFieldName} must not be empty';
-          } else {
-            return null;
-          }
-        },
+        validator: appTextFieldInputMdel.validator,
         decoration: InputDecoration(
           contentPadding:
               const EdgeInsets.symmetric(vertical: 18, horizontal: 15),
           filled: true,
           fillColor: AppColors.whiteDesignColor,
-          labelText: appTextFieldInputMdel.textFieldName,
+          labelText: appTextFieldInputMdel.textFieldLabel,
           labelStyle: TextStyles.textStyle16grey,
+          hintText: appTextFieldInputMdel.textFieldHint,
+          hintStyle: TextStyles.textStyle16grey,
           border: InputBorder.none,
         ),
       ),
     );
-
-////////ده زر تقوم انت فيه يعم validator
-
-Widget getAppTextfieldWithVaildator(
-        {required FormFieldValidator<String> function,
-        required String textFieldName,
-        required BuildContext context,
-        required TextEditingController controller,
-        bool obscure = false}) =>
-    DecoratedBox(
-      decoration: BoxDecoration(boxShadow: ViewConstants.appShadow),
-      child: TextFormField(
-        obscureText: obscure,
-        controller: controller,
-        validator: function,
-        decoration: InputDecoration(
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 18, horizontal: 15),
-          filled: true,
-          fillColor: Colors.white,
-          labelText: textFieldName,
-          labelStyle:
-              const TextStyle(color: Color.fromARGB(255, 209, 207, 207)),
-          border: InputBorder.none,
-        ),
-      ),
-    );
-

@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/categories_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/categories_widgt.dart';
@@ -16,7 +17,7 @@ class CategoryPage extends StatelessWidget {
         textDirection: TextDirection.rtl,
         child: Scaffold(
             appBar: AppBar(
-              title: const Text('categories'),
+              title:  Text("categories".localization),
             ),
             body: const CategoriesWidgt()),
       ),

@@ -1,8 +1,9 @@
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/widgets/app_material_button.dart';
-import 'package:ecommerce_application/core/widgets/second_app_text_field.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/view/components/second_app_text_field.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/address_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
@@ -38,7 +39,7 @@ class CartsPage extends StatelessWidget {
                 height: 140,
                 alignment: Alignment.bottomLeft,
                 child: Text(
-                  'My Cart',
+                  "My Cart".localization,
                   style: TextStyles.textStyle34(context: context),
                 ),
               ),
@@ -46,7 +47,7 @@ class CartsPage extends StatelessWidget {
               getSecondAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
                       icon: CupertinoIcons.arrow_right,
-                      textFieldName: 'Enter Promo Code',
+                      textFieldLabel: "Enter Promo Code".localization,
                       context: context,
                       controller: TextEditingController())),
               SizedBoxs.sizedBoxH20,
@@ -54,7 +55,7 @@ class CartsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Total amount:',
+                    "Total amount:".localization,
                     style: TextStyles.textStyle16grey,
                   ),
                   BlocBuilder<ProductCubit, ProductState>(
@@ -86,7 +87,7 @@ class CartsPage extends StatelessWidget {
                               ),
                             ));
                       },
-                      buttonName: 'Check Out');
+                      buttonName: "Check Out".localization);
                 },
               )
             ],

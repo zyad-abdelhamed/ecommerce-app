@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class BaseCache {
+
   Future<void> cacheintIalization();
   Future<bool> insertStringToCache(
       {required String key, required String value});
@@ -18,7 +19,8 @@ abstract class BaseCache {
 }
 
 class CacheImplBySharedPreferences extends BaseCache {
-  late SharedPreferences sharedPreferences;
+    late final SharedPreferences sharedPreferences;
+
   //ialization
   @override
   Future<void> cacheintIalization() async {

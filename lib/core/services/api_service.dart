@@ -3,6 +3,7 @@ import 'package:ecommerce_application/core/constants/api_constant.dart';
 import 'package:ecommerce_application/core/constants/secret_keys.dart';
 import 'package:ecommerce_application/core/localization/localization_proxy.dart';
 import 'package:ecommerce_application/core/models/api_service_input_model.dart';
+import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 
 class ApiService {
   final Dio dio;
@@ -41,10 +42,10 @@ class ApiService {
             },
             headers: switch (apiServiceInputModel.apiHeaders) {
               ApiHeadersEnum.backEndHeadersWithoutToken => {
-                  'language': LocalizationProxyImpl.language
+                  'lang': sl<BaseLocalization>().language
                 },
               ApiHeadersEnum.backEndHeadersWithToken => {
-                  'language': LocalizationProxyImpl.language,
+                  'lang': sl<BaseLocalization>().language,
                   'Authorization': ApiConstant.token
                 },
               ApiHeadersEnum.paymentHeaders => {

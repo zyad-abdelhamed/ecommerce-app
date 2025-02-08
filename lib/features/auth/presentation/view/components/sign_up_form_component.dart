@@ -3,7 +3,7 @@ import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:ecommerce_application/core/widgets/app_sneak_bar.dart';
 import 'package:ecommerce_application/core/widgets/app_material_button.dart';
 import 'package:ecommerce_application/core/widgets/app_textfield.dart';
-import 'package:ecommerce_application/core/utils/controllers_extention.dart';
+import 'package:ecommerce_application/core/extentions/controllers_extention.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/auth/presentation/controller/cubit/auth_cubit.dart';
@@ -37,25 +37,25 @@ class SignUpFormComponent extends StatelessWidget {
             children: [
               getAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
-                      textFieldName: 'username',
+                      textFieldLabel: 'username',
                       controller: context.authController.usernameController,
                       context: context)),
               SizedBoxs.sizedBoxH10,
               getAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
-                      textFieldName: 'phonenumber',
+                      textFieldLabel: 'phonenumber',
                       controller: context.authController.phoneNumerController,
                       context: context)),
               SizedBoxs.sizedBoxH10,
               getAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
-                      textFieldName: 'email',
+                      textFieldLabel: 'email',
                       controller: context.authController.emailController,
                       context: context)),
               SizedBoxs.sizedBoxH10,
               getAppTextfield(
                   appTextFieldInputMdel: AppTextFieldInputMdel(
-                      textFieldName: 'password',
+                      textFieldLabel: 'password',
                       controller: context.authController.passwordController,
                       context: context)),
               SizedBoxs.sizedBoxH20,

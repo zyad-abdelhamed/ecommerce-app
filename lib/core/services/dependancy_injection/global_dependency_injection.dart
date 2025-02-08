@@ -14,8 +14,8 @@ class GlobalDependencyInjection {
     sl.registerLazySingleton<ApiService>(
       () => ApiService(sl()),
     );
-    sl.registerLazySingleton<BaseLocalizationProxy>(
-      () => LocalizationProxyImpl(sl<BaseCache>()),
+    sl.registerLazySingleton<BaseLocalization>(
+      () => LocalizationImpl(sl<BaseCache>()),
     );
     sl.registerSingleton<BaseCache>(
       CacheImplBySharedPreferences(),

@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/user_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/change_password_bottom_sheet.dart';
@@ -19,13 +20,11 @@ void showChangePasswordBottomSheet({
         create: (context) => UserCubit(sl(), sl(), sl()),
         child: BlocConsumer<UserCubit, UserState>(
           listener: (context, state) async {
-            print(state);
-            print(state.changePasswordMessage);
             if (state.changePasswordState == RequestStateEnum.success) {
               Navigator.pop(context);
               appSneakBar(
                   context: context,
-                  message: 'password changed successfully',
+                  message: "password_changed_success".localization,
                   isError: false);
             } else if (state.changePasswordState == RequestStateEnum.failed) {
               Navigator.pop(context);
@@ -34,7 +33,7 @@ void showChangePasswordBottomSheet({
                 context: context,
                 message: state.changePasswordMessage.isNotEmpty
                     ? state.changePasswordMessage
-                    : 'Failed to change password',
+                    : "password_change_failed".localization,
                 isError: true,
               );
             }
@@ -44,7 +43,7 @@ void showChangePasswordBottomSheet({
             return ChangePasswordBottomSheet(
               buttonname: state.changePasswordState == RequestStateEnum.loading
                   ? 'LOADING...'
-                  : 'SAVE PASSWORD',
+                  : "save_password".localization,
               controller: controller,
             );
           },

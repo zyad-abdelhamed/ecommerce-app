@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/core/utils/responsive_extention.dart';
+import 'package:ecommerce_application/core/extentions/responsive_extention.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/add_and_remove_cart_widget.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/get_products_ethier_vertical_or_horizontal.dart';

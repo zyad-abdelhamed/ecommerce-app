@@ -5,15 +5,15 @@ import 'package:equatable/equatable.dart';
 part 'settings_state.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
-  final BaseLocalizationProxy baseLocalizationProxy;
+  final BaseLocalization baseLocalizationProxy;
   SettingsCubit(this.baseLocalizationProxy) : super(const SettingsState());
 
-  convertLanguageToArabic(){
+  void convertLanguageToArabic() {
     baseLocalizationProxy.convertToArabic();
     emit(const SettingsState());
   }
 
-  convertLanguageToEnglish(){
+  void convertLanguageToEnglish() {
     baseLocalizationProxy.convertToEnglish();
     emit(const SettingsState());
   }

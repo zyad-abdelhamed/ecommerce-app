@@ -37,22 +37,22 @@ class AddressForm extends StatelessWidget {
                 SizedBoxs.sizedBoxH10,
                 getAppTextfield(
                     appTextFieldInputMdel: AppTextFieldInputMdel(
-                        textFieldName: 'Name',
+                        textFieldLabel: 'Name',
                         context: context,
                         controller: controller.nameController)),
                 getAppTextfield(
                     appTextFieldInputMdel: AppTextFieldInputMdel(
-                        textFieldName: 'Address',
+                        textFieldLabel: 'Address',
                         context: context,
                         controller: controller.addressController)),
                 getAppTextfield(
                     appTextFieldInputMdel: AppTextFieldInputMdel(
-                        textFieldName: 'city',
+                        textFieldLabel: 'city',
                         context: context,
                         controller: controller.cityController)),
                 getAppTextfield(
                     appTextFieldInputMdel: AppTextFieldInputMdel(
-                        textFieldName: 'state/province/region',
+                        textFieldLabel: 'state/province/region',
                         context: context,
                         controller: controller.regionController)),
                 SizedBoxs.sizedBoxH20,

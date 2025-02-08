@@ -4,25 +4,26 @@ import 'package:ecommerce_application/core/constants/cache_constants.dart';
 import 'package:ecommerce_application/core/services/cache_service.dart';
 import 'package:flutter/services.dart';
 
-abstract class BaseLocalizationProxy {
+abstract class BaseLocalization {
+  String language = 'en';
+  Map<String, dynamic> localization = {};
   Future<void> loadlang();
   Future<void> convertToArabic();
   Future<void> convertToEnglish();
   Future<void> getLanguage();
+  String getCurrentLanguage();
 }
 
-class LocalizationProxyImpl extends BaseLocalizationProxy {
+class LocalizationImpl extends BaseLocalization {
   final BaseCache baseCache;
-  static String language = 'ar';
 
-  Map<String, dynamic> localization = {};
-
-  LocalizationProxyImpl(this.baseCache);
+  LocalizationImpl(this.baseCache);
   @override
   Future<void> loadlang() async {
     await baseCache.insertStringToCache(
         key: CacheConstants.languageKey, value: language);
-    String root = await rootBundle.loadString("assets/lang/$language.json");
+    String root = await rootBundle
+        .loadString("lib/core/localization/languages/en.json");
     localization = json.decode(root);
   }
 
@@ -47,7 +48,13 @@ class LocalizationProxyImpl extends BaseLocalizationProxy {
   @override
   Future<void> getLanguage() async {
     language =
-        baseCache.getStringFromCache(key: CacheConstants.languageKey) ?? "ar";
+        baseCache.getStringFromCache(key: CacheConstants.languageKey) ?? "en";
     await loadlang();
+  }
+
+  @override
+  String getCurrentLanguage() {
+    return baseCache.getStringFromCache(key: CacheConstants.languageKey) ??
+        "ar";
   }
 }
