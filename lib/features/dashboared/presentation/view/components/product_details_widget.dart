@@ -2,6 +2,7 @@ import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ProductDetailsWidget extends StatelessWidget {
   final int maxLines;
@@ -22,7 +23,7 @@ class ProductDetailsWidget extends StatelessWidget {
         Text(
             maxLines: maxLines,
             product.name,
-            style: TextStyles.textStyle34(context: context)
+            style: TextStyles.textStyle20Bold
             // .copyWith(overflow: TextOverflow.ellipsis, fontSize: 18),
             ),
         Text(

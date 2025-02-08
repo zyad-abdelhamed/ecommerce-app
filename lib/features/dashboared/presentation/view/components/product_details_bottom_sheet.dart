@@ -76,7 +76,7 @@ class ProductDetailsBottomSheet extends StatelessWidget {
                                       )), //share product
                                   GestureDetector(
                                     onTap: () =>
-                                        controller.addOrRemoveCartProducts(
+                                        controller.addOrRemoveCartProducts(index: 0,
                                             productId: product.id.toString()),
                                     child: AddAndRemoveCartWidget(
                                         containerOfCartColor:

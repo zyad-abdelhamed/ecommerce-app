@@ -36,7 +36,7 @@ class FavoritesBody extends StatelessWidget {
                     productId: state.favoritesProducts[index].id.toString()),
               ),
               bottomRightOfStackWidget: GestureDetector(
-                onTap: () => controller.addOrRemoveCartProducts(
+                onTap: () => controller.addOrRemoveCartProducts(index: 0,
                     productId: state.favoritesProducts[index].id.toString()),
                 child: AddAndRemoveCartWidget(
                     containerOfCartColor: controller.getCartContainerColor(

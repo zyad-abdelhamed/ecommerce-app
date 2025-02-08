@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/widgets/loading_widget.dart';
@@ -21,9 +22,9 @@ class UserDetailsWidget extends StatelessWidget {
                 height: 80,
                 child: Row(
                   children: [
-                    const CircleAvatar(
+                     CircleAvatar(
                       radius: 30,
-                      backgroundImage: AssetImage('assets/test.jpg'),
+                      backgroundImage:NetworkImage(state.userData.image!),
                     ),
                     SizedBoxs.sizedBoxw15,
                     Column(

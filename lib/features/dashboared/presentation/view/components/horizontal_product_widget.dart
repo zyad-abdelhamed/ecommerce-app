@@ -5,6 +5,7 @@ import 'package:ecommerce_application/features/dashboared/domain/entity/product.
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/product_details_widget.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/product_details_page.dart';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class HorizontalProductWidget extends StatelessWidget {
   //define variabels
@@ -12,10 +13,12 @@ class HorizontalProductWidget extends StatelessWidget {
   final Widget? bottomRightOfStackWidget;
   final List<Product> productsList;
   final int index;
+  final bool isLoading;
   //constructor
   const HorizontalProductWidget(
       {super.key,
       required this.buttonWidget,
+      this.isLoading = false,
       required this.productsList,
       required this.index,
       this.bottomRightOfStackWidget});
@@ -29,74 +32,78 @@ class HorizontalProductWidget extends StatelessWidget {
       )),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Stack(
-          children: [
-            //begin bottom of stack
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: ViewConstants.appShadow,
-              ),
-              height: context.height * 1 / 6,
-              margin: const EdgeInsets.all(10.0),
-              width: double.infinity,
-              child: Row(
-                children: [
-                  //image
-                  SizedBox(
-                      width: context.width * 1 / 3.5,
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            bottomLeft: Radius.circular(15)),
-                        child: CachedNetworkImage(
-                          imageUrl: productsList[index].image,
-                          fit: BoxFit.fill,
+        child: Skeletonizer(
+          enabled: isLoading,
+          child: Stack(
+            children: [
+              //begin bottom of stack
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: ViewConstants.appShadow,
+                ),
+                height: context.height * 1 / 6,
+                margin: const EdgeInsets.all(10.0),
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    //image
+                    SizedBox(
+                        width: context.width * 1 / 3.5,
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(15),
+                              bottomLeft: Radius.circular(15)),
+                          child: CachedNetworkImage(
+                            imageUrl: productsList[index].image,
+                            fit: BoxFit.fill,
+                          ),
+                        )),
+                    //column
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 10),
+                        child: ProductDetailsWidget(
+                          
+                          maxLines: 1,
+                          buttonWidget: buttonWidget,
+                          product: productsList[index],
                         ),
-                      )),
-                  //column
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 10),
-                      child: ProductDetailsWidget(
-                        maxLines: 1,
-                        buttonWidget: buttonWidget,
-                        product: productsList[index],
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
-            ),
-            //end bottom of stack
-            /////////////////////////////////////////////////////////
-            //begin top of stack
-            //discount
-            Positioned(
-                top: 10.0,
-                left: 10.0,
-                child: productsList[index].discount !=
-                        0 //check discount = 0 or not
-                    ? Container(
-                        decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 222, 73, 43),
-                            borderRadius: BorderRadius.circular(30)),
-                        padding: const EdgeInsets.only(
-                            top: 5, bottom: 5, left: 10, right: 10),
-                        child: Text(
-                          '${productsList[index].discount.toString()}%',
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                      )
-                    : const SizedBox()),
-            //widget of bottom right of stack
-            Positioned(
-                bottom: 0.0,
-                right: 0.0,
-                child: bottomRightOfStackWidget ?? const SizedBox())
-            //end top of stack
-          ],
+              //end bottom of stack
+              /////////////////////////////////////////////////////////
+              //begin top of stack
+              //discount
+              Positioned(
+                  top: 10.0,
+                  left: 10.0,
+                  child: productsList[index].discount !=
+                          0 //check discount = 0 or not
+                      ? Container(
+                          decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 222, 73, 43),
+                              borderRadius: BorderRadius.circular(30)),
+                          padding: const EdgeInsets.only(
+                              top: 5, bottom: 5, left: 10, right: 10),
+                          child: Text(
+                            '${productsList[index].discount.toString()}%',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        )
+                      : const SizedBox()),
+              //widget of bottom right of stack
+              Positioned(
+                  bottom: 0.0,
+                  right: 0.0,
+                  child: bottomRightOfStackWidget ?? const SizedBox())
+              //end top of stack
+            ],
+          ),
         ),
       ),
     );

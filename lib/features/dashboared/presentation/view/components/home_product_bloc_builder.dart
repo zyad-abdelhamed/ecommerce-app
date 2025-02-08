@@ -1,9 +1,11 @@
+import 'package:ecommerce_application/core/theme/app_colors.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/product_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/add_and_remove_cart_button.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/add_and_remove_favorites_button.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/vertical_product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class HomeProductBlocBuilder extends StatelessWidget {
   const HomeProductBlocBuilder({
@@ -27,11 +29,14 @@ class HomeProductBlocBuilder extends StatelessWidget {
           productsList: state.products,
           //cart button
           buttonWidget: AddAndRemoveCartButton(
+                      isLoading: state.load == index ,
+
               controller: controller,
               index: index,
               productsList: state.products),
           //favorites
           bottomRightOfStackWidget: AddAndRemoveFavoritsButton(
+           
             controller: controller,
             index: index,
             productsList: state.products,

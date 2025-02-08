@@ -35,7 +35,7 @@ class CategoryProductsBody extends StatelessWidget {
                 controller: controller,
                 buttonWidget: appMaterialButton(
                     buttonFunction: () {
-                      controller.addOrRemoveCartProducts(
+                      controller.addOrRemoveCartProducts(index: 0,
                           productId: state.products[index].id.toString());
                     },
                     buttonName: controller.getCartButtonName(
