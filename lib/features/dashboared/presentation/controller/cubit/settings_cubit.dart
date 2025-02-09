@@ -17,28 +17,30 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   Future<void> convertLanguageToEnglish() async {
     await baseLocalizationProxy.convertToEnglish();
-
     emit(state.copyWith(
         localizationStateEnum: LocalizationStateEnum.convertToEnglish));
   }
+
   //theme
   bool switchValue = false;
   void enableLightMode() {
-   // switchValue = false;
+    // switchValue = false;
     enableLightMode();
     emit(state.copyWith(themeStateEnum: ThemeStateEnum.enableLightMode));
   }
 
   void enableDarkMode() {
-   // switchValue = true;
+    // switchValue = true;
     enableDarkMode();
     emit(state.copyWith(themeStateEnum: ThemeStateEnum.enableDarkMode));
   }
-  void onChanged(bool value){
+
+  void onChanged(bool value) {
     switchValue = value;
-    if(switchValue == false){
+    if (switchValue == false) {
       enableDarkMode();
+    } else {
+      enableLightMode();
     }
-    enableLightMode();
   }
 }
