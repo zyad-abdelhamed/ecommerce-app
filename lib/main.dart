@@ -41,12 +41,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      builder: (context, child) {
-        return Directionality(
-          textDirection: sl<BaseLocalization>().getDirectionality(),
-          child: child!,
-        );
-      },
+      
       debugShowCheckedModeBanner: false,
       theme: appTheme,
       initialRoute: getInitRoute,

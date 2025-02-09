@@ -2,6 +2,7 @@ import 'package:ecommerce_application/features/auth/presentation/view/pages/log_
 import 'package:ecommerce_application/features/auth/presentation/view/pages/sign_up_page.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/add_shipping_address_page.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/bottom_navigation_bar.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/view/pages/profile_page.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/settings_page.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/pages/shipping_addresses_page.dart';
 import 'package:ecommerce_application/features/onboarding/presentation/view/pages/onboarding_page.dart';
@@ -36,6 +37,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case 'ShippingAddresses':
       return MaterialPageRoute<ShippingAddressesPage>(
         builder: (BuildContext context) => const ShippingAddressesPage(),
+      );
+      case 'profile':
+      return MaterialPageRoute<ProfilePage>(
+        builder: (BuildContext context) => const ProfilePage(),
       );
     // case 'PaymentPage1':
     // return MaterialPageRoute<PaymentPage1>(
