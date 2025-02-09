@@ -14,7 +14,7 @@ class PageViewWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
         borderRadius: BorderRadius.only(topLeft: Radius.circular(100)),
         color: AppColors.scaffoldBackgroundColor,
       ),

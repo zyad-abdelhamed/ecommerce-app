@@ -13,7 +13,7 @@ class NextButtonWidget extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => controller.animateToNextPage(context: context),
-      child: const CircleAvatar(
+      child:  CircleAvatar(
         backgroundColor: AppColors.primaryColor,
         radius: 79.5,
         child: Icon(

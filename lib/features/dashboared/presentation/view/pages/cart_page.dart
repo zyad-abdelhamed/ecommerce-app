@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/core/extentions/localization_extention.dart';
+import 'package:ecommerce_application/core/localization/localization_proxy.dart';
 import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
@@ -37,7 +38,9 @@ class CartsPage extends StatelessWidget {
             children: [
               Container(
                 height: 140,
-                alignment: Alignment.bottomLeft,
+                alignment: sl<BaseLocalization>().isarabic()
+                    ? Alignment.bottomRight
+                    : Alignment.bottomLeft,
                 child: Text(
                   "My Cart".localization,
                   style: TextStyles.textStyle34(context: context),

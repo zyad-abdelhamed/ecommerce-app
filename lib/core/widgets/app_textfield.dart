@@ -17,7 +17,7 @@ Widget getAppTextfield(
           contentPadding:
               const EdgeInsets.symmetric(vertical: 18, horizontal: 15),
           filled: true,
-          fillColor: AppColors.whiteDesignColor,
+          fillColor: AppColors.whiteOrBlackDesignColor,
           labelText: appTextFieldInputMdel.textFieldLabel,
           labelStyle: TextStyles.textStyle16grey,
           hintText: appTextFieldInputMdel.textFieldHint,

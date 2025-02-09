@@ -23,7 +23,7 @@ class AddressesListView extends StatelessWidget {
             margin: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               boxShadow: ViewConstants.appShadow,
-              color: AppColors.whiteDesignColor,
+              color: AppColors.whiteOrBlackDesignColor,
             ),
             child: AddressContainer(
               state: state,

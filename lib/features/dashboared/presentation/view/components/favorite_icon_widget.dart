@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/core/constants/view_constants.dart';
+import 'package:ecommerce_application/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteIconWidget extends StatelessWidget {
@@ -18,7 +19,7 @@ class FavoriteIconWidget extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
-            color: Colors.white,
+            color: AppColors.whiteOrBlackDesignColor,
             boxShadow: ViewConstants.appShadow),
         child: AnimatedScale(
           scale: scale,

@@ -11,6 +11,7 @@ abstract class BaseLocalization {
   Future<void> loadlang();
   Future<void> convertToArabic();
   Future<void> convertToEnglish();
+  bool isarabic();
   Future<void> getLanguage();
   String getCurrentLanguage();
 }
@@ -42,6 +43,7 @@ class LocalizationImpl extends BaseLocalization {
     await loadlang();
   }
 
+  @override
   bool isarabic() {
     return language == 'ar';
   }

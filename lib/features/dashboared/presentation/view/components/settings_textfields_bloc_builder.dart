@@ -1,4 +1,3 @@
-import 'package:ecommerce_application/core/constants/view_constants.dart';
 import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:ecommerce_application/core/models/Text_field_input_model.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
@@ -39,7 +38,7 @@ class SettingsTextFieldsBlocBuilder extends StatelessWidget {
             )),
             SizedBoxs.sizedBoxH20,
              SettingsRow(
-              startString: ViewConstants.password,
+              startString: "password".localization,
               textStyle: TextStyles.textStyle18grey,
               textButtonText: "change".localization,
             ),

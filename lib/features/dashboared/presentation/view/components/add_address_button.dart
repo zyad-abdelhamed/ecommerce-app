@@ -1,6 +1,5 @@
 import 'package:ecommerce_application/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class AddAddressButton extends StatelessWidget {
   const AddAddressButton({
@@ -10,10 +9,10 @@ class AddAddressButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () => context.push('/AddAddressPage'),
-      child: const Icon(
+      onPressed: () => Navigator.pushNamed(context, 'AddShippingAddress'),
+      child:  Icon(
         Icons.add,
-        color: AppColors.whiteDesignColor,
+        color: AppColors.whiteOrBlackDesignColor,
       ),
     );
   }

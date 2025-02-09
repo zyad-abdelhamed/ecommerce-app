@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/core/extentions/localization_extention.dart';
+import 'package:ecommerce_application/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class RemoveButtonWidget extends StatelessWidget {
@@ -14,7 +15,7 @@ class RemoveButtonWidget extends StatelessWidget {
         onPressed: removeButtonFunction,
         child: Text(
           "remove".localization,
-          style: const TextStyle(color: Colors.black),
+          style: const TextStyle(color: AppColors.greyDesignColor),
         ));
   }
 }

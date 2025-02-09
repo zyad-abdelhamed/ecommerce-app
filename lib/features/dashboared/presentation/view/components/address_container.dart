@@ -37,7 +37,7 @@ class AddressContainer extends StatelessWidget {
                 Checkbox(
                   side: const BorderSide(color: AppColors.greyDesignColor),
                   value: controller.selectedCheckBox == index,
-                  activeColor: AppColors.blackDesignColor,
+                  activeColor: AppColors.greenDesignColor,
                   onChanged: (value) =>
                       controller.changeSelectedCheckBox(index: index),
                 ),
@@ -46,10 +46,6 @@ class AddressContainer extends StatelessWidget {
             )
           ],
         ),
-        const Text(
-          'Edit',
-          style: TextStyles.textStyleNewPrice,
-        )
       ],
     );
   }

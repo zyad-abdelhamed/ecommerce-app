@@ -1,5 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_application/core/theme/app_colors.dart';
+import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
+import 'package:ecommerce_application/core/widgets/get_app_failure_widget.dart';
 import 'package:ecommerce_application/core/widgets/loading_widget.dart';
 import 'package:ecommerce_application/core/extentions/responsive_extention.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/categories_cubit.dart';
@@ -13,8 +16,6 @@ class CategoriesWidgt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CategoriesCubit, CategoriesState>(
-      buildWhen: (previous, current) =>
-          previous.categories != current.categories,
       builder: (context, state) {
         switch (state.requestStateEnum) {
           case RequestStateEnum.success:
@@ -38,7 +39,7 @@ class CategoriesWidgt extends StatelessWidget {
                       height: context.height * 1 / 9,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Colors.white),
+                          color: AppColors.whiteOrBlackDesignColor),
                       child: Row(
                         children: [
                           Expanded(
@@ -47,7 +48,7 @@ class CategoriesWidgt extends StatelessWidget {
                                 padding: const EdgeInsets.only(right: 20),
                                 child: Text(
                                   state.categories[index].name,
-                                  style: const TextStyle(fontSize: 25),
+                                  style: TextStyles.textStyle20Bold,
                                 ),
                               )),
                           Expanded(
@@ -68,7 +69,7 @@ class CategoriesWidgt extends StatelessWidget {
               },
             );
           case RequestStateEnum.failed:
-            return Text(state.message);
+            return getAppFailureWidget(message: state.message);
           case RequestStateEnum.loading:
             return Center(
               child: getLoadingWidget(),

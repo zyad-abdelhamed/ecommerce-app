@@ -26,31 +26,34 @@ class SearchPage extends StatelessWidget {
             builder: (context, state) {
               final ProductCubit controller = context.read<ProductCubit>();
 
-              return Column(
-                children: [
-                  getSecondAppTextfield(
-                      appTextFieldInputMdel: AppTextFieldInputMdel(
-                          onChangedFunction: (value) => controller.search(
-                              input: controller.searchController.text),
-                          textFieldLabel: "Enter_Product_Name".localization,
-                          context: context,
-                          controller: controller.searchController,
-                          icon: CupertinoIcons.xmark)),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: state.searchProductsList.length,
-                      itemBuilder: (context, index) => HorizontalProductWidget(
-                          buttonWidget: const SizedBox(),
-                          bottomRightOfStackWidget: AddAndRemoveFavoritsButton(
-                            controller: controller,
-                            index: index,
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    getSecondAppTextfield(
+                        appTextFieldInputMdel: AppTextFieldInputMdel(
+                            onChangedFunction: (value) => controller.search(
+                                input: controller.searchController.text),
+                            textFieldLabel: "Enter_Product_Name".localization,
+                            context: context,
+                            controller: controller.searchController,
+                            icon: CupertinoIcons.xmark)),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: state.searchProductsList.length,
+                        itemBuilder: (context, index) => HorizontalProductWidget(
+                            buttonWidget: const SizedBox(),
+                            bottomRightOfStackWidget: AddAndRemoveFavoritsButton(
+                              controller: controller,
+                              index: index,
+                              productsList: state.searchProductsList,
+                            ),
                             productsList: state.searchProductsList,
-                          ),
-                          productsList: state.searchProductsList,
-                          index: index),
-                    ),
-                  )
-                ],
+                            index: index),
+                      ),
+                    )
+                  ],
+                ),
               );
             },
           ),

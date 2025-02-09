@@ -13,14 +13,11 @@ class CategoryPage extends StatelessWidget {
     return BlocProvider(
       lazy: true,
       create: (context) => CategoriesCubit(sl(), sl())..getCategories(),
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: Scaffold(
-            appBar: AppBar(
-              title:  Text("categories".localization),
-            ),
-            body: const CategoriesWidgt()),
-      ),
+      child: Scaffold(
+          appBar: AppBar(
+            title:  Text("categories".localization),
+          ),
+          body: const CategoriesWidgt()),
     );
   }
 }

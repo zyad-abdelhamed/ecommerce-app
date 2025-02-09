@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 abstract class TextStyles {
   static TextStyle textStyle34({required BuildContext context}) {
     return TextStyle(
-        color: AppColors.blackDesignColor,
         fontSize: getResponsiveFontSize(context: context, fontSize: 34),
         fontWeight: FontWeight.bold);
   }
@@ -16,12 +15,12 @@ abstract class TextStyles {
       fontWeight: FontWeight.bold,
       color: AppColors.greenDesignColor);
   static const TextStyle textStyle18BoldWhite =
-      TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18);
+      TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
   static const TextStyle textStyle18grey =
-      TextStyle(fontSize: 18, color: Color.fromARGB(255, 179, 176, 176));
+      TextStyle(fontSize: 18, color: AppColors.greyDesignColor);
 
   static const TextStyle textStyle18black =
-      TextStyle(fontSize: 18, color: Colors.black);
+      TextStyle(fontSize: 18,);
 
   static const TextStyle textStyleOldPrice = TextStyle(
       fontStyle: FontStyle.italic,
