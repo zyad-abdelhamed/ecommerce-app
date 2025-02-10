@@ -76,5 +76,7 @@
     "Summary:": "Summary:",
     "Thank_you_page_text": "Your order will be delivered soon.\nThank you for choosing our app!",
     "CONTINUE_SHOPPING": "CONTINUE SHOPPING",
-    "Success!": "Success!"
+    "Success!": "Success!",
+    "cart is empty": "Cart is empty",
+    "3 addresses": "3 addresses"
 }

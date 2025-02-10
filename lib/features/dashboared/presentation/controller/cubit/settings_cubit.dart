@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:ecommerce_application/core/helper_functions/enable_dark_mode.dart';
+import 'package:ecommerce_application/core/helper_functions/enable_light_mode.dart';
 import 'package:ecommerce_application/core/localization/localization_proxy.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:equatable/equatable.dart';
@@ -23,13 +25,13 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   //theme
   bool switchValue = false;
-  void enableLightMode() {
+  void enableLightMode1() {
     // switchValue = false;
     enableLightMode();
     emit(state.copyWith(themeStateEnum: ThemeStateEnum.enableLightMode));
   }
 
-  void enableDarkMode() {
+  void enableDarkMode1() {
     // switchValue = true;
     enableDarkMode();
     emit(state.copyWith(themeStateEnum: ThemeStateEnum.enableDarkMode));
@@ -38,9 +40,9 @@ class SettingsCubit extends Cubit<SettingsState> {
   void onChanged(bool value) {
     switchValue = value;
     if (switchValue == false) {
-      enableDarkMode();
+      enableDarkMode1();
     } else {
-      enableLightMode();
+      enableLightMode1();
     }
   }
 }

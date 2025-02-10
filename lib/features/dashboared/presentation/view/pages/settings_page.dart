@@ -58,7 +58,7 @@ class SettingsPage extends StatelessWidget {
                         "personal_info".localization,
                         style: TextStyles.textStyle18black,
                       ),
-                      SettingsTextFieldsBlocBuilder(),
+                    const  SettingsTextFieldsBlocBuilder(),
                       SizedBoxs.sizedBoxH30,
                       Text(
                         "language".localization,
@@ -79,7 +79,7 @@ class SettingsPage extends StatelessWidget {
                         inactiveThumbColor: AppColors.blackDesignColor,
                         value: controller.switchValue,
                         onChanged: controller.onChanged,
-                        title: Text(
+                        title:const Text(
                           'Dark Mode',
                           style: TextStyles.textStyle18black,
                         ),

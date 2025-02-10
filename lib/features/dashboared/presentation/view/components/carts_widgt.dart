@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:ecommerce_application/core/utils/enums.dart';
 import 'package:ecommerce_application/core/widgets/get_app_empty_list_widget.dart';
 import 'package:ecommerce_application/core/widgets/get_app_failure_widget.dart';
@@ -20,7 +21,7 @@ class CartsWidget extends StatelessWidget {
         switch (state.cartProductsState) {
           case RequestStateEnum.success:
             return state.cartProducts.isEmpty
-                ? getAppEmptyListWidget(message: 'Cart is empty')
+                ? getAppEmptyListWidget(message: 'cart is empty'.localization)
                 : ListView.builder(
                   itemCount: state.cartProducts.length,
                   itemBuilder: (context, index) {
