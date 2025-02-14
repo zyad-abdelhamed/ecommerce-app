@@ -5,8 +5,6 @@ TextTheme textTheme = ThemeData.dark().textTheme;
 ThemeData appTheme = ThemeData(
     brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
-    // colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
-    // primaryColor: AppColors.primaryColor,
     textTheme: GoogleFonts.montserratTextTheme(textTheme),
     appBarTheme:  AppBarTheme(
         backgroundColor: AppColors.whiteOrBlackDesignColor, centerTitle: true),
@@ -21,4 +19,4 @@ ThemeData appTheme = ThemeData(
       backgroundColor: AppColors.primaryColor,
       shape: CircleBorder(),
       iconSize: 30,
-    ));
+    ),);
