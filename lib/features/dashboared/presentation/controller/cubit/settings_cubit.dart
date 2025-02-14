@@ -9,7 +9,7 @@ part 'settings_state.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
   final BaseLocalization baseLocalizationProxy;
-  SettingsCubit(this.baseLocalizationProxy) : super(const SettingsState());
+  SettingsCubit(this.baseLocalizationProxy) : super( SettingsState());
   //localization
   Future<void> convertLanguageToArabic() async {
     await baseLocalizationProxy.convertToArabic();
@@ -24,25 +24,27 @@ class SettingsCubit extends Cubit<SettingsState> {
   }
 
   //theme
-  bool switchValue = false;
-  void enableLightMode1() {
-    // switchValue = false;
-    enableLightMode();
-    emit(state.copyWith(themeStateEnum: ThemeStateEnum.enableLightMode));
-  }
-
-  void enableDarkMode1() {
-    // switchValue = true;
-    enableDarkMode();
-    emit(state.copyWith(themeStateEnum: ThemeStateEnum.enableDarkMode));
-  }
+ 
 
   void onChanged(bool value) {
-    switchValue = value;
-    if (switchValue == false) {
-      enableDarkMode1();
+      print("Switch toggled: $value"); // تحقق مما إذا كان يتم استدعاء الوظيفة
+
+    if (state. switchValue == false) {
+      enableDarkMode();
+          state.switchValue = value;
+
+          emit(state.copyWith(themeStateEnum: ThemeStateEnum.enableDarkMode));
+
+      
     } else {
-      enableLightMode1();
+      enableLightMode();
+         state. switchValue = value;
+
+          emit(state.copyWith(themeStateEnum: ThemeStateEnum.enableLightMode));
+
     }
+  
   }
+ 
+
 }

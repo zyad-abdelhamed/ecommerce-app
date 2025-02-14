@@ -77,7 +77,7 @@ class SettingsPage extends StatelessWidget {
                         activeTrackColor: AppColors.inActiveGreenDesignColor,
                         inactiveTrackColor: AppColors.inActiveBlackColor,
                         inactiveThumbColor: AppColors.blackDesignColor,
-                        value: controller.switchValue,
+                        value:state.switchValue,
                         onChanged: controller.onChanged,
                         title:const Text(
                           'Dark Mode',

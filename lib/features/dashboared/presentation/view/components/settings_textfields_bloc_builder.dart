@@ -20,19 +20,19 @@ class SettingsTextFieldsBlocBuilder extends StatelessWidget {
           children: [
             getAppTextfield(
                 appTextFieldInputMdel: AppTextFieldInputMdel(
-              textFieldLabel: state.userData.name,
+              textFieldHint: state.userData.name,
               context: context,
               readOnly: true,
             )),
             getAppTextfield(
                 appTextFieldInputMdel: AppTextFieldInputMdel(
-              textFieldLabel: state.userData.email,
+              textFieldHint: state.userData.email,
               context: context,
               readOnly: true,
             )),
             getAppTextfield(
                 appTextFieldInputMdel: AppTextFieldInputMdel(
-              textFieldLabel: state.userData.phone,
+              textFieldHint: state.userData.phone,
               context: context,
               readOnly: true,
             )),

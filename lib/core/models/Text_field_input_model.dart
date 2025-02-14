@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppTextFieldInputMdel {
-  final String textFieldLabel;
+  final String? textFieldLabel;
+  final String? initialValue;
   final String? textFieldHint;
   final BuildContext context;
   final TextEditingController? controller;
@@ -13,8 +14,9 @@ class AppTextFieldInputMdel {
   final FormFieldValidator<String>? validator;
 
   AppTextFieldInputMdel(
-      {required this.textFieldLabel,
+      { this.textFieldLabel,
       this.textFieldHint,
+      this.initialValue,
       required this.context,
       this.controller,
       this.onChangedFunction,
