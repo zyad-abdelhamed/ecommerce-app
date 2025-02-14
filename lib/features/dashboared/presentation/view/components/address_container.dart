@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:ecommerce_application/core/theme/app_colors.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/address_cubit.dart';
@@ -41,7 +42,7 @@ class AddressContainer extends StatelessWidget {
                   onChanged: (value) =>
                       controller.changeSelectedCheckBox(index: index),
                 ),
-                const Text('Use as the shipping address'),
+                 Text('Use as the shipping address'.localization),
               ],
             )
           ],

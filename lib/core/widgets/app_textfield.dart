@@ -11,6 +11,7 @@ Widget getAppTextfield(
       child: TextFormField(
         readOnly: appTextFieldInputMdel.readOnly,
         obscureText: appTextFieldInputMdel.obscure,
+        initialValue: appTextFieldInputMdel.initialValue,
         controller: appTextFieldInputMdel.controller,
         validator: appTextFieldInputMdel.validator,
         decoration: InputDecoration(

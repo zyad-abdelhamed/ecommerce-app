@@ -4,6 +4,6 @@ import 'package:flutter/material.dart';
 
 void enableDarkMode(){
   AppColors.whiteOrBlackDesignColor = const Color(0xFF222222);
-  AppColors.scaffoldBackgroundColor = const Color.fromARGB(255, 44, 43, 43);
+  AppColors.scaffoldBackgroundColor = const Color(0xFF222222);
   textTheme = ThemeData.dark().textTheme;
 }

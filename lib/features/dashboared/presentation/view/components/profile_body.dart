@@ -23,7 +23,7 @@ class ProfileBody extends StatelessWidget {
         // ),
         ProfileListTile(
           title: "shipping_addresses".localization,
-          subtitle: '3 addresses',
+          subtitle: '3 addresses'.localization,
           function: () => Navigator.pushNamed(context, 'ShippingAddresses')
         ),
         // ProfileListTile(

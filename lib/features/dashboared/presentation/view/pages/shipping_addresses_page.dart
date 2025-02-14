@@ -1,3 +1,5 @@
+import 'package:ecommerce_application/core/extentions/localization_extention.dart';
+import 'package:ecommerce_application/core/localization/localization_proxy.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/address_cubit.dart';
@@ -13,13 +15,16 @@ class ShippingAddressesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => AddressCubit(sl(), sl())..getAddresses(),
-        child: Scaffold(
-            appBar: AppBar(
-                title: Text(
-              'Shipping Addresses',
-              style: TextStyles.textStyle20Bold,
-            )),
-            body: const ShippingAddressBodyBlocBuilder(),
-            floatingActionButton: const AddAddressButton()));
+        child: Directionality(
+          textDirection: sl<BaseLocalization>().getDirectionality(),
+          child: Scaffold(
+              appBar: AppBar(
+                  title: Text(
+                "shipping_addresses".localization,
+                style: TextStyles.textStyle20Bold,
+              )),
+              body: const ShippingAddressBodyBlocBuilder(),
+              floatingActionButton: const AddAddressButton()),
+        ));
   }
 }
