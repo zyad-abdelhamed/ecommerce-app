@@ -30,7 +30,6 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         apiServiceInputModel: ApiServiceInputModel(
             url: '${ApiConstant.getproductsEndPoint}$categoryId',
             apiHeaders: ApiHeadersEnum.backEndHeadersWithToken));
-    //  saveBooksData(books, kFeaturedBox);
 
     return List<ProductModel>.from((responseBody['data']['data'] as List)
         .map((e) => ProductModel.fromjson(data: e)));

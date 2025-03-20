@@ -4,6 +4,8 @@ import 'package:ecommerce_application/core/services/dependancy_injection/global_
 import 'package:ecommerce_application/core/theme/app_colors.dart';
 import 'package:ecommerce_application/core/theme/text_styles.dart';
 import 'package:ecommerce_application/core/utils/sized_boxs.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/bloc/dashboard_bloc.dart';
+import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/bottom_navigation_bar_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/settings_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/user_cubit.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/view/components/settings_body.dart';
@@ -34,11 +36,15 @@ class SettingsPage extends StatelessWidget {
               appBar: AppBar(
                 leading: IconButton(
                     onPressed: () {
-                      Navigator.pushNamedAndRemoveUntil(
+                     BottomNavigationBarCubit navigationBarCubit =BottomNavigationBarCubit();
+                     Navigator.pushNamedAndRemoveUntil(
                         context,
                         'dashboard',
                         (route) => false,
                       );
+                     navigationBarCubit.onChangeTabIndex(4);
+                     navigationBarCubit.onPageChanged(4);
+                      
                     },
                     icon: const Icon(Icons.arrow_back_ios_new)),
               ),
@@ -77,7 +83,7 @@ class SettingsPage extends StatelessWidget {
                         activeTrackColor: AppColors.inActiveGreenDesignColor,
                         inactiveTrackColor: AppColors.inActiveBlackColor,
                         inactiveThumbColor: AppColors.blackDesignColor,
-                        value:state.switchValue,
+                        value:controller.switchValue,
                         onChanged: controller.onChanged,
                         title:const Text(
                           'Dark Mode',

@@ -9,14 +9,14 @@ import 'package:ecommerce_application/core/services/dependancy_injection/auth_de
 import 'package:ecommerce_application/core/services/dependancy_injection/dashboard_debendency_injection.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/global_dependency_injection.dart';
 import 'package:ecommerce_application/core/services/dependancy_injection/payment_dependency_injection.dart';
-import 'package:ecommerce_application/core/theme/app_colors.dart';
 import 'package:ecommerce_application/core/theme/app_theme.dart';
 import 'package:ecommerce_application/core/services/cache_service.dart';
-import 'package:ecommerce_application/core/utils/enums.dart';
+import 'package:ecommerce_application/features/dashboared/domain/entity/product_type_adapter.dart';
 import 'package:ecommerce_application/features/dashboared/presentation/controller/cubit/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:hive/hive.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +29,7 @@ void main() async {
   await sl<BaseLocalization>().getLanguage();
   ApiConstant.token =
       sl<BaseCache>().getStringFromCache(key: CacheConstants.tokenKey) ?? '';
+  Hive.registerAdapter(ProductTypeAdapter());    
 
   Stripe.publishableKey = SecretKeys.stripePublishKey;
 
@@ -36,10 +37,7 @@ void main() async {
 
   runApp(DevicePreview(
     enabled: true,
-    builder: (context) => BlocProvider(
-      create: (context) => SettingsCubit(sl<BaseLocalization>()),
-      child: const MyApp(),
-    ),
+    builder: (context) => const MyApp(),
   ));
 }
 
@@ -47,22 +45,22 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingsCubit, SettingsState>(
-      builder: (context, state) {
-        return MaterialApp(
-          theme: state.themeStateEnum == ThemeStateEnum.enableDarkMode
-              ? appTheme.copyWith(
-                  scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
-                )
-              : appTheme.copyWith(
-                  scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
-                ),
-          debugShowCheckedModeBanner: false,
-          
-          initialRoute: getInitRoute,
-          onGenerateRoute: onGenerateRoute,
-        );
-      },
+    return BlocProvider(
+      create: (context) => SettingsCubit(sl()),
+      child: BlocBuilder<SettingsCubit, SettingsState>(
+        builder: (context, state) {
+          final SettingsCubit settingsCubit = context.read<SettingsCubit>();
+          return MaterialApp(
+            theme: appTheme,
+            darkTheme:
+                appTheme.copyWith(scaffoldBackgroundColor: Colors.amberAccent),
+            themeMode: settingsCubit.themeMode,
+            debugShowCheckedModeBanner: false,
+            initialRoute: getInitRoute,
+            onGenerateRoute: onGenerateRoute,
+          );
+        },
+      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:ecommerce_application/core/errors/failures.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/home_local_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/data/data_source/home_remote_data_source.dart';
+import 'package:ecommerce_application/features/dashboared/data/data_source/products_local_data_source.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/Banner.dart';
 import 'package:ecommerce_application/features/dashboared/domain/entity/product.dart';
 
@@ -11,7 +12,9 @@ import '../../domain/repositories/base_home_repo.dart';
 class HomeRepo extends BaseHomeRepo {
   final HomeRemoteDataSource homeRemoteDataSource;
   final BaseHomeLocalDataSource homeLocalDataSource;
-  HomeRepo(this.homeRemoteDataSource, this.homeLocalDataSource);
+  final BaseProductsLocalDataSource baseProductsLocalDataSource;
+  HomeRepo(this.homeRemoteDataSource, this.homeLocalDataSource,
+      this.baseProductsLocalDataSource);
   @override
   Future<Either<Failure, List<Banners>>> getDataBanner() async {
     List<Banners> banners;
@@ -36,8 +39,13 @@ class HomeRepo extends BaseHomeRepo {
   Future<Either<Failure, List<Product>>> getproducts(
       {required int? categoryId}) async {
     try {
-      List<Product> products =
-          await homeRemoteDataSource.getProducts(categoryId: categoryId);
+      List<Product> products;
+      if (baseProductsLocalDataSource.fetchLocalProducts().isNotEmpty) {
+        products = baseProductsLocalDataSource.fetchLocalProducts();
+        return Right(products);
+      }
+      products = await homeRemoteDataSource.getProducts(categoryId: categoryId);
+      baseProductsLocalDataSource.storeProductsLocaly(remoteProducts: products);
       return Right(products);
     } catch (e) {
       if (e is DioException) {

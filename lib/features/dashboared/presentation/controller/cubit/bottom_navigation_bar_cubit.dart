@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce_application/core/extentions/localization_extention.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 part 'bottom_navigation_bar_state.dart';
@@ -15,7 +16,7 @@ class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
         icon: const Icon(FontAwesomeIcons.list),
         label: "categories".localization),
     BottomNavigationBarItem(
-        icon: const Icon(FontAwesomeIcons.heart),
+        icon: const Icon(Icons.favorite),
         label: "Favourite".localization),
     BottomNavigationBarItem(
         icon: const Icon(FontAwesomeIcons.cartShopping),
